@@ -2,11 +2,11 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import VideoPlayerTest from "../../components/test/videoPlayer";
 
-const socket = io.connect("http://localhost:3002");
+const socket = io.connect("https://sc.moopa.live");
 
-export default function Test() {
+export default function Test({ roomId }) {
   const [message, setMessage] = useState("");
-  const [room, setRoom] = useState("");
+  // const [room, setRoom] = useState("");
   const [messageRecieved, setMessageRecieved] = useState([]);
   const [watchData, setWatchData] = useState({
     isPlay: false,
@@ -17,17 +17,20 @@ export default function Test() {
 
   console.log(isPlay);
 
-  const sendMessage = () => {
-    socket.emit("chat message", message);
-  };
-
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
+  const joinRoom = (props) => {
+    // setRoom(props);
+    if (roomId !== "") {
+      socket.emit("join room", roomId);
     }
   };
 
-  console.log(watchData);
+  useEffect(() => {
+    if (roomId) {
+      socket.emit("join room", roomId);
+    }
+  }, [roomId]);
+
+  console.log(roomId);
 
   useEffect(() => {
     socket.on("recieved_message", (data) => {
@@ -55,8 +58,6 @@ export default function Test() {
     });
   }, [socket]);
 
-  // console.log(messageRecieved);
-
   return (
     <div className="flex-center flex-col w-screen h-screen">
       <div className="w-[30%] flex gap-5">
@@ -72,8 +73,25 @@ export default function Test() {
           socket={socket}
           isPlay={isPlay}
           watchData={watchData}
+          room={roomId}
         />
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+
+  if (!id) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      roomId: id,
+    },
+  };
 }

@@ -33,6 +33,7 @@ export default function VideoPlayerTest({
   socket,
   isPlay,
   watchData,
+  room,
 }) {
   const [url, setUrl] = useState(
     "https://www013.vipanicdn.net/streamhls/a6fc173913a4b4f5637e802466cda83b/ep.11.1677609121.1080.m3u8"
@@ -130,6 +131,7 @@ export default function VideoPlayerTest({
           key={url}
           socket={socket}
           isPlay={isPlay}
+          room={room}
           watchData={watchData}
           option={{
             // url: `${url}`,
