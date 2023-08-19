@@ -17,7 +17,7 @@ import { GET_MEDIA_USER } from "../../../../queries";
 
 import dotenv from "dotenv";
 
-import VideoPlayer from "../../../../components/id-components/player/VideoPlayerId";
+import VideoPlayer from "../../../../components/id/player/VideoPlayerId";
 
 export default function Info({ sessions, id, aniId, provider, api, proxy }) {
   const [epiData, setEpiData] = useState(null);
