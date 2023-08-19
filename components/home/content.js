@@ -343,7 +343,6 @@ export default function Content({
                           </button>
                         )}
                       </div>
-                      {/* Next Episode */}
                       <Link
                         className="relative w-[320px] aspect-video rounded-md overflow-hidden group"
                         href={`/en/anime/watch/${i.aniId}/${

@@ -15,7 +15,6 @@ export default function PopularAnime({ sessions }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [remove, setRemoved] = useState();
-
   const router = useRouter();
 
   useEffect(() => {
