@@ -14,22 +14,13 @@ export default function InputSelect({
   keyDown,
   selected,
   setSelected,
+  search,
   inputRef,
 }) {
   // const [selected, setSelected] = useState(data[0]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(search);
 
   const router = useRouter();
-
-  const filteredData =
-    query === ""
-      ? data
-      : data.filter((item) =>
-          item.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
 
   function handleChange(event) {
     setSelected(event);
@@ -52,8 +43,10 @@ export default function InputSelect({
         <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-secondary text-left shadow-md focus:outline-none sm:text-sm">
           <input
             type="text"
+            value={query || ""}
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 bg-secondary text-gray-300 focus:ring-0 outline-none"
             onKeyDown={keyDown}
+            onChange={(e) => setQuery(e.target.value)}
             ref={inputRef}
           />
           <div className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -74,12 +67,12 @@ export default function InputSelect({
             className="absolute z-[55] mt-1 max-h-60 w-full rounded-md bg-secondary py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             style={{ scrollbarGutter: "stable" }}
           >
-            {filteredData.length === 0 && query !== "" ? (
+            {data.length === 0 && query !== "" ? (
               <div className="relative cursor-default select-none py-2 px-4 text-gray-300">
                 Nothing found.
               </div>
             ) : (
-              filteredData.map((item) => (
+              data.map((item) => (
                 <Combobox.Option
                   key={item.value}
                   className={({ active }) =>

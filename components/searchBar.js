@@ -142,7 +142,9 @@ const SearchBar = () => {
             {query && (
               <button className="flex items-center gap-2 justify-center">
                 <MagnifyingGlassIcon className="h-5 w-5" />
-                <Link href={`${lang}/search/${query}`}>More Results...</Link>
+                <Link href={`${lang}/search/anime/?search=${query}`}>
+                  More Results...
+                </Link>
               </button>
             )}
           </div>

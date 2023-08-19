@@ -27,11 +27,19 @@ import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/20/solid";
 export async function getServerSideProps(context) {
   const { param } = context.query;
 
-  const { format, season, year } = context.query;
+  const { search, format, genres, season, year } = context.query;
 
   let getFormat;
   let getSeason;
   let getYear;
+  let getGenres = [];
+
+  if (genres) {
+    const gr = genreOptions.find(
+      (i) => i.value.toLowerCase() === genres.toLowerCase()
+    );
+    getGenres.push(gr);
+  }
 
   if (season) {
     getSeason = seasonOptions.find(
@@ -62,27 +70,35 @@ export async function getServerSideProps(context) {
   return {
     props: {
       index: typeIndex,
+      query: search || null,
       formats: getFormat || null,
       seasons: getSeason || null,
       years: getYear || null,
+      genres: getGenres || null,
     },
   };
 }
 
-export default function Card({ index, formats, seasons, years }) {
+export default function Card({
+  index,
+  query,
+  genres,
+  formats,
+  seasons,
+  years,
+}) {
   const inputRef = useRef(null);
   const router = useRouter();
 
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
-  const [search, setQuery] = useState();
+  const [search, setQuery] = useState(query);
   const [type, setSelectedType] = useState(mediaType[index]);
   const [year, setYear] = useState(years);
   const [season, setSeason] = useState(seasons);
-  // const [genres, setSelectedGenre] = useState();
   const [sort, setSelectedSort] = useState();
-  const [genre, setGenre] = useState();
+  const [genre, setGenre] = useState(genres);
   const [format, setFormat] = useState(formats);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -162,7 +178,6 @@ export default function Card({ index, formats, seasons, years }) {
   function trash() {
     setQuery();
     setGenre();
-    inputRef.current.value = "";
     setFormat();
     setSelectedSort();
     setSeason();
@@ -192,6 +207,7 @@ export default function Card({ index, formats, seasons, years }) {
                 data={mediaType}
                 label="Search"
                 keyDown={handleKeyDown}
+                search={query || ""}
                 selected={type}
                 setSelected={setSelectedType}
               />

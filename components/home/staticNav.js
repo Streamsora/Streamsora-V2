@@ -30,7 +30,9 @@ export default function Navigasi() {
   }, []);
 
   const handleFormSubmission = (inputValue) => {
-    router.push(`/${lang}/search/${encodeURIComponent(inputValue)}`);
+    router.push(
+      `/${lang}/search/anime/?search=${encodeURIComponent(inputValue)}`
+    );
   };
 
   const handleKeyDown = async (event) => {
