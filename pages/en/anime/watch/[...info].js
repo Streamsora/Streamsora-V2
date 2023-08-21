@@ -101,21 +101,22 @@ export default function Info({
 
       if (episodes) {
         const getProvider = episodes?.find((i) => i.providerId === provider);
+        const episodeList = dub
+          ? getProvider?.episodes?.filter((x) => x.hasDub === true)
+          : getProvider?.episodes.slice(0, map.data[0].episodes.length);
         const playingData = map.data[0].episodes.find(
           (i) => i.number === Number(epiNumber)
         );
 
         if (getProvider) {
-          setepisodesList(
-            getProvider.episodes.slice(0, map.data[0].episodes.length)
-          );
-          const currentEpisode = getProvider.episodes?.find(
+          setepisodesList(episodeList);
+          const currentEpisode = episodeList?.find(
             (i) => i.number === parseInt(epiNumber)
           );
-          const nextEpisode = getProvider.episodes?.find(
+          const nextEpisode = episodeList?.find(
             (i) => i.number === parseInt(epiNumber) + 1
           );
-          const previousEpisode = getProvider.episodes?.find(
+          const previousEpisode = episodeList?.find(
             (i) => i.number === parseInt(epiNumber) - 1
           );
           setCurrentEpisode({

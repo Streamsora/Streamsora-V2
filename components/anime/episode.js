@@ -57,7 +57,10 @@ export default function AnimeEpisode({ info, progress }) {
 
   const lastEpisodeIndex = currentPage * itemsPerPage;
   const firstEpisodeIndex = lastEpisodeIndex - itemsPerPage;
-  const currentEpisodes = episodes.slice(firstEpisodeIndex, lastEpisodeIndex);
+  let currentEpisodes = episodes.slice(firstEpisodeIndex, lastEpisodeIndex);
+  if (isDub) {
+    currentEpisodes = currentEpisodes.filter((i) => i.hasDub === true);
+  }
   const totalPages = Math.ceil(episodes.length / itemsPerPage);
 
   const handleChange = (event) => {
