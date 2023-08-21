@@ -202,6 +202,7 @@ export const updateUserEpisode = async ({
   provider,
   nextId,
   nextNumber,
+  dub,
 }) => {
   try {
     const user = await prisma.watchListEpisode.updateMany({
@@ -220,6 +221,7 @@ export const updateUserEpisode = async ({
         timeWatched: timeWatched,
         nextId: nextId,
         nextNumber: nextNumber,
+        dub: dub,
         createdDate: new Date(),
       },
     });

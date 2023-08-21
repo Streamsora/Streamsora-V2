@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const dub = req.query.dub || false;
     const refresh = req.query.refresh || false;
 
-    const providers = ["enime", "gogoanime", "zoro"];
+    const providers = ["gogoanime"];
     const datas = [];
 
     const cached = cacheData.get(id + dub);

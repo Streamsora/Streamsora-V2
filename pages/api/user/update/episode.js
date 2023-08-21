@@ -44,6 +44,7 @@ export default async function handler(req, res) {
             provider,
             nextId,
             nextNumber,
+            dub,
           } = JSON.parse(req.body);
           const episode = await updateUserEpisode({
             name,
@@ -58,6 +59,7 @@ export default async function handler(req, res) {
             provider,
             nextId,
             nextNumber,
+            dub,
           });
           if (!episode) {
             return res

@@ -5,7 +5,6 @@ import ChangeView from "./changeView";
 import ThumbnailOnly from "./viewMode/thumbnailOnly";
 import ThumbnailDetail from "./viewMode/thumbnailDetail";
 import ListMode from "./viewMode/listMode";
-import axios from "axios";
 
 export default function AnimeEpisode({ info, progress }) {
   const [providerId, setProviderId] = useState(); // default provider
@@ -19,26 +18,29 @@ export default function AnimeEpisode({ info, progress }) {
   const [isDub, setIsDub] = useState(false);
 
   const [providers, setProviders] = useState(null);
+  const [mapProviders, setMapProviders] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     setProviders(null);
     const fetchData = async () => {
       try {
-        const { data: firstResponse } = await axios.get(
-          `/api/consumet/episode/${info.id}${isDub === true ? "?dub=true" : ""}`
-        );
-        if (firstResponse.data.length > 0) {
-          const defaultProvider = firstResponse.data?.find(
-            (x) => x.providerId === "gogoanime"
-          );
-          setProviderId(
-            defaultProvider?.providerId || firstResponse.data[0].providerId
-          ); // set to first provider id
+        const [firstResponse, anify] = await Promise.all([
+          fetch(`/api/consumet/episode/${info.id}`).then((res) => res.json()),
+          fetch(
+            `/api/anify/episode/${info.id}${isDub === true ? "?dub=true" : ""}`
+          ).then((res) => res.json()),
+        ]);
+
+        setMapProviders(firstResponse.data[0].episodes);
+
+        if (anify.length > 0) {
+          const defaultProvider = anify.find((x) => x.providerId === "9anime");
+          setProviderId(defaultProvider?.providerId || anify[0].providerId); // set to first provider id
         }
 
         setArtStorage(JSON.parse(localStorage.getItem("artplayer_settings")));
-        setProviders(firstResponse.data);
+        setProviders(anify);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -49,8 +51,9 @@ export default function AnimeEpisode({ info, progress }) {
   }, [info.id, isDub]);
 
   const episodes =
-    providers?.find((provider) => provider.providerId === providerId)
-      ?.episodes || [];
+    providers
+      ?.find((provider) => provider.providerId === providerId)
+      ?.episodes?.slice(0, mapProviders.length) || [];
 
   const lastEpisodeIndex = currentPage * itemsPerPage;
   const firstEpisodeIndex = lastEpisodeIndex - itemsPerPage;
@@ -213,6 +216,12 @@ export default function AnimeEpisode({ info, progress }) {
             {Array.isArray(providers) ? (
               providers.length > 0 ? (
                 currentEpisodes.map((episode, index) => {
+                  const mapData = mapProviders?.find(
+                    (i) => i.number === episode.number
+                  );
+
+                  // console.log(mapData);
+
                   return (
                     <Fragment key={index}>
                       {view === 1 && (
@@ -220,6 +229,7 @@ export default function AnimeEpisode({ info, progress }) {
                           key={index}
                           index={index}
                           info={info}
+                          image={mapData?.image}
                           providerId={providerId}
                           episode={episode}
                           artStorage={artStorage}
@@ -231,6 +241,9 @@ export default function AnimeEpisode({ info, progress }) {
                       {view === 2 && (
                         <ThumbnailDetail
                           key={index}
+                          image={mapData?.image}
+                          title={mapData?.title}
+                          description={mapData?.description}
                           index={index}
                           epi={episode}
                           provider={providerId}
@@ -246,6 +259,7 @@ export default function AnimeEpisode({ info, progress }) {
                           info={info}
                           episode={episode}
                           index={index}
+                          title={mapData?.title}
                           artStorage={artStorage}
                           providerId={providerId}
                           progress={progress}

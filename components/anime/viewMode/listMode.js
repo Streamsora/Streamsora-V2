@@ -4,6 +4,7 @@ export default function ListMode({
   info,
   episode,
   index,
+  title,
   artStorage,
   providerId,
   progress,
@@ -31,7 +32,7 @@ export default function ListMode({
         }`}
       >
         <p>Episode {episode.number}</p>
-        {episode.title && (
+        {title && (
           <p
             className={`text-xs lg:text-sm ${
               progress
@@ -43,7 +44,7 @@ export default function ListMode({
                 : "text-[#b1b1b1]"
             } italic`}
           >
-            "{episode.title}"
+            "{title}"
           </p>
         )}
       </Link>

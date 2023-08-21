@@ -86,12 +86,9 @@ export default function VideoPlayer({
           return {
             ...(isDefault && { default: true }),
             html: items.quality === "default" ? "adaptive" : items.quality,
-            url:
-              provider === "gogoanime"
-                ? `https://cors.moopa.workers.dev/?url=${encodeURIComponent(
-                    items.url
-                  )}${referer ? `&referer=${encodeURIComponent(referer)}` : ""}`
-                : `${proxy}${items.url}`,
+            url: `${proxy}?url=${encodeURIComponent(items.url)}${
+              referer ? `&referer=${encodeURIComponent(referer)}` : ""
+            }${referer ? `&origin=${encodeURIComponent(referer)}` : ""}`,
           };
         });
 
@@ -225,15 +222,16 @@ export default function VideoPlayer({
                     name: session?.user?.name,
                     id: String(aniId),
                     watchId: id,
-                    title: track?.playing?.title || aniTitle,
+                    title: track.playing?.title || aniTitle,
                     aniTitle: aniTitle,
-                    image: track?.playing?.image || info?.coverImage?.extraLarge,
+                    image: track.playing?.image || info?.coverImage?.extraLarge,
                     number: Number(progress),
                     duration: art.duration,
                     timeWatched: art.currentTime,
                     provider: provider,
-                    nextId: track?.next?.id,
-                    nextNumber: Number(track?.next?.number),
+                    nextId: track.next?.id,
+                    nextNumber: Number(track.next?.number),
+                    dub: dub ? true : false,
                   }),
                 });
                 // console.log("updating db", { track });
@@ -267,6 +265,7 @@ export default function VideoPlayer({
                   provider: provider,
                   nextId: track?.next?.id,
                   nextNumber: track?.next?.number,
+                  dub: dub ? true : false,
                   createdAt: new Date().toISOString(),
                 });
               }, 5000);

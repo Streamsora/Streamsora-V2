@@ -332,7 +332,7 @@ export default function Content({
                                   i.provider
                                 }?id=${encodeURIComponent(i?.nextId)}&num=${
                                   i?.nextNumber
-                                }`
+                                }${i?.dub ? `&dub=${i?.dub}` : ""}`
                               );
                             }}
                           >
@@ -347,7 +347,9 @@ export default function Content({
                         className="relative w-[320px] aspect-video rounded-md overflow-hidden group"
                         href={`/en/anime/watch/${i.aniId}/${
                           i.provider
-                        }?id=${encodeURIComponent(i.watchId)}&num=${i.episode}`}
+                        }?id=${encodeURIComponent(i.watchId)}&num=${i.episode}${
+                          i?.dub ? `&dub=${i?.dub}` : ""
+                        }`}
                       >
                         <div className="w-full h-full bg-gradient-to-t from-black/70 from-20% to-transparent group-hover:to-black/40 transition-all duration-300 ease-out absolute z-30" />
                         <div className="absolute bottom-3 left-0 mx-2 text-white flex gap-2 items-center w-[80%] z-30">

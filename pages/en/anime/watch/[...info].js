@@ -24,7 +24,7 @@ export default function Info({
   proxy,
   disqus,
 }) {
-  const [info, setInfo] = useState(data.data.Media);
+  const [info] = useState(data.data.Media);
   const [currentEpisode, setCurrentEpisode] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,6 +32,8 @@ export default function Info({
   const [statuses, setStatuses] = useState("CURRENT");
   const [artStorage, setArtStorage] = useState(null);
   const [episodesList, setepisodesList] = useState();
+  const [mapProviders, setMapProviders] = useState(null);
+
   const [onList, setOnList] = useState(false);
   const [origin, setOrigin] = useState(null);
 
@@ -88,17 +90,25 @@ export default function Info({
         }
       }
 
-      const response = await fetch(
-        `/api/consumet/episode/${aniId}${dub ? `?dub=${dub}` : ""}`
-      );
-      const episodes = await response.json();
+      const [map, episodes] = await Promise.all([
+        fetch(`/api/consumet/episode/${info.id}`).then((res) => res.json()),
+        fetch(`/api/anify/episode/${info.id}${dub ? "?dub=true" : ""}`).then(
+          (res) => res.json()
+        ),
+      ]);
+
+      setMapProviders(map.data[0].episodes);
 
       if (episodes) {
-        const getProvider = episodes.data?.find(
-          (i) => i.providerId === provider
+        const getProvider = episodes?.find((i) => i.providerId === provider);
+        const playingData = map.data[0].episodes.find(
+          (i) => i.number === Number(epiNumber)
         );
+
         if (getProvider) {
-          setepisodesList(getProvider.episodes);
+          setepisodesList(
+            getProvider.episodes.slice(0, map.data[0].episodes.length)
+          );
           const currentEpisode = getProvider.episodes?.find(
             (i) => i.number === parseInt(epiNumber)
           );
@@ -110,7 +120,13 @@ export default function Info({
           );
           setCurrentEpisode({
             prev: previousEpisode,
-            playing: currentEpisode,
+            playing: {
+              id: currentEpisode.id,
+              title: playingData?.title,
+              description: playingData?.description,
+              image: playingData?.image,
+              number: currentEpisode.number,
+            },
             next: nextEpisode,
           });
         } else {
@@ -188,6 +204,7 @@ export default function Info({
           />
           <SecondarySide
             info={info}
+            map={mapProviders}
             providerId={provider}
             watchId={watchId}
             episode={episodesList}
