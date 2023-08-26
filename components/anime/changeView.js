@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ChangeView({ view, setView, episode }) {
+export default function ChangeView({ view, setView, episode, map }) {
   // const [view, setView] = useState(1);
   // const episode = null;
   return (
@@ -8,7 +8,7 @@ export default function ChangeView({ view, setView, episode }) {
       <div
         className={
           episode?.length > 0
-            ? episode?.some((item) => item?.title === null)
+            ? episode?.some((item) => item?.title === null) || map === null
               ? "pointer-events-none"
               : "cursor-pointer"
             : "pointer-events-none"
@@ -30,7 +30,7 @@ export default function ChangeView({ view, setView, episode }) {
             height="20"
             className={`${
               episode?.length > 0
-                ? episode?.some((item) => item?.title === null)
+                ? episode?.some((item) => item?.title === null) || map === null
                   ? "fill-[#1c1c22]"
                   : view === 1
                   ? "fill-action"
@@ -44,7 +44,7 @@ export default function ChangeView({ view, setView, episode }) {
       <div
         className={
           episode?.length > 0
-            ? episode?.some((item) => item?.title === null)
+            ? episode?.some((item) => item?.title === null) || map === null
               ? "pointer-events-none"
               : "cursor-pointer"
             : "pointer-events-none"
@@ -61,7 +61,7 @@ export default function ChangeView({ view, setView, episode }) {
           fill="none"
           className={`${
             episode?.length > 0
-              ? episode?.some((item) => item?.title === null)
+              ? episode?.some((item) => item?.title === null) || map === null
                 ? "fill-[#1c1c22]"
                 : view === 2
                 ? "fill-action"

@@ -9,7 +9,6 @@ import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import Modal from "../../modal";
 import AniList from "../../media/aniList";
-import axios from "axios";
 
 export default function PrimarySide({
   info,
@@ -18,7 +17,6 @@ export default function PrimarySide({
   navigation,
   providerId,
   watchId,
-  status,
   onList,
   proxy,
   disqus,
@@ -39,19 +37,24 @@ export default function PrimarySide({
     setLoading(true);
     async function fetchData() {
       if (info) {
-        const anify = await fetch("/api/anify/source", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            providerId: providerId,
-            watchId: watchId,
-            episode: epiNumber,
-            id: info.id,
-            sub: dub ? "dub" : "sub",
-          }),
-        }).then((res) => res.json());
+        const anify =
+          providerId === "gogoanime" && !watchId.startsWith("/")
+            ? await fetch(`/api/consumet/source/${providerId}/${watchId}`).then(
+                (res) => res.json()
+              )
+            : await fetch("/api/anify/source", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  providerId: providerId,
+                  watchId: watchId,
+                  episode: epiNumber,
+                  id: info.id,
+                  sub: dub ? "dub" : "sub",
+                }),
+              }).then((res) => res.json());
 
         const skip = await fetch(
           `https://api.aniskip.com/v2/skip-times/${info.idMal}/${parseInt(
@@ -143,7 +146,7 @@ export default function PrimarySide({
       <div className="w-full h-full">
         <div key={watchId} className="w-full aspect-video bg-black">
           {!loading ? (
-            navigation && episodeData?.sources?.length > 0 ? (
+            navigation && (
               <VideoPlayer
                 session={session}
                 info={info}
@@ -151,7 +154,6 @@ export default function PrimarySide({
                 provider={providerId}
                 id={watchId}
                 progress={epiNumber}
-                stats={status}
                 skip={skip}
                 proxy={proxy}
                 aniId={info.id}
@@ -160,10 +162,6 @@ export default function PrimarySide({
                 timeWatched={timeWatched}
                 dub={dub}
               />
-            ) : (
-              <p className="aspect-video flex-center">
-                Video Source Not Found {`:(`}
-              </p>
             )
           ) : (
             <div className="flex-center aspect-video bg-black">

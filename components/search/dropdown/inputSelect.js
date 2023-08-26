@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import {
   CheckIcon,
@@ -14,12 +14,10 @@ export default function InputSelect({
   keyDown,
   selected,
   setSelected,
-  search,
+  query,
+  setQuery,
   inputRef,
 }) {
-  // const [selected, setSelected] = useState(data[0]);
-  const [query, setQuery] = useState(search);
-
   const router = useRouter();
 
   function handleChange(event) {

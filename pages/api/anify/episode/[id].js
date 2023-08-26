@@ -33,9 +33,9 @@ export default async function handler(req, res) {
         const filtered = cached.filter((item) =>
           item.episodes.some((epi) => epi.hasDub === true)
         );
-        res.status(200).json(filtered);
+        return res.status(200).json(filtered);
       } else {
-        res.status(200).json(cached);
+        return res.status(200).json(cached);
       }
     } else {
       const data = await fetchInfo(id);
@@ -50,9 +50,9 @@ export default async function handler(req, res) {
         });
 
         cacheData.put(id, modifiedData, 1000 * 60 * 10);
-        res.status(200).json(modifiedData);
+        return res.status(200).json(modifiedData);
       } else {
-        res.status(404).json({ message: "Episode not found" });
+        return res.status(404).json({ message: "Episode not found" });
       }
     }
   } catch (error) {

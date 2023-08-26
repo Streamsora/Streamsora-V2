@@ -26,7 +26,6 @@ export default function VideoPlayer({
   progress,
   session,
   aniId,
-  stats,
   skip,
   title,
   poster,
@@ -86,9 +85,10 @@ export default function VideoPlayer({
           return {
             ...(isDefault && { default: true }),
             html: items.quality === "default" ? "adaptive" : items.quality,
+            // url: `https://cors.moopa.live/${items.url}`,
             url: `${proxy}?url=${encodeURIComponent(items.url)}${
               referer ? `&referer=${encodeURIComponent(referer)}` : ""
-            }${referer ? `&origin=${encodeURIComponent(referer)}` : ""}`,
+            }`,
           };
         });
 
@@ -300,7 +300,7 @@ export default function VideoPlayer({
                 // use >= instead of >
                 if (marked < 1) {
                   marked = 1;
-                  markProgress(aniId, progress, stats);
+                  markProgress(aniId, progress);
                 }
               }
             });

@@ -36,7 +36,7 @@ export default async function handler(req, res) {
             }
             return res.json();
           });
-          if (data.episodes.length > 0) {
+          if (data?.episodes?.length > 0) {
             datas.push({
               providerId: provider,
               episodes: dub ? data.episodes : data.episodes.reverse(),
@@ -58,8 +58,8 @@ export default async function handler(req, res) {
       if (datas.length === 0) {
         return res.status(404).json({ message: "Anime not found" });
       } else {
-        cacheData.put(id + dub, { data: datas }, 1000 * 60 * 60 * 10);
-        res.status(200).json({ data: datas });
+        cacheData.put(id + dub, datas, 1000 * 60 * 60 * 10);
+        res.status(200).json(datas);
       }
     }
   } catch (error) {

@@ -8,8 +8,8 @@ import dotenv from "dotenv";
 import Navigasi from "../../../../components/home/staticNav";
 import PrimarySide from "../../../../components/anime/watch/primarySide";
 import SecondarySide from "../../../../components/anime/watch/secondarySide";
-import { GET_MEDIA_USER } from "../../../../queries";
 import { createList, createUser, getEpisode } from "../../../../prisma/user";
+import { useAniList } from "../../../../lib/anilist/useAnilist";
 // import { updateUser } from "../../../../prisma/user";
 
 export default function Info({
@@ -25,11 +25,12 @@ export default function Info({
   disqus,
 }) {
   const [info] = useState(data.data.Media);
+  const { getUserLists } = useAniList(sessions);
+
   const [currentEpisode, setCurrentEpisode] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [progress, setProgress] = useState(0);
-  const [statuses, setStatuses] = useState("CURRENT");
   const [artStorage, setArtStorage] = useState(null);
   const [episodesList, setepisodesList] = useState();
   const [mapProviders, setMapProviders] = useState(null);
@@ -42,69 +43,53 @@ export default function Info({
     setOrigin(window.location.origin);
     async function getInfo() {
       if (sessions?.user?.name) {
-        const response = await fetch("https://graphql.anilist.co/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: GET_MEDIA_USER,
-            variables: {
-              username: sessions?.user?.name,
-            },
-          }),
-        });
+        const res = await getUserLists(info.id);
+        const user = res?.data?.Media;
 
-        const responseData = await response.json();
+        if (user?.mediaListEntry) {
+          const lists = user.mediaListEntry;
 
-        const prog = responseData?.data?.MediaListCollection;
-
-        if (prog && prog.lists.length > 0) {
-          const gut = prog.lists
-            .flatMap((item) => item.entries)
-            .find((item) => item.mediaId === parseInt(aniId));
-
-          if (gut) {
-            setProgress(gut.progress);
-            setOnList(true);
-          }
-
-          if (gut?.status === "COMPLETED") {
-            setStatuses("REPEATING");
-          } else if (
-            gut?.status === "REPEATING" &&
-            gut?.media?.episodes === parseInt(epiNumber)
-          ) {
-            setStatuses("COMPLETED");
-          } else if (gut?.status === "REPEATING") {
-            setStatuses("REPEATING");
-          } else if (gut?.media?.episodes === parseInt(epiNumber)) {
-            setStatuses("COMPLETED");
-          } else if (
-            gut?.media?.episodes !== null &&
-            data?.data?.Media.episodes === parseInt(epiNumber)
-          ) {
-            setStatuses("COMPLETED");
+          if (lists) {
+            setProgress(lists.progress);
             setLoading(false);
+
+            setOnList(true);
           }
         }
       }
 
-      const [map, episodes] = await Promise.all([
+      const [map, anify] = await Promise.allSettled([
         fetch(`/api/consumet/episode/${info.id}`).then((res) => res.json()),
         fetch(`/api/anify/episode/${info.id}${dub ? "?dub=true" : ""}`).then(
           (res) => res.json()
         ),
       ]);
 
-      setMapProviders(map.data[0].episodes);
+      const firstResponseValue = map.status === "fulfilled" ? map.value : [];
+      const anifyValue =
+        anify.status === "fulfilled"
+          ? firstResponseValue.length > 0
+            ? anify.value.filter((i) => i.providerId !== "gogoanime")
+            : anify.value
+          : [];
+
+      const episodes = dub
+        ? anifyValue
+        : firstResponseValue.length > 0
+        ? [...firstResponseValue, ...anifyValue]
+        : anifyValue;
+
+      setMapProviders(firstResponseValue[0]?.episodes || null);
 
       if (episodes) {
         const getProvider = episodes?.find((i) => i.providerId === provider);
         const episodeList = dub
           ? getProvider?.episodes?.filter((x) => x.hasDub === true)
-          : getProvider?.episodes.slice(0, map.data[0].episodes.length);
-        const playingData = map.data[0].episodes.find(
+          : getProvider?.episodes.slice(
+              0,
+              firstResponseValue[0]?.episodes.length
+            );
+        const playingData = firstResponseValue[0]?.episodes.find(
           (i) => i.number === Number(epiNumber)
         );
 
@@ -193,7 +178,6 @@ export default function Info({
             epiNumber={epiNumber}
             providerId={provider}
             watchId={watchId}
-            status={statuses}
             onList={onList}
             proxy={proxy}
             disqus={disqus}

@@ -23,6 +23,7 @@ import {
 } from "../../../components/search/selection";
 import InputSelect from "../../../components/search/dropdown/inputSelect";
 import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/20/solid";
+import useDebounce from "../../../lib/hooks/useDebounce";
 
 export async function getServerSideProps(context) {
   const { param } = context.query;
@@ -94,6 +95,8 @@ export default function Card({
   const [loading, setLoading] = useState(true);
 
   const [search, setQuery] = useState(query);
+  const debounceSearch = useDebounce(search, 500);
+
   const [type, setSelectedType] = useState(mediaType[index]);
   const [year, setYear] = useState(years);
   const [season, setSeason] = useState(seasons);
@@ -109,7 +112,7 @@ export default function Card({
   async function advance() {
     setLoading(true);
     const data = await aniAdvanceSearch({
-      search: search,
+      search: debounceSearch,
       type: type?.value,
       genres: genre,
       page: page,
@@ -137,7 +140,7 @@ export default function Card({
     setPage(1);
     setNextPage(true);
     advance();
-  }, [search, type, sort, genre, format, season, year]);
+  }, [debounceSearch, type, sort, genre, format, season, year]);
 
   useEffect(() => {
     advance();
@@ -207,7 +210,8 @@ export default function Card({
                 data={mediaType}
                 label="Search"
                 keyDown={handleKeyDown}
-                search={query || ""}
+                query={search}
+                setQuery={setQuery}
                 selected={type}
                 setSelected={setSelectedType}
               />

@@ -17,7 +17,7 @@ export default function SecondarySide({
       <h1 className="text-xl font-karla pl-4 pb-5 font-semibold">Up Next</h1>
       <div className="flex flex-col gap-5 lg:pl-5 py-2 scrollbar-thin px-2 scrollbar-thumb-[#313131] scrollbar-thumb-rounded-full">
         {episode && episode.length > 0 ? (
-          map.some((item) => item.title && item.description) > 0 ? (
+          map?.some((item) => item.title && item.description) > 0 ? (
             episode.map((item) => {
               const time = artStorage?.[item.id]?.timeWatched;
               const duration = artStorage?.[item.id]?.duration;

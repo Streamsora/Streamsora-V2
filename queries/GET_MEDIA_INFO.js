@@ -28,24 +28,23 @@ query ($id: Int) {
             year
         }
         duration
-        genres
         relations {
             edges {
-                relationType
+                id
+                relationType(version: 2)
                 node {
-                    id
-                type
-                status
-                title {
-                    romaji
-                    english
+                  id
+                  title {
                     userPreferred
-                }
-                coverImage {
+                  }
+                  format
+                  type
+                  status(version: 2)
+                  bannerImage
+                  coverImage {
                     extraLarge
-                    large
                     color
-                }
+                  }
                 }
             }
         }

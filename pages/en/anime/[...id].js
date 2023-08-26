@@ -18,9 +18,12 @@ import { ToastContainer } from "react-toastify";
 import DetailTop from "../../../components/anime/mobile/topSection";
 import DesktopDetails from "../../../components/anime/infoDetails";
 import AnimeEpisode from "../../../components/anime/episode";
+import { useAniList } from "../../../lib/anilist/useAnilist";
 
 export default function Info({ info, color }) {
   const { data: session } = useSession();
+  const { getUserLists } = useAniList(session);
+
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [statuses, setStatuses] = useState(null);
@@ -45,40 +48,20 @@ export default function Info({ info, color }) {
           setStatuses(null);
 
           if (session?.user?.name) {
-            const response = await fetch("https://graphql.anilist.co/", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                query: GET_MEDIA_USER,
-                variables: {
-                  username: session?.user?.name,
-                },
-              }),
-            });
+            const res = await getUserLists(info.id);
+            const user = res?.data?.Media?.mediaListEntry;
 
-            const responseData = await response.json();
-
-            const prog = responseData?.data?.MediaListCollection;
-
-            if (prog && prog.lists.length > 0) {
-              const gut = prog.lists
-                .flatMap((item) => item.entries)
-                .find((item) => item.mediaId === parseInt(id[0]));
-
-              if (gut) {
-                setProgress(gut.progress);
-                const statusMapping = {
-                  CURRENT: { name: "Watching", value: "CURRENT" },
-                  PLANNING: { name: "Plan to watch", value: "PLANNING" },
-                  COMPLETED: { name: "Completed", value: "COMPLETED" },
-                  DROPPED: { name: "Dropped", value: "DROPPED" },
-                  PAUSED: { name: "Paused", value: "PAUSED" },
-                  REPEATING: { name: "Rewatching", value: "REPEATING" },
-                };
-                setStatuses(statusMapping[gut.status]);
-              }
+            if (user) {
+              setProgress(user.progress);
+              const statusMapping = {
+                CURRENT: { name: "Watching", value: "CURRENT" },
+                PLANNING: { name: "Plan to watch", value: "PLANNING" },
+                COMPLETED: { name: "Completed", value: "COMPLETED" },
+                DROPPED: { name: "Dropped", value: "DROPPED" },
+                PAUSED: { name: "Paused", value: "PAUSED" },
+                REPEATING: { name: "Rewatching", value: "REPEATING" },
+              };
+              setStatuses(statusMapping[user.status]);
             }
           }
         } catch (error) {

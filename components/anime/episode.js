@@ -24,28 +24,41 @@ export default function AnimeEpisode({ info, progress }) {
     setLoading(true);
     setProviders(null);
     const fetchData = async () => {
-      try {
-        const [firstResponse, anify] = await Promise.all([
-          fetch(`/api/consumet/episode/${info.id}`).then((res) => res.json()),
-          fetch(
-            `/api/anify/episode/${info.id}${isDub === true ? "?dub=true" : ""}`
-          ).then((res) => res.json()),
-        ]);
+      // try {
+      const [firstResponse, anify] = await Promise.allSettled([
+        fetch(`/api/consumet/episode/${info.id}`).then((res) => res.json()),
+        fetch(
+          `/api/anify/episode/${info.id}${isDub === true ? "?dub=true" : ""}`
+        ).then((res) => res.json()),
+      ]);
 
-        setMapProviders(firstResponse.data[0].episodes);
+      const firstResponseValue =
+        firstResponse.status === "fulfilled" ? firstResponse.value : [];
+      const anifyValue =
+        anify.status === "fulfilled"
+          ? firstResponseValue.length > 0
+            ? anify.value.filter((i) => i.providerId !== "gogoanime")
+            : anify.value
+          : [];
 
-        if (anify.length > 0) {
-          const defaultProvider = anify.find((x) => x.providerId === "9anime");
-          setProviderId(defaultProvider?.providerId || anify[0].providerId); // set to first provider id
-        }
+      setMapProviders(firstResponseValue[0]?.episodes || null);
 
-        setArtStorage(JSON.parse(localStorage.getItem("artplayer_settings")));
-        setProviders(anify);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setProviders([]);
+      const allProvider = isDub
+        ? anifyValue
+        : firstResponseValue.length > 0
+        ? [...firstResponseValue, ...anifyValue]
+        : anifyValue;
+
+      if (allProvider.length > 0) {
+        const defaultProvider = allProvider.find(
+          (x) => x.providerId === "gogoanime" || x.providerId === "9anime"
+        );
+        setProviderId(defaultProvider?.providerId || allProvider[0].providerId); // set to first provider id
       }
+
+      setArtStorage(JSON.parse(localStorage.getItem("artplayer_settings")));
+      setProviders(allProvider);
+      setLoading(false);
     };
     fetchData();
   }, [info.id, isDub]);
@@ -53,7 +66,7 @@ export default function AnimeEpisode({ info, progress }) {
   const episodes =
     providers
       ?.find((provider) => provider.providerId === providerId)
-      ?.episodes?.slice(0, mapProviders.length) || [];
+      ?.episodes?.slice(0, mapProviders?.length) || [];
 
   const lastEpisodeIndex = currentPage * itemsPerPage;
   const firstEpisodeIndex = lastEpisodeIndex - itemsPerPage;
@@ -72,7 +85,7 @@ export default function AnimeEpisode({ info, progress }) {
   };
 
   useEffect(() => {
-    if (episodes?.some((item) => item?.title === null)) {
+    if (episodes?.some((item) => item?.img === null)) {
       setView(3);
     }
   }, [providerId, episodes]);
@@ -203,6 +216,7 @@ export default function AnimeEpisode({ info, progress }) {
               view={view}
               setView={setView}
               episode={currentEpisodes}
+              map={mapProviders}
             />
           </div>
         </div>

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { motion as m, AnimatePresence } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useAniList } from "../lib/anilist/useAnilist";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import { aniAdvanceSearch } from "../lib/anilist/aniAdvanceSearch";
 
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,6 @@ const SearchBar = () => {
 
   const router = useRouter();
 
-  const { aniAdvanceSearch } = useAniList();
   const [data, setData] = useState(null);
   const [query, setQuery] = useState("");
 
