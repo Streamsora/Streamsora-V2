@@ -19,12 +19,11 @@ import { useCountdown } from "../../utils/useCountdownSeconds";
 
 import Navigasi from "../../components/home/staticNav";
 import MobileNav from "../../components/home/mobileNav";
-import axios from "axios";
 import { createUser } from "../../prisma/user";
 
 import { checkAdBlock } from "adblock-checker";
 import { ToastContainer, toast } from "react-toastify";
-import { useAniList } from "../../lib/anilist/useAnilist";
+import getMedia from "../../lib/anilist/getMedia";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -61,9 +60,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ detail, populars, sessions, upComing }) {
-  const { media: current } = useAniList(sessions, { stats: "CURRENT" });
-  const { media: plan } = useAniList(sessions, { stats: "PLANNING" });
-  const { media: release } = useAniList(sessions);
+  const { media: current } = getMedia(sessions, { stats: "CURRENT" });
+  const { media: plan } = getMedia(sessions, { stats: "PLANNING" });
+  const { media: release } = getMedia(sessions);
 
   const [schedules, setSchedules] = useState(null);
 
