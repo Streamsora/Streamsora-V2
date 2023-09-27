@@ -297,45 +297,35 @@ export default function Home({ detail, populars, upComing }) {
   return (
     <Fragment>
       <Head>
-        <title>Moopa</title>
+        <title>Streamsora</title>
         <meta charSet="UTF-8"></meta>
-        <link rel="icon" href="/svg/c.svg" />
-        <link rel="canonical" href="https://moopa.live/en/" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="icon" href="/streamsora.svg" />
+        <link rel="canonical" href="https://streamsora.live/en/" /><meta name="twitter:card" content="summary_large_image" />
         {/* Write the best SEO for this homepage */}
         <meta
           name="description"
-          content="Discover your new favorite anime or manga title! Moopa offers a vast library of high-quality content, accessible on multiple devices and without any interruptions. Start using Moopa today!"
-        />
-        <meta
-          name="keywords"
-          content="anime, anime streaming, anime streaming website, anime streaming free, anime streaming website free, anime streaming website free english subbed, anime streaming website free english dubbed, anime streaming website free english subbed and dubbed, anime streaming webs
-          ite free english subbed and dubbed download, anime streaming website free english subbed and dubbed"
+          content="Unveil your next cherished anime or manga obsession! Streamsora presents an expansive vault of premium content, conveniently available across various devices, guaranteeing uninterrupted enjoyment. Dive into the Streamsora experience today and commence your journey into a world of limitless entertainment!"
         />
         <meta name="robots" content="index, follow" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://moopa.live/" />
+        <meta property="og:url" content="https://streamsora.live/" />
         <meta
-          property="og:title"
-          content="Moopa - Free Anime and Manga Streaming"
+          name="twitter:title"
+          content="StreamSora: Your Gateway to Free Anime and Manga Streaming Delight"
         />
-        <meta
-          property="og:description"
-          content="Discover your new favorite anime or manga title! Moopa offers a vast library of high-quality content, accessible on multiple devices and without any interruptions. Start using Moopa today!"
-        />
-        <meta property="og:image" content="/preview.png" />
-        <meta property="og:site_name" content="Moopa" />
+        <meta property="og:image" content="/streamsora.png" />
+        <meta property="og:site_name" content="Streamsora" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Moopa - Free Anime and Manga Streaming"
+          content="Streamsora - Free Anime and Manga Streaming"
         />
         <meta
           name="twitter:description"
-          content="Discover your new favorite anime or manga title! Moopa offers a vast library of high-quality content, accessible on multiple devices and without any interruptions. Start using Moopa today!"
+          content="Embark on a journey to discover your next beloved anime or manga series! Streamsora boasts an extensive collection of top-tier content, easily accessible across various devices, ensuring a seamless streaming experience devoid of any disruptions. Begin your Streamsora adventure today and immerse yourself in the world of limitless entertainment!"
         />
-        <meta name="twitter:image" content="/preview.png" />
+        <meta name="twitter:image" content="/streamsora.png" />
       </Head>
       <MobileNav sessions={sessions} hideProfile={true} />
 
@@ -356,7 +346,7 @@ export default function Home({ detail, populars, upComing }) {
               <div className="lg:pt-5 flex">
                 <Link
                   href={`/en/anime/${data.id}`}
-                  className="rounded-sm p-3 text-md font-karla font-light ring-1 ring-[#FF7F57]"
+                  className="rounded-sm p-3 text-md font-karla font-light ring-1 ring-[#66ccff]"
                 >
                   START WATCHING
                 </Link>
