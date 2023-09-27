@@ -7,34 +7,31 @@ export default function DMCA() {
   return (
     <>
       <Head>
-        <title>Moopa - DMCA</title>
+        <title>Streamsora - DMCA</title>
         <meta name="DMCA" content="DMCA" />
         <meta property="og:title" content="DMCA" />
         <meta
           property="og:description"
-          content="Moopa.live is committed to respecting the intellectual
+          content="Streamsora.live is committed to respecting the intellectual
                   property rights of others and complying with the Digital
                   Millennium Copyright Act (DMCA)."
         />
-        <meta property="og:image" content="/icon-512x512.png" />
+        <meta property="og:image" content="/streamsora.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/svg/c.svg" />
+        <link rel="icon" href="/streamsora.png" />
       </Head>
-      <>
-        <NewNavbar withNav={true} scrollP={5} shrink={true} />
-
-        <MobileNav hideProfile={true} />
+      <Layout>
         <div className="min-h-screen z-20 flex w-screen justify-center items-center">
-          <div className="px-5 lg:px-0 lg:w-[75%] text-2xl gap-7 flex flex-col my-[10rem]">
+          <div className="w-[75%] text-2xl gap-7 flex flex-col my-[10rem]">
             <div className="flex">
-              <h1 className="text-4xl font-bold font-karla rounded-md bg-secondary p-3">
+              <h1 className="text-4xl font-bold font-karla rounded-md bg-[#212121] p-3">
                 DMCA - Disclaimer
               </h1>
             </div>
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-3 text-[#cdcdcd]">
                 <p>
-                  Moopa.live is committed to respecting the intellectual
+                  StreamSora.live is committed to respecting the intellectual
                   property rights of others and complying with the Digital
                   Millennium Copyright Act (DMCA). We take copyright
                   infringement seriously and will respond to notices of alleged
@@ -77,7 +74,7 @@ export default function DMCA() {
                     · The exact and complete URL link where the infringing
                     material is located.
                   </li>
-                  <li>· Please write to us in English or Indonesian.</li>
+                  <li>· Please write to us in English or Japanese.</li>
                 </ul>
               </div>
               <p className="text-[#cdcdcd]">
@@ -86,27 +83,26 @@ export default function DMCA() {
               </p>
               <h1 className="text-white font-karla">DISCLAIMER:</h1>
               <p className="text-[#cdcdcd]">
-                None of the files listed on Moopa.live are hosted on our
+                None of the files listed on Streamsora.live are hosted on our
                 servers. All links point to content hosted on third-party
-                websites. Moopa.live does not accept responsibility for content
+                websites. Streamsora.live does not accept responsibility for content
                 hosted on third-party websites and has no involvement in the
                 downloading/uploading of movies. We only post links that are
                 available on the internet. If you believe that any content on
                 our website infringes upon your intellectual property rights and
                 you hold the copyright for that content, please report it to{" "}
                 <a
-                  href="mailto:contact@moopa.live?subject=[Moopa]%20-%20Your%20Subject"
+                  href="mailto:contact@streamsora.live?subject=[Streamsora]%20-%20Your%20Subject"
                   className="font-semibold"
                 >
-                  contact@moopa.live
+                  contact@streamsora.live
                 </a>{" "}
                 and the content will be immediately removed.
               </p>
             </div>
           </div>
         </div>
-        <Footer />
-      </>
+      </Layout>
     </>
   );
 }
