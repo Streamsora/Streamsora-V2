@@ -125,7 +125,7 @@ export default function SecondPanel({
                   width={500}
                   height={500}
                   className="w-1/2 h-screen object-contain"
-                  src={`https://api.consumet.org/utils/image-proxy?url=${encodeURIComponent(
+                  src={`https://image-proxy-zeta.vercel.app/image-proxy?url=${encodeURIComponent(
                     image[image.length - index - 2]?.url
                   )}&headers=${encodeURIComponent(
                     JSON.stringify({
@@ -140,7 +140,7 @@ export default function SecondPanel({
                 width={500}
                 height={500}
                 className="w-1/2 h-screen object-contain"
-                src={`https://api.consumet.org/utils/image-proxy?url=${encodeURIComponent(
+                src={`https://image-proxy-zeta.vercel.app/image-proxy?url=${encodeURIComponent(
                   image[image.length - index - 1]?.url
                 )}&headers=${encodeURIComponent(
                   JSON.stringify({
