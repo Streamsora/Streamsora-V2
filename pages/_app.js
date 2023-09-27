@@ -93,7 +93,7 @@ export default function App({
                   className="z-50 w-screen"
                 >
                   <NextNProgress
-                    color="#FF7E2C"
+                    color="#66ccff"
                     startPosition={0.3}
                     stopDelayMs={200}
                     height={3}
