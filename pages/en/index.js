@@ -545,24 +545,6 @@ export default function Home({ detail, populars, upComing }) {
               </motion.section>
             )}
 
-            {/* Schedule */}
-            {anime.length > 0 && (
-              <motion.section // Add motion.div to each child component
-                key="schedule"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <Schedule
-                  data={anime[0]}
-                  anime={anime}
-                  update={update}
-                  scheduleData={schedules}
-                />
-              </motion.section>
-            )}
-
             {/* SECTION 5 */}
             {popular && (
               <motion.section // Add motion.div to each child component
@@ -589,6 +571,23 @@ export default function Home({ detail, populars, upComing }) {
             >
               <Genres />
             </motion.section>
+                          {/* Schedule */}
+            {anime.length > 0 && (
+              <motion.section // Add motion.div to each child component
+                key="schedule"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <Schedule
+                  data={anime[0]}
+                  anime={anime}
+                  update={update}
+                  scheduleData={schedules}
+                />
+              </motion.section>
+            )}
           </motion.div>
         </div>
       </div>
