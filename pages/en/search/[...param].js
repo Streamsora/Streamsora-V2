@@ -205,10 +205,10 @@ export default function Card({
   return (
     <>
       <Head>
-        <title>Moopa - search</title>
+        <title>Streamsora - search</title>
         <meta name="title" content="Search" />
         <meta name="description" content="Search your favourites Anime/Manga" />
-        <link rel="icon" href="/svg/c.svg" />
+        <link rel="icon" href="/streamsora.png" />
       </Head>
 
       <NewNavbar
