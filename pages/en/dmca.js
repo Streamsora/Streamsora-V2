@@ -12,7 +12,7 @@ export default function DMCA() {
         <meta property="og:title" content="DMCA" />
         <meta
           property="og:description"
-          content="Streamsora.live is committed to respecting the intellectual
+          content="Moopa.live is committed to respecting the intellectual
                   property rights of others and complying with the Digital
                   Millennium Copyright Act (DMCA)."
         />
@@ -20,18 +20,21 @@ export default function DMCA() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/streamsora.png" />
       </Head>
-      <Layout>
+      <>
+        <NewNavbar withNav={true} scrollP={5} shrink={true} />
+
+        <MobileNav hideProfile={true} />
         <div className="min-h-screen z-20 flex w-screen justify-center items-center">
-          <div className="w-[75%] text-2xl gap-7 flex flex-col my-[10rem]">
+          <div className="px-5 lg:px-0 lg:w-[75%] text-2xl gap-7 flex flex-col my-[10rem]">
             <div className="flex">
-              <h1 className="text-4xl font-bold font-karla rounded-md bg-[#212121] p-3">
+              <h1 className="text-4xl font-bold font-karla rounded-md bg-secondary p-3">
                 DMCA - Disclaimer
               </h1>
             </div>
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-3 text-[#cdcdcd]">
                 <p>
-                  StreamSora.live is committed to respecting the intellectual
+                  Streamsora.live is committed to respecting the intellectual
                   property rights of others and complying with the Digital
                   Millennium Copyright Act (DMCA). We take copyright
                   infringement seriously and will respond to notices of alleged
@@ -74,7 +77,7 @@ export default function DMCA() {
                     · The exact and complete URL link where the infringing
                     material is located.
                   </li>
-                  <li>· Please write to us in English or Japanese.</li>
+                  <li>· Please write to us in English or Indonesian.</li>
                 </ul>
               </div>
               <p className="text-[#cdcdcd]">
@@ -102,7 +105,8 @@ export default function DMCA() {
             </div>
           </div>
         </div>
-      </Layout>
+        <Footer />
+      </>
     </>
   );
 }
