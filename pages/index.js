@@ -7,21 +7,21 @@ export default function Home() {
       <Head>
         <meta
           name="twitter:title"
-          content="Moopa - Free Anime and Manga Streaming"
+          content="StreamSora: Your Gateway to Free Anime and Manga Streaming Delight"
         />
         <meta
           name="twitter:description"
-          content="Discover your new favorite anime or manga title! Moopa offers a vast library of high-quality content, accessible on multiple devices and without any interruptions. Start using Moopa today!"
+          content="Embark on a journey to discover your next beloved anime or manga series! Streamsora boasts an extensive collection of top-tier content, easily accessible across various devices, ensuring a seamless streaming experience devoid of any disruptions. Begin your Streamsora adventure today and immerse yourself in the world of limitless entertainment!"
         />
-        <meta name="twitter:image" content="/preview.png" />
         <meta
           name="description"
-          content="Discover your new favorite anime or manga title! Moopa offers a vast library of high-quality content, accessible on multiple devices and without any interruptions. Start using Moopa today!"
+          content="Unveil your next cherished anime or manga obsession! Streamsora presents an expansive vault of premium content, conveniently available across various devices, guaranteeing uninterrupted enjoyment. Dive into the Streamsora experience today and commence your journey into a world of limitless entertainment!"
         />
       </Head>
     </>
   );
 }
+
 
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context);
@@ -33,10 +33,10 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
-  } else if (cookie.lang === "id") {
+  } else if (cookie.lang === "jp") {
     return {
       redirect: {
-        destination: "/id",
+        destination: "/jp",
         permanent: false,
       },
     };
