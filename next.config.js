@@ -33,7 +33,7 @@ module.exports = withPWA({
     return [
       {
         source: "/donate",
-        destination: "https://ko-fi.com/factiven",
+        destination: "https://ko-fi.com/",
         permanent: false,
         basePath: false,
       },
