@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/streamsora.png" />
         <meta name="theme-color" content="#141519" />
         <link
           rel="stylesheet"
@@ -13,7 +13,7 @@ export default function Document() {
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossOrigin="anonymous"
         />
-        <link rel="icon" href="/svg/c.svg" />
+        <link rel="icon" href="/streamsora.png" />
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
         <meta
           name="apple-mobile-web-app-status-bar-style"
