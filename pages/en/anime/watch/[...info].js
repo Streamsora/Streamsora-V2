@@ -375,7 +375,7 @@ export default function Watch({
           property="og:image"
           content={episodeNavigation?.playing?.img || info?.bannerImage}
         />
-        <meta property="og:site_name" content="Moopa" />
+        <meta property="og:site_name" content="Streamsora" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image"
