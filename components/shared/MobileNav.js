@@ -28,7 +28,7 @@ export default function MobileNav({ hideProfile = false }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-[42px] w-[61.5px] text-white/60 fill-orange-500"
+              className="h-[42px] w-[61.5px] text-white/60 fill-[#66ccff]"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
