@@ -10,7 +10,7 @@ const Contact = () => {
         <p>If you have any questions or comments, please email us at:</p>
         <p>
           <a href="mailto:contact@moopa.live?subject=[Moopa]%20-%20Your%20Subject">
-            contact@moopa.live
+            contact@streamsora.live
           </a>
         </p>
       </div>
