@@ -216,53 +216,37 @@ export default function Schedule({ schedule }) {
   return (
     <>
       <Head>
-        <title>Moopa - Schedule</title>
-        {/* write a meta with good seo for this page */}
+         <title>Streamsora - Schedule</title>
+        <meta charSet="UTF-8"></meta>
+        <link rel="icon" href="/svg/streamsora.png" />
+        <link rel="canonical" href="https://streamsora.live/en/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* Write the best SEO for this homepage */}
         <meta
           name="description"
-          content="Moopa is a website where you can find all the information about your favorite anime and manga."
-        />
-        <meta
-          name="keywords"
-          content="anime, manga, moopa, anilist, information, schedule, airing, next, currently, airing, anime, manga"
+          content="Unveil your next cherished anime or manga obsession! Streamsora presents an expansive vault of premium content, conveniently available across various devices, guaranteeing uninterrupted enjoyment. Dive into the Streamsora experience today and commence your journey into a world of limitless entertainment!"
         />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="Moopa Team" />
-        <meta name="url" content="https://moopa.live/en/schedule" />
-        <meta name="og:title" property="og:title" content="Moopa - Schedule" />
-        <meta
-          name="og:description"
-          property="og:description"
-          content="Moopa is a website where you can find all the information about your favorite anime and manga."
-        />
+
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://moopa.live/en/schedule" />
+        <meta property="og:url" content="https://streamsora.live/" />
         <meta
-          property="og:image"
-          content="https://beta.moopa.live/preview.png"
+          name="twitter:title"
+          content="StreamSora: Your Gateway to Free Anime and Manga Streaming Delight"
         />
-        <meta
-          property="og:image:alt"
-          content="Moopa is a website where you can find all the information about your favorite anime and manga."
-        />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Moopa" />
+        <meta property="og:image" content="/streamsora.png" />
+        <meta property="og:site_name" content="Streamsora" />
         <meta name="twitter:card" content="summary_large_image" />
-        {/* <meta name="twitter:site" content="@moopa_anime" />
-        <meta name="twitter:creator" content="@moopa_anime" /> */}
         <meta
-          name="twitter:image"
-          content="https://beta.moopa.live/preview.png"
+          name="twitter:title"
+          content="Streamsora - Free Anime and Manga Streaming"
         />
-        <meta
-          name="twitter:image:alt"
-          content="Moopa is a website where you can find all the information about your favorite anime and manga."
-        />
-        <meta name="twitter:title" content="Moopa - Schedule" />
         <meta
           name="twitter:description"
-          content="Moopa is a website where you can find all the information about your favorite anime and manga."
+          content="Embark on a journey to discover your next beloved anime or manga series! Streamsora boasts an extensive collection of top-tier content, easily accessible across various devices, ensuring a seamless streaming experience devoid of any disruptions. Begin your Streamsora adventure today and immerse yourself in the world of limitless entertainment!"
         />
+        <meta name="twitter:image" content="/streamsora.png" />
+        <link rel="canonical" href="https://streamsora.live/en/schedule" />
       </Head>
       <MobileNav sessions={session} hideProfile={true} />
       <NewNavbar scrollP={10} toTop={true} />
