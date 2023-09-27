@@ -29,7 +29,7 @@ export default function HamburgerMenu() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-[42px] w-[61.5px] text-[#8BA0B2] fill-orange-500"
+            className="h-[42px] w-[61.5px] text-[#8BA0B2] fill-[#66ccff]"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
