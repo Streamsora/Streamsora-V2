@@ -101,7 +101,7 @@ export function NewNavbar({
                   home ? "text-4xl text-action" : "text-white text-3xl"
                 }`}
               >
-                moopa
+                Streamsora
               </Link>
             )}
           </div>
