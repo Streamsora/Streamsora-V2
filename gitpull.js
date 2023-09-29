@@ -1,6 +1,19 @@
 const simpleGit = require('simple-git');
 const git = simpleGit();
 
+// Check if the required command-line arguments are provided
+if (process.argv.length < 4) {
+  console.error('Usage: node auto-git-pull.js <GitHub_Username> <GitHub_Token>');
+  process.exit(1);
+}
+
+const username = process.argv[2];
+const token = process.argv[3];
+
+// Set GitHub credentials using environment variables
+process.env.GITHUB_USERNAME = username;
+process.env.GITHUB_TOKEN = token;
+
 // Function to perform a Git pull
 const gitPull = () => {
   git.pull((error, update) => {
