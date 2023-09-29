@@ -1,18 +1,15 @@
 const simpleGit = require('simple-git');
 const git = simpleGit();
+const dotenv = require('dotenv');
 
-// Check if the required command-line arguments are provided
-if (process.argv.length < 4) {
-  console.error('Usage: node auto-git-pull.js <GitHub_Username> <GitHub_Token>');
+// Load environment variables from a .env file
+dotenv.config();
+
+// Check if the required environment variables are set
+if (!process.env.GITHUB_USERNAME || !process.env.GITHUB_TOKEN) {
+  console.error('GitHub credentials not provided. Make sure to set GITHUB_USERNAME and GITHUB_TOKEN in a .env file.');
   process.exit(1);
 }
-
-const username = process.argv[2];
-const token = process.argv[3];
-
-// Set GitHub credentials using environment variables
-process.env.GITHUB_USERNAME = username;
-process.env.GITHUB_TOKEN = token;
 
 // Function to perform a Git pull
 const gitPull = () => {
