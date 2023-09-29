@@ -1,3 +1,4 @@
+require('dotenv').config()
 const simpleGit = require('simple-git');
 const git = simpleGit();
 
