@@ -1,9 +1,5 @@
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const dotenv = require('dotenv');
-
-// Load environment variables from a .env file
-dotenv.config();
 
 // Check if the required environment variables are set
 if (!process.env.GITHUB_USERNAME || !process.env.GITHUB_TOKEN) {
