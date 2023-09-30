@@ -135,7 +135,7 @@ function Footer() {
             </Link>
             {/* Discord Icon */}
             <Link
-              href="https://discord.gg/"
+              href="https://discord.gg/FQbfNWPSJM"
               className="w-6 h-6 hover:opacity-75"
             >
               <svg
