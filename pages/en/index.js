@@ -293,7 +293,6 @@ export default function Home({ detail, populars, upComing }) {
   }, [sessions?.user?.name, currentAnime, plan]);
 
   // console.log({ recentAdded });
-  console.log(data.image);
 
   return (
     <Fragment>
