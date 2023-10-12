@@ -349,16 +349,15 @@ export default function Home({ detail, populars, upComing }) {
                 className="relative lg:h-[500px] lg:w-[1650px] lg:scale-100"
               >
                 <div className="absolute lg:h-[500px] lg:w-[1650px]" />
-                <Image
-                  draggable={false}
-                  src={data.bannerImage}
-                  alt={`cover ${data.title.english || data.title.romaji}`}
-                  width={1200}
-                  height={1200}
-                  quality={100}
-                  priority
-                  className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[1650px]"
-                />
+                  <Image
+                      src={data?.bannerImage} // Add the optional chaining operator
+                      alt={`cover ${(data && (data.title.english || data.title.romaji)) || ''}`}
+                      width={1200}
+                      height={1200}
+                      quality={100}
+                      priority
+                      className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[1650px]"
+                  />
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

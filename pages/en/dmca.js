@@ -3,13 +3,13 @@ import { NewNavbar } from "@/components/shared/NavBar";
 import Footer from "@/components/shared/footer";
 import Head from "next/head";
 
-export default function DMCA() {
+export default function Dmca() {
   return (
     <>
       <Head>
         <title>Streamsora - DMCA</title>
-        <meta name="DMCA" content="DMCA" />
-        <meta property="og:title" content="DMCA" />
+        <meta name="Dmca" content="Dmca" />
+        <meta property="og:title" content="Dmca" />
         <meta
           property="og:description"
           content="Moopa.live is committed to respecting the intellectual
