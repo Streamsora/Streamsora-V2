@@ -335,18 +335,18 @@ export default function Home({ detail, populars, upComing }) {
         {/* PC / TABLET */}
         <div className="hidden justify-center lg:flex my-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }} // Initial animation values
-            animate={{ opacity: 1, y: 0 }} // Animation when the component is mounted
-            exit={{ opacity: 0, y: 20 }} // Animation when the component is unmounted
-            transition={{ duration: 0.5 }} // Animation duration
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
             className="relative grid grid-rows-2 items-center lg:flex lg:h-[467px] lg:w-[80%] lg:justify-between"
           >
-            <div className="z-10 row-start-1 flex justify-center lg:justify-start">
+            <div className="center z-10 row-start-1 flex justify-center lg:justify-start">
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }} // Initial animation values
-                animate={{ opacity: 1, scale: 1 }} // Animation when the component is mounted
-                exit={{ opacity: 0, scale: 0.8 }} // Animation when the component is unmounted
-                transition={{ duration: 0.5 }} // Animation duration
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
                 className="relative lg:h-[500px] lg:w-[1650px] lg:scale-100"
               >
                 <div className="absolute lg:h-[500px] lg:w-[1650px]" />
@@ -361,34 +361,34 @@ export default function Home({ detail, populars, upComing }) {
                   className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[1650px]"
                 />
                 <motion.div
-                  initial={{ opacity: 0 }} // Initial animation values
-                  animate={{ opacity: 1 }} // Animation when the component is mounted
-                  exit={{ opacity: 0 }} // Animation when the component is unmounted
-                  transition={{ duration: 0.5 }} // Animation duration
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
                   className="absolute inset-0 flex flex-col justify-end items-start bg-gradient-to-t from-[#141519] to-transparent rounded-bl-[4px] rounded-br-[4px]"
                 >
                   <motion.h1
-                    initial={{ opacity: 0, y: 20 }} // Initial animation values
-                    animate={{ opacity: 1, y: 0 }} // Animation when the component is mounted
-                    exit={{ opacity: 0, y: 20 }} // Animation when the component is unmounted
-                    transition={{ duration: 0.5 }} // Animation duration
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5 }}
                     className="text-white text-2xl lg:text-3xl font-bold m-3"
                   >
                     {data.title.english}
                   </motion.h1>
                   <motion.p
-                    initial={{ opacity: 0, y: 20 }} // Initial animation values
-                    animate={{ opacity: 1, y: 0 }} // Animation when the component is mounted
-                    exit={{ opacity: 0, y: 20 }} // Animation when the component is unmounted
-                    transition={{ duration: 0.5 }} // Animation duration
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5 }}
                     className="h-[9.5rem] text-white whitespace-normal overflow-hidden overflow-ellipsis max-w-[600px] text-xs md:text-sm mt-15 m-3"
                     dangerouslySetInnerHTML={{ __html: data?.description }}
                   />
                   <motion.a
-                    initial={{ opacity: 0, y: 20 }} // Initial animation values
-                    animate={{ opacity: 1, y: 0 }} // Animation when the component is mounted
-                    exit={{ opacity: 0, y: 20 }} // Animation when the component is unmounted
-                    transition={{ duration: 0.5 }} // Animation duration
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5 }}
                     href={`/en/anime/${data.id}`}
                     className="rounded-sm rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] p-3 text-[#66ccff] border border-[#66ccff] hover:bg-[#66ccff] hover:text-white hover:ring-2 hover:ring-[#66ccff] transition-all duration-300 text-md font-karla font-light m-3"
                   >
@@ -399,10 +399,6 @@ export default function Home({ detail, populars, upComing }) {
             </div>
           </motion.div>
         </div>
-
-
-
-
 
         {sessions && (
           <div className="flex items-center justify-center lg:bg-none mt-4 lg:mt-0 w-screen">
@@ -605,9 +601,9 @@ export default function Home({ detail, populars, upComing }) {
             >
               <Genres />
             </motion.section>
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-col md:flex-row justify-center space-x-4 max-w-screen-md mx-auto">
               <motion.div
-                className="border-2 border-[#245ac7] pt-5 w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
+                className="border-2 border-[#245ac7] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
                 style={{
                   backgroundImage: `url('https://aniray.lirena.xyz/catagwave1.svg')`,
                   backgroundSize: 'cover',
@@ -673,7 +669,7 @@ export default function Home({ detail, populars, upComing }) {
               </motion.div>
 
               <motion.div
-                className="border-2 border-[#FF0066] pt-5 w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
+                className="border-2 border-[#FF0066] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
                 style={{
                   backgroundImage: `url('https://aniray.lirena.xyz/catagwave2.svg')`,
                   backgroundSize: 'cover',
