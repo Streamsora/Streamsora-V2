@@ -253,7 +253,7 @@ export default function Content({
                 return (
                   <div
                     key={anime.id}
-                    className="flex flex-col gap-3 shrink-0 cursor-pointer"
+                    className="flex flex-col gap-3 shrink-0 cursor-pointer "
                   >
                     <Link
                       href={
@@ -326,7 +326,7 @@ export default function Content({
                             anime.coverImage?.large ||
                             "https://cdn.discordapp.com/attachments/986579286397964290/1058415946945003611/gray_pfp.png"
                           }
-                          className="z-20 h-[190px] w-[135px] lg:h-[265px] lg:w-[185px] object-cover rounded-md brightness-90"
+                          className="z-20 h-[190px] w-[135px] lg:h-[265px] lg:w-[185px] object-cover rounded-md brightness-90 rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff]"
                         />
                       </div>
                       {ids === "recentAdded" && (
@@ -336,7 +336,7 @@ export default function Content({
                             alt="episode-bade"
                             width={200}
                             height={100}
-                            className="w-24 lg:w-32 absolute top-1 -right-[12px] lg:-right-[17px] z-40"
+                            className="w-24 lg:w-32 absolute top-1 -right-[12px] lg:-right-[17px] z-40 rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff]"
                           />
                           <p className="absolute z-40 text-center w-[86px] lg:w-[110px] top-1 -right-2 lg:top-[5.5px] lg:-right-2 font-karla text-sm lg:text-base">
                             Episode{" "}

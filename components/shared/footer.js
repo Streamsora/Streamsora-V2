@@ -91,9 +91,10 @@ function Footer() {
                   <Link href={`/${lang}/search/anime?format=TV`}>TV Shows</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/dmca`}>DMCA</Link>
+                  <Link href={`/${lang}/credits`}>Credits</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
+                  <Link href={`/${lang}/dmca`}>DMCA</Link>
                 </li>
               </ul>
             </div>
