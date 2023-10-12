@@ -299,7 +299,7 @@ export default function Home({ detail, populars, upComing }) {
       <Head>
         <title>Streamsora</title>
         <meta charSet="UTF-8"></meta>
-        <link rel="icon" href="/streamsora.svg" />
+        <link rel="icon" href="/streamsora.png" />
         <link rel="canonical" href="https://streamsora.live/en/" /><meta name="twitter:card" content="summary_large_image" />
         {/* Write the best SEO for this homepage */}
         <meta
