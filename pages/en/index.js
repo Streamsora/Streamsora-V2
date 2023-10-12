@@ -617,7 +617,7 @@ export default function Home({ detail, populars, upComing }) {
                 </p>
 
                 <div className="grid grid-cols-3 gap-0 px-6 overflow-hidden">
-                  <Link href='/anime/21519'>
+                  <Link href='en/anime/21519'>
                     <motion.div
                       className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
                       whileHover={{ top: -6, scale: 1.1 }}
@@ -633,7 +633,7 @@ export default function Home({ detail, populars, upComing }) {
                     </motion.div>
                   </Link>
 
-                  <Link href='/anime/20954'>
+                  <Link href='en/anime/20954'>
                     <motion.div
                       className="relative aspect-[3/4] top-4 hover:top-3 transform duration-150"
                       whileHover={{ top: -3, scale: 1.1 }}
@@ -649,7 +649,7 @@ export default function Home({ detail, populars, upComing }) {
                     </motion.div>
                   </Link>
 
-                  <Link href='/anime/431'>
+                  <Link href='en/anime/431'>
                     <motion.div
                       className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
                       whileHover={{ top: -6, scale: 1.1 }}
