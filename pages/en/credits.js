@@ -4,7 +4,7 @@ import Footer from "@/components/shared/footer";
 import Head from "next/head";
 import { motion } from "framer-motion";
 
-export default function Credits() {
+export default function CREDITS() {
   const pageVariants = {
     initial: {
       opacity: 0,
