@@ -235,7 +235,11 @@ export function NewNavbar({
                 title="Login With AniList"
                 className="w-7 h-7 bg-white/30 rounded-full overflow-hidden"
               >
-                <UserIcon className="w-full h-full translate-y-1" />
+                <img
+                  className="h-7 w-7 rounded-full"
+                  src={`https://avatar.vercel.sh/1`}
+                  alt="pfp"
+                />
               </button>
             )}
             {/* </div> */}
