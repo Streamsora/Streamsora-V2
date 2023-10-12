@@ -404,14 +404,14 @@ export default function Home({ detail, populars, upComing }) {
               {getGreetings() && (
                 <>
                   {getGreetings()},
-                  <h1 className="lg:hidden">{sessions?.user.name}</h1>
+                  <h1 className="lg:hidden">{sessions?.user?.name}</h1>
                 </>
               )}
               <button
                 onClick={() => signOut()}
                 className="hidden text-center relative lg:flex justify-center group"
               >
-                {sessions?.user.name}
+                {sessions?.user?.name}
                 <span className="absolute text-sm z-50 w-20 text-center bottom-11 text-white shadow-lg opacity-0 bg-secondary p-1 rounded-md font-karla font-light invisible group-hover:visible group-hover:opacity-100 duration-300 transition-all">
                   Sign Out
                 </span>
