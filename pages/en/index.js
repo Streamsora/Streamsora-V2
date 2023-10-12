@@ -605,7 +605,7 @@ export default function Home({ detail, populars, upComing }) {
               <motion.div
                 className="border-2 border-[#245ac7] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
                 style={{
-                  backgroundImage: `url('https://aniray.lirena.xyz/catagwave1.svg')`,
+                  backgroundImage: `url('/svg/catagwave1.svg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
@@ -671,7 +671,7 @@ export default function Home({ detail, populars, upComing }) {
               <motion.div
                 className="border-2 border-[#FF0066] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
                 style={{
-                  backgroundImage: `url('https://aniray.lirena.xyz/catagwave2.svg')`,
+                  backgroundImage: `url('/svg/catagwave2.svg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
