@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       }
     }
 
-    return res.status(200).json({ message: "redis is not defined" });
+    return res.status(200).json({ message: "Redis is not defined" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
