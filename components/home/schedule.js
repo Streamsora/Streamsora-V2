@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { convertUnixToTime } from "../../utils/getTimes";
+import { convertUnixToTime } from "@/utils/getTimes";
 import { PlayIcon } from "@heroicons/react/20/solid";
 import { BackwardIcon, ForwardIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useCountdown } from "../../utils/useCountdownSeconds";
+import { useCountdown } from "@/utils/useCountdownSeconds";
 
 export default function Schedule({ data, scheduleData, anime, update }) {
   let now = new Date();

@@ -94,7 +94,6 @@ export function NewNavbar({
                 </span>
               </>
             ) : (
-              // <></>
               <Link
                 href={"/en"}
                 className={`flex-center font-outfit font-semibold pb-2 ${
@@ -149,7 +148,7 @@ export function NewNavbar({
                 <li>
                   <button
                     onClick={() => signIn("AniListProvider")}
-                    className="hover:text-action/80 transition-all duration-150 ease-linear"
+                    className="hover:text-action/80 transition-all duration-150 ease-linear "
                     // className="px-2 py-1 ring-1 ring-action font-bold font-karla rounded-md"
                   >
                     Sign In
@@ -191,10 +190,6 @@ export function NewNavbar({
                 ></path>
               </svg>
             </button>
-            {/* <div
-                className="bg-white"
-                // title={sessions ? "Go to Profile" : "Login With AniList"}
-              > */}
             {session ? (
               <div className="w-7 h-7 relative flex flex-col items-center group">
                 <button

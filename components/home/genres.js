@@ -44,8 +44,8 @@ export default function Genres() {
     }
     if (lang === "en" || lang === null) {
       setLang("en");
-    } else if (lang === "id") {
-      setLang("id");
+    } else if (lang === "jp") {
+      setLang("jp");
     }
   }, []);
   return (

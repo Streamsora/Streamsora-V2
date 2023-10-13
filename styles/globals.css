@@ -557,3 +557,7 @@ pre code {
   text-overflow: ellipsis;
   max-width: 150px; /* Adjust to your desired width */
 }
+
+.gradient-background {
+  background: linear-gradient(to right, #66ccff, #eb6734);
+}
