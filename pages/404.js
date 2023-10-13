@@ -45,7 +45,7 @@ export default function Custom404() {
           The page you're looking for doesn't seem to exist.
         </p>
         <Link href={`/${lang}/`}>
-          <div className="bg-[#fa7d56] xl:text-xl text-white font-bold py-2 px-4 rounded hover:bg-[#fb6f44]">
+          <div className="rounded-sm rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] border border-[#66ccff] hover:text-white hover:ring-2 hover:ring-[#66ccff] transition-all duration-300  bg-transparent xl:text-xl text-white font-bold py-2 px-4 hover:bg-[#66ccff]">
             Go back home
           </div>
         </Link>
