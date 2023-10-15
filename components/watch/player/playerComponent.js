@@ -102,7 +102,7 @@ export default function PlayerComponent({
           return {
             ...(isDefault && { default: true }),
             html: items.quality === "default" ? "main" : items.quality,
-            url: `${proxy}proxy/m3u8/${encodeURIComponent(
+            url: `${proxy}/proxy/m3u8/${encodeURIComponent(
               String(items.url)
             )}/${encodeURIComponent(String(referer))}`,
           };
