@@ -28,20 +28,20 @@ const fontSize = [
 ];
 
 export default function PlayerComponent({
-  playerRef,
-  session,
-  id,
-  info,
-  watchId,
-  proxy,
-  dub,
-  timeWatched,
-  skip,
-  track,
-  data,
-  provider,
-  className,
-}) {
+                                          playerRef,
+                                          session,
+                                          id,
+                                          info,
+                                          watchId,
+                                          proxy,
+                                          dub,
+                                          timeWatched,
+                                          skip,
+                                          track,
+                                          data,
+                                          provider,
+                                          className,
+                                        }) {
   const {
     aspectRatio,
     setAspectRatio,
@@ -91,20 +91,20 @@ export default function PlayerComponent({
 
     async function compiler() {
       try {
-        const referer = data?.headers?.Referer;
+        const referer = JSON.stringify(data?.headers);
         const source = data?.sources?.map((items) => {
           const isDefault =
             provider !== "gogoanime"
               ? items.quality === "default" || items.quality === "auto"
               : resolution === "auto"
-              ? items.quality === "default" || items.quality === "auto"
-              : items.quality === resolution;
+                ? items.quality === "default" || items.quality === "auto"
+                : items.quality === resolution;
           return {
             ...(isDefault && { default: true }),
             html: items.quality === "default" ? "main" : items.quality,
-            url: `${proxy}?url=${encodeURIComponent(items.url)}${
-               referer ? `&referer=${encodeURIComponent(referer)}` : ""
-             }`,
+            url: `${proxy}/proxy/m3u8/${encodeURIComponent(
+              String(items.url)
+            )}/${encodeURIComponent(String(referer))}`,
           };
         });
 
