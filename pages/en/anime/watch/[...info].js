@@ -303,7 +303,7 @@ export default function Watch({
 
     mediaSession.metadata = new MediaMetadata({
       title: title,
-      artist: `Moopa ${
+      artist: `Streamsora ${
         title === info?.title?.romaji
           ? "- Episode " + epiNumber
           : `- ${info?.title?.romaji || info?.title?.english}`
