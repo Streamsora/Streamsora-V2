@@ -107,7 +107,6 @@ export default function PlayerComponent({
             )}/${encodeURIComponent(String(referer))}`,
           };
         });
-
         const defSource = source?.find((i) => i?.default === true);
 
         if (defSource) {
