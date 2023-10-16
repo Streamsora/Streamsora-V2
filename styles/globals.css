@@ -558,6 +558,12 @@ pre code {
   max-width: 150px; /* Adjust to your desired width */
 }
 
-.gradient-background {
-  background: linear-gradient(to right, #66ccff, #eb6734);
+.gradient-text {
+  background: linear-gradient(90deg, rgba(105, 9, 121, 1) 0%, rgba(235,64,52) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: bold;
+  color: #0d324f;
 }

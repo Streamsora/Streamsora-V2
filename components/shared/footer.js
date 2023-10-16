@@ -80,6 +80,9 @@ function Footer() {
                 <li className="cursor-pointer hover:text-action">
                   <Link href={`/${lang}/search/manga`}>Popular Manga</Link>
                 </li>
+                <li className="cursor-pointer hover:text-action">
+                  <Link href={`/${lang}/stats`}>Stats</Link>
+                </li>
               </ul>
               <ul className="flex flex-col gap-y-[0.7rem]">
                 <li className="cursor-pointer hover:text-action">
@@ -96,6 +99,9 @@ function Footer() {
                 <li className="cursor-pointer hover:text-action">
                   <Link href={`/${lang}/dmca`}>DMCA</Link>
                 </li>
+                <li className="cursor-pointer hover:text-action">
+                  <Link href={`/${lang}/contact`}>Contact</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -104,8 +110,8 @@ function Footer() {
       <div className="bg-tersier border-t border-white/5">
         <div className="mx-auto flex w-[90%] lg:w-[95%] xl:w-[80%] flex-col pb-6 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:py-0">
           <p className="flex items-center gap-1 font-karla lg:text-[0.81rem] text-[0.7rem] text-[#CCCCCC] py-3">
-            &copy; {new Date().getFullYear()} streamsora.live | Website designed by{" "}
-            <span className="text-white font-bold">Factiven | Hosted By Streamsora</span>
+            &copy; {new Date().getFullYear()} streamsora.live | Website hosted by{" "}
+            Streamsora
           </p>
           <div className="flex items-center gap-5">
             {/* Github Icon */}
