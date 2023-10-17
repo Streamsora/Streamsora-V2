@@ -338,7 +338,7 @@ export default function Home({ detail, populars, upComing }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="relative grid grid-rows-2 items-center lg:flex lg:h-[467px] lg:w-[80%] lg:justify-between"
+            className="relative grid grid-rows-2 items-center lg:flex lg:h-auto lg:w-[80%] lg:justify-between"
           >
             <div className="center z-10 row-start-1 flex justify-center lg:justify-start">
               <motion.div
@@ -346,17 +346,17 @@ export default function Home({ detail, populars, upComing }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
-                className="relative lg:h-[500px] lg:w-[1650px] lg:scale-100"
+                className="relative lg:h-auto lg:w-[100%] lg:scale-100"
               >
-                <div className="absolute lg:h-[500px] lg:w-[1650px]" />
+                <div className="absolute lg:h-auto lg:w-[100%]" />
                 <Image
                   src={data?.bannerImage} // Add the optional chaining operator
                   alt={`cover ${(data && (data.title.english || data.title.romaji)) || ''}`}
-                  width={2048} // Set the width for iPad screens
-                  height={1536} // Set the height for iPad screens
+                  width={2048} // Set the width for larger screens
+                  height={1536} // Set the height for larger screens
                   quality={100}
                   priority
-                  className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[1650px]"
+                  className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[100%]"
                 />
 
                 <motion.div
