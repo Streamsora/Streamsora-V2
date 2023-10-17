@@ -86,10 +86,10 @@ export default function Credits() {
               >
                 <ul className="flex flex-col gap-1">
                   <li>
-                    <strong>Icons:</strong> Icons made by Araxyso
+                    <strong>Icons:</strong> Icons made by reacticons
                   </li>
                   <li>
-                    <strong>Background Image Services:</strong> <a href="https://anilsit.co" target="_blank">Anilist</a>
+                    <strong>Background Image Services:</strong> <a href="https://anilist.co" target="_blank">Anilist</a>
                   </li>
                   <li>
                     <strong>Font:</strong> Karla font by Google Fonts
