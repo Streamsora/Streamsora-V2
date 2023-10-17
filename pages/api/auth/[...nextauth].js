@@ -18,9 +18,6 @@ const client = new ApolloClient({
   defaultOptions: defaultOptions,
 });
 
-// import clientPromise from "../../../lib/mongodb";
-// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-
 export const authOptions = {
   // Configure one or more authentication providers
   // adapter: MongoDBAdapter(clientPromise),
@@ -68,8 +65,8 @@ export const authOptions = {
 
           let custLists = userLists || [];
 
-          if (!userLists?.includes("Watched using Moopa")) {
-            custLists.push("Watched using Moopa");
+          if (!userLists?.includes("Watched using Streamsora")) {
+            custLists.push("Watched using Streamsora");
             const fetchGraphQL = async (query, variables) => {
               const response = await fetch("https://graphql.anilist.co/", {
                 method: "POST",
