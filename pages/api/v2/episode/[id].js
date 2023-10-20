@@ -63,7 +63,7 @@ async function fetchAnify(id) {
     }
 
     const { data } = await axios.get(
-      `https://api.anify.tv/episodes/${id}?apikey=${API_KEY}`
+      `https://api.anify.tv/episodes/${id}`
     );
 
     if (!data) {
@@ -88,7 +88,7 @@ async function fetchCoverImage(id) {
     }
 
     const { data } = await axios.get(
-      `https://api.anify.tv/content-metadata/${id}?apikey=${API_KEY}`
+      `https://api.anify.tv/content-metadata/${id}`
     );
 
     if (!data) {
