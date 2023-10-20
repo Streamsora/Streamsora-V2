@@ -225,7 +225,7 @@ export default function Watch({
     async function fetchData() {
       if (info) {
         const autoplay =
-          localStorage.getItem("autoplay_video") === "true" ? true : false;
+          localStorage.getItem("autoplay_video") === "true";
         setAutoPlay(autoplay);
 
         const anify = await fetch("/api/v2/source", {
@@ -317,7 +317,6 @@ export default function Watch({
       if (navigator.share) {
         await navigator.share({
           title: `Watch Now - ${info?.title?.english || info.title.romaji}`,
-          // text: `Watch [${info?.title?.romaji}] and more on Moopa. Join us for endless anime entertainment"`,
           url: window.location.href,
         });
       } else {
@@ -375,7 +374,7 @@ export default function Watch({
           property="og:image"
           content={episodeNavigation?.playing?.img || info?.bannerImage}
         />
-        <meta property="og:site_name" content="Moopa" />
+        <meta property="og:site_name" content="Streamsora" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image"

@@ -30,7 +30,6 @@ export default function DetailTop({
       if (navigator.share) {
         await navigator.share({
           title: `Watch Now - ${info?.title?.english}`,
-          // text: `Watch [${info?.title?.romaji}] and more on Moopa. Join us for endless anime entertainment"`,
           url: window.location.href,
         });
       } else {
@@ -158,7 +157,7 @@ export default function DetailTop({
         <button
           // href={watchUrl || ""}
           type="button"
-          // disabled={!watchUrl || info?.nextAiringEpisode}
+          disabled={!watchUrl || info?.nextAiringEpisode}
           onClick={() => router.push(watchUrl)}
           className={`${
             !watchUrl ? "opacity-30 pointer-events-none" : ""

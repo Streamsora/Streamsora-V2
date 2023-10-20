@@ -39,7 +39,7 @@ export default function EpisodeLists({
                   }${dub ? `&dub=${dub}` : ""}`}
                   key={item.id}
                   className={`bg-secondary flex w-full h-[110px] rounded-lg scale-100 transition-all duration-300 ease-out ${
-                    item.id == watchId
+                    item.id === watchId
                       ? "pointer-events-none ring-1 ring-action"
                       : "cursor-pointer hover:scale-[1.02] ring-0 hover:ring-1 hover:shadow-lg ring-white"
                   }`}
@@ -58,7 +58,7 @@ export default function EpisodeLists({
                         width={1000}
                         height={1000}
                         className={`object-cover z-30 rounded-lg h-[110px]  ${
-                          item.id == watchId
+                          item.id === watchId
                             ? "brightness-[30%]"
                             : "brightness-75"
                         }`}
@@ -78,7 +78,7 @@ export default function EpisodeLists({
                       <span className="absolute bottom-2 left-2 font-karla font-bold text-sm text-white">
                         Episode {item?.number}
                       </span>
-                      {item.id == watchId && (
+                      {item.id === watchId && (
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-[1.5]">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export default function EpisodeLists({
                   </div>
                   <div
                     className={`w-full h-full overflow-x-hidden select-none p-4 flex flex-col gap-2 ${
-                      item.id == watchId ? "text-[#7a7a7a]" : ""
+                      item.id === watchId ? "text-[#7a7a7a]" : ""
                     }`}
                   >
                     <h1 className="font-karla font-bold italic line-clamp-1">
@@ -118,7 +118,7 @@ export default function EpisodeLists({
                   }${dub ? `&dub=${dub}` : ""}`}
                   key={item.id}
                   className={`bg-secondary flex-center h-[50px] rounded-lg scale-100 transition-all duration-300 ease-out ${
-                    item.id == watchId
+                    item.id === watchId
                       ? "pointer-events-none ring-1 ring-action text-[#5d5d5d]"
                       : "cursor-pointer hover:scale-[1.02] ring-0 hover:ring-1 hover:shadow-lg ring-white"
                   }`}

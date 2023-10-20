@@ -154,7 +154,7 @@ export default function AnimeEpisode({
 
         setProgress(maxWatchedEpisode);
       } else {
-        return;
+
       }
     }
   }, [providerId, artStorage, info.id, session?.user?.name]);

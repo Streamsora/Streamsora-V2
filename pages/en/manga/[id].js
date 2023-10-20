@@ -86,9 +86,8 @@ export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
   const accessToken = session?.user?.token || null;
 
-  const { id } = context.query;
-  const key = process.env.API_KEY;
-  const data = await getAnifyInfo(id, key);
+  const { id } = context.query.id;
+  const data = await getAnifyInfo(id);
 
   let userManga = null;
 
