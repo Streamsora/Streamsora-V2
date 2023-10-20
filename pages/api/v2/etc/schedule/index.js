@@ -2,8 +2,6 @@ import axios from "axios";
 import cron from "cron";
 import { rateLimiterRedis, redis } from "@/lib/redis";
 
-const API_KEY = process.env.API_KEY;
-
 // Function to fetch new data
 async function fetchData() {
   try {
