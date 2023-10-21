@@ -9,7 +9,7 @@ import {
   filterFormattedSchedule,
   filterScheduleByDay,
   sortScheduleByDay,
-  transformSchedule,
+  transformSchedule
 } from "@/utils/schedulesUtils";
 
 import { scheduleQuery } from "@/lib/graphql/query";
@@ -73,9 +73,8 @@ export async function getServerSideProps() {
   } else {
     now.setHours(0, 0, 0, 0); // Set the time to 00:00:00.000
     const dayInSeconds = 86400; // Number of seconds in a day
-    const yesterdayStart = Math.floor(now.getTime() / 1000) - dayInSeconds;
     // Calculate weekStart from yesterday's 00:00:00
-    const weekStart = yesterdayStart;
+    const weekStart = Math.floor(now.getTime() / 1000) - dayInSeconds;
     const weekEnd = weekStart + 604800;
 
     let page = 1;

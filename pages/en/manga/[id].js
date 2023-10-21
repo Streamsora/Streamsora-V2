@@ -86,7 +86,7 @@ export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
   const accessToken = session?.user?.token || null;
 
-  const { id } = context.query.id;
+  const { id } = context.query;
   const data = await getAnifyInfo(id);
 
   if (data.error) return { notFound: true };
