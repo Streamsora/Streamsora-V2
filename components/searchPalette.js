@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Combobox, Dialog, Menu, Transition } from "@headlessui/react";
 import useDebounce from "../lib/hooks/useDebounce";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { BookOpenIcon, PlayIcon } from "@heroicons/react/20/solid";
 import { useAniList } from "@/lib/anilist/useAnilist";
 import { getFormat } from "@/utils/getFormat";
+import SearchByImage from "./search/searchByImage";
 
 export default function SearchPalette() {
   const { isOpen, setIsOpen } = useSearch();
@@ -21,6 +22,7 @@ export default function SearchPalette() {
 
   const [nextPage, setNextPage] = useState(false);
 
+  let focusInput = useRef(null);
   const router = useRouter();
 
   function closeModal() {
@@ -44,6 +46,7 @@ export default function SearchPalette() {
 
   useEffect(() => {
     advance();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounceSearch, type]);
 
   useEffect(() => {
@@ -62,11 +65,17 @@ export default function SearchPalette() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-[6969]" onClose={closeModal}>
+      <Dialog
+        as="div"
+        className="relative z-[6969]"
+        initialFocus={focusInput}
+        onClose={closeModal}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -112,13 +121,13 @@ export default function SearchPalette() {
                         <span>S</span>
                       </div>
                     </div>
-                    <div>
+                    <div className="flex gap-1 items-center">
                       <Menu
                         as="div"
                         className="relative inline-block text-left"
                       >
                         <div>
-                          <Menu.Button className="capitalize bg-secondary inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          <Menu.Button className="capitalize bg-secondary inline-flex w-full justify-center rounded px-3 py-2 text-sm font-medium text-white hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                             {type.toLowerCase()}
                             <ChevronDownIcon
                               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
@@ -167,33 +176,19 @@ export default function SearchPalette() {
                                   </button>
                                 )}
                               </Menu.Item>
-{/*                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    onClick={() => setType("NOVEL")}
-                                    className={`${
-                                      active
-                                        ? "bg-secondary text-white"
-                                        : "text-white"
-                                    } group flex w-full items-center gap-3 rounded-md px-2 py-2 text-sm`}
-                                  >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                                      <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625z" />
-                                      <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
-                                    </svg>
-
-                                    <span>Novel</span>
-                                  </button>
-                                )}
-                              </Menu.Item>*/}
                             </div>
                           </Menu.Items>
                         </Transition>
                       </Menu>
+                      <SearchByImage
+                        searchPalette={true}
+                        setIsOpen={setIsOpen}
+                      />
                     </div>
                   </div>
                   <div className="flex items-center text-base font-medium rounded bg-secondary">
                     <Combobox.Input
+                      ref={focusInput}
                       className="p-5 text-white w-full bg-transparent border-0 outline-none"
                       placeholder="Search something..."
                       onChange={(event) => setQuery(event.target.value)}
@@ -207,40 +202,40 @@ export default function SearchPalette() {
                       <Fragment>
                         {data?.length > 0
                           ? data?.map((i) => (
-                              <Combobox.Option
-                                key={i.id}
-                                value={i.id}
-                                className={({ active }) =>
-                                  `flex items-center gap-3 p-5 ${
-                                    active ? "bg-primary/40 cursor-pointer" : ""
-                                  }`
-                                }
-                              >
-                                <div className="shrink-0">
-                                  <Image
-                                    src={i.coverImage.medium}
-                                    alt="coverImage"
-                                    width={100}
-                                    height={100}
-                                    className="w-16 h-16 object-cover rounded"
-                                  />
-                                </div>
-                                <div className="flex flex-col w-full h-full">
-                                  <h3 className="font-karla font-semibold">
-                                    {i.title.userPreferred}
-                                  </h3>
-                                  <p className="text-sm text-white/50">
-                                    {i.startDate.year} {getFormat(i.format)}
-                                  </p>
-                                </div>
-                              </Combobox.Option>
-                            ))
+                            <Combobox.Option
+                              key={i.id}
+                              value={i.id}
+                              className={({ active }) =>
+                                `flex items-center gap-3 p-5 ${
+                                  active ? "bg-primary/40 cursor-pointer" : ""
+                                }`
+                              }
+                            >
+                              <div className="shrink-0">
+                                <Image
+                                  src={i.coverImage.medium}
+                                  alt="coverImage"
+                                  width={100}
+                                  height={100}
+                                  className="w-16 h-16 object-cover rounded"
+                                />
+                              </div>
+                              <div className="flex flex-col w-full h-full">
+                                <h3 className="font-karla font-semibold">
+                                  {i.title.userPreferred}
+                                </h3>
+                                <p className="text-sm text-white/50">
+                                  {i.startDate.year} {getFormat(i.format)}
+                                </p>
+                              </div>
+                            </Combobox.Option>
+                          ))
                           : !loading &&
-                            debounceSearch !== "" && (
-                              <p className="flex-center font-karla gap-3 p-5">
-                                No results found.
-                              </p>
-                            )}
+                          debounceSearch !== "" && (
+                            <p className="flex-center font-karla gap-3 p-5">
+                              No results found.
+                            </p>
+                          )}
                         {nextPage && (
                           <button
                             type="button"

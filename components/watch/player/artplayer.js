@@ -5,19 +5,19 @@ import { useWatchProvider } from "@/lib/context/watchPageProvider";
 import artplayerPluginHlsQuality from "artplayer-plugin-hls-quality";
 
 export default function NewPlayer({
-  playerRef,
-  option,
-  getInstance,
-  provider,
-  track,
-  defSub,
-  defSize,
-  subtitles,
-  subSize,
-  res,
-  quality,
-  ...rest
-}) {
+                                    playerRef,
+                                    option,
+                                    getInstance,
+                                    provider,
+                                    track,
+                                    defSub,
+                                    defSize,
+                                    subtitles,
+                                    subSize,
+                                    res,
+                                    quality,
+                                    ...rest
+                                  }) {
   const artRef = useRef(null);
   const { setTheaterMode, setPlayerState, setAutoPlay } = useWatchProvider();
 
@@ -37,6 +37,8 @@ export default function NewPlayer({
   }
 
   useEffect(() => {
+    Artplayer.PLAYBACK_RATE = [0.5, 0.75, 1, 1.15, 1.2, 1.5, 1.7, 2];
+
     const art = new Artplayer({
       ...option,
       container: artRef.current,
@@ -44,7 +46,7 @@ export default function NewPlayer({
       customType: {
         m3u8: playM3u8,
       },
-      ...(provider === "zoro" && {
+      ...(subtitles?.length > 0 && {
         subtitle: {
           url: `${defSub}`,
           // type: "vtt",
@@ -80,7 +82,7 @@ export default function NewPlayer({
       ],
 
       settings: [
-         provider === "gogoanime" &&
+        // provider === "gogoanime" &&
         {
           html: "Autoplay Next",
           icon: '<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M4.05 16.975q-.5.35-1.025.05t-.525-.9v-8.25q0-.6.525-.888t1.025.038l6.2 4.15q.45.3.45.825t-.45.825l-6.2 4.15Zm10 0q-.5.35-1.025.05t-.525-.9v-8.25q0-.6.525-.888t1.025.038l6.2 4.15q.45.3.45.825t-.45.825l-6.2 4.15Z"></path></svg>',
@@ -129,7 +131,7 @@ export default function NewPlayer({
             return item.html;
           },
         },
-        provider === "zoro" && {
+        subtitles?.length > 0 && {
           html: "Subtitles",
           icon: '<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm2-4h8v-2H6v2Zm10 0h2v-2h-2v2ZM6 12h2v-2H6v2Zm4 0h8v-2h-8v2Z"></path></svg>',
           width: 300,
@@ -259,7 +261,7 @@ export default function NewPlayer({
           index: 11,
           position: "right",
           tooltip: "Theater (t)",
-          html: '<p class="theater"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 20 20"><path fill="currentColor" d="M19 3H1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 12H2V5h16v10z"></path></svg></p>',
+          html: '<i class="theater"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 20 20"><path fill="currentColor" d="M19 3H1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 12H2V5h16v10z"></path></svg></i>',
           click: function (...args) {
             setPlayerState((prev) => ({
               ...prev,
@@ -377,6 +379,8 @@ export default function NewPlayer({
         art.destroy(false);
       }
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div ref={artRef} {...rest}></div>;

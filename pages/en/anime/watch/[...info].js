@@ -29,8 +29,12 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const proxy = process.env.PROXY_URI;
-  const disqus = process.env.DISQUS_SHORTNAME || null;
+  let proxy;
+  proxy = process.env.PROXY_URI;
+  if (proxy.endsWith("/")) {
+    proxy = proxy.slice(0, -1);
+  }
+  const disqus = process.env.DISQUS_SHORTNAME;
 
   const [aniId, provider] = query?.info;
   const watchId = query?.id;
@@ -114,7 +118,7 @@ export async function getServerSideProps(context) {
       epiNumber: epiNumber || null,
       dub: dub || null,
       userData: userData?.[0] || null,
-      info: data.data.Media || null,
+      info: data?.data?.Media || null,
       proxy,
       disqus,
     },
@@ -122,16 +126,16 @@ export async function getServerSideProps(context) {
 }
 
 export default function Watch({
-  info,
-  watchId,
-  disqus,
-  proxy,
-  dub,
-  userData,
-  sessions,
-  provider,
-  epiNumber,
-}) {
+                                info,
+                                watchId,
+                                disqus,
+                                proxy,
+                                dub,
+                                userData,
+                                sessions,
+                                provider,
+                                epiNumber,
+                              }) {
   const [artStorage, setArtStorage] = useState(null);
 
   const [episodeNavigation, setEpisodeNavigation] = useState(null);
@@ -179,9 +183,10 @@ export default function Watch({
 
       if (episodes) {
         const getProvider = episodes?.find((i) => i.providerId === provider);
-        const episodeList = dub
-          ? getProvider?.episodes?.filter((x) => x.hasDub === true)
-          : getProvider?.episodes.slice(0, getMap?.episodes.length);
+        const episodeList = getProvider?.episodes.slice(
+          0,
+          getMap?.episodes.length
+        );
         const playingData = getMap?.episodes.find(
           (i) => i.number === Number(epiNumber)
         );
@@ -219,13 +224,14 @@ export default function Watch({
     return () => {
       setEpisodeNavigation(null);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessions?.user?.name, epiNumber, dub]);
 
   useEffect(() => {
     async function fetchData() {
       if (info) {
         const autoplay =
-          localStorage.getItem("autoplay_video") === "true";
+          localStorage.getItem("autoplay_video") === "true" ? true : false;
         setAutoPlay(autoplay);
 
         const anify = await fetch("/api/v2/source", {
@@ -287,6 +293,8 @@ export default function Watch({
       });
       setMarked(0);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider, watchId, info?.id]);
 
   useEffect(() => {
@@ -317,6 +325,7 @@ export default function Watch({
       if (navigator.share) {
         await navigator.share({
           title: `Watch Now - ${info?.title?.english || info.title.romaji}`,
+          // text: `Watch [${info?.title?.romaji}] and more on Streamsora. Join us for endless anime entertainment"`,
           url: window.location.href,
         });
       } else {
@@ -473,7 +482,7 @@ export default function Watch({
                         className="hover:underline line-clamp-1"
                       >
                         {(episodeNavigation?.playing?.title ||
-                          info.title.romaji) ??
+                            info.title.romaji) ??
                           "Loading..."}
                       </Link>
                     </div>
@@ -523,7 +532,7 @@ export default function Watch({
             </div>
             <div
               id="secondary"
-              className={`relative ${theaterMode ? "pt-2" : ""}`}
+              className={`relative ${theaterMode ? "pt-5" : "pt-4 lg:pt-0"}`}
             >
               <EpisodeLists
                 info={info}
@@ -533,6 +542,7 @@ export default function Watch({
                 watchId={watchId}
                 episode={episodesList}
                 artStorage={artStorage}
+                track={episodeNavigation}
                 dub={dub}
               />
             </div>

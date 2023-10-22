@@ -28,6 +28,8 @@ function Footer() {
       setLang("jp");
       setChecked(true);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function switchLang() {
@@ -43,7 +45,6 @@ function Footer() {
       router.push("/jp");
     }
   }
-
   return (
     <footer className="flex-col w-full">
       <div className="text-[#dbdcdd] z-40 bg-[#0c0d10] lg:flex lg:h-[12rem] w-full lg:items-center lg:justify-between">

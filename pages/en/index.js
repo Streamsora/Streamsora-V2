@@ -118,7 +118,7 @@ export default function Home({ detail, populars, upComing }) {
     }
   }, [upComing]);
 
-  useEffect(() => {
+/*  useEffect(() => {
     const getSchedule = async () => {
       try {
         const res = await fetch(`/api/v2/etc/schedule`);
@@ -134,7 +134,7 @@ export default function Home({ detail, populars, upComing }) {
       }
     };
     getSchedule();
-  }, []);
+  }, []);*/
 
   const [releaseData, setReleaseData] = useState([]);
 
@@ -421,7 +421,7 @@ export default function Home({ detail, populars, upComing }) {
           </div>
         )}
 
-        <div className="lg:mt-16 mt-5 flex flex-col gap-5 items-center">
+        <div className="lg:mt-16 mt-5 flex flex-col items-center">
           <motion.div
             className="w-screen flex-none lg:w-[87%]"
             initial={{ opacity: 0 }}

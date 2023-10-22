@@ -4,15 +4,15 @@ import ViewSelector from "./viewSelector";
 import ThumbnailOnly from "./viewMode/thumbnailOnly";
 import ThumbnailDetail from "./viewMode/thumbnailDetail";
 import ListMode from "./viewMode/listMode";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function AnimeEpisode({
-  info,
-  session,
-  progress,
-  setProgress,
-  setWatch,
-}) {
+                                       info,
+                                       session,
+                                       progress,
+                                       setProgress,
+                                       setWatch,
+                                     }) {
   const [providerId, setProviderId] = useState(); // default provider
   const [currentPage, setCurrentPage] = useState(1); // for pagination
   const [visible, setVisible] = useState(false); // for mobile view
@@ -34,16 +34,12 @@ export default function AnimeEpisode({
           info.status === "RELEASING" ? "true" : "false"
         }${isDub ? "&dub=true" : ""}`
       ).then((res) => res.json());
-      const getMap = response.find((i) => i?.map === true) || response[0];
+      const getMap = response.find((i) => i?.map === true);
       let allProvider = response;
 
       if (getMap) {
         allProvider = response.filter((i) => {
-          if (
-            i?.providerId === "gogoanime" &&
-            i?.providerId === "9anime" &&
-            i?.map !== true
-          ) {
+          if (i?.providerId === "gogoanime" && i?.map !== true) {
             return null;
           }
           return i;
@@ -66,9 +62,12 @@ export default function AnimeEpisode({
     fetchData();
 
     return () => {
+      setCurrentPage(1);
       setProviders(null);
       setMapProviders(null);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [info.id, isDub]);
 
   const episodes =
@@ -79,9 +78,7 @@ export default function AnimeEpisode({
   const lastEpisodeIndex = currentPage * itemsPerPage;
   const firstEpisodeIndex = lastEpisodeIndex - itemsPerPage;
   let currentEpisodes = episodes.slice(firstEpisodeIndex, lastEpisodeIndex);
-  if (isDub) {
-    currentEpisodes = currentEpisodes.filter((i) => i.hasDub === true);
-  }
+
   const totalPages = Math.ceil(episodes.length / itemsPerPage);
 
   const handleChange = (event) => {
@@ -104,6 +101,7 @@ export default function AnimeEpisode({
     ) {
       setView(3);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId, episodes]);
 
   useEffect(() => {
@@ -122,6 +120,7 @@ export default function AnimeEpisode({
         setWatch(null);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodes]);
 
   useEffect(() => {
@@ -154,9 +153,10 @@ export default function AnimeEpisode({
 
         setProgress(maxWatchedEpisode);
       } else {
-
+        return;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId, artStorage, info.id, session?.user?.name]);
 
   let debounceTimeout;
@@ -173,12 +173,7 @@ export default function AnimeEpisode({
         );
         if (!res.ok) {
           console.log(res);
-          toast.error("Something went wrong", {
-            position: "bottom-left",
-            autoClose: 3000,
-            hideProgressBar: true,
-            theme: "colored",
-          });
+          toast.error("Something went wrong");
           setProviders([]);
           setLoading(false);
         } else {
@@ -213,12 +208,7 @@ export default function AnimeEpisode({
       }, 1000);
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong", {
-        position: "bottom-left",
-        autoClose: 3000,
-        hideProgressBar: true,
-        theme: "colored",
-      });
+      toast.error("Something went wrong");
     }
   };
 
@@ -370,8 +360,8 @@ export default function AnimeEpisode({
               view === 1
                 ? "grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 lg:gap-8 place-items-center"
                 : view === 2
-                ? "flex flex-col gap-3"
-                : `flex flex-col odd:bg-secondary even:bg-primary`
+                  ? "flex flex-col gap-3"
+                  : `flex flex-col odd:bg-secondary even:bg-primary`
             } py-2`}
           >
             {Array.isArray(providers) ? (

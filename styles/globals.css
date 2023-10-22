@@ -6,7 +6,7 @@
 html {
   min-height: calc(100% + env(safe-area-inset-top));
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 * {
@@ -299,14 +299,14 @@ pre code {
 
 .slide-in-blurred-right {
   -webkit-animation: slide-in-blurred-right 0.6s cubic-bezier(0.23, 1, 0.32, 1)
-    both;
+  both;
   animation: slide-in-blurred-right 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .slide-out-blurred-right {
   -webkit-animation: slide-out-blurred-right 0.45s
-    cubic-bezier(0.755, 0.05, 0.855, 0.06) both;
+  cubic-bezier(0.755, 0.05, 0.855, 0.06) both;
   animation: slide-out-blurred-right 0.45s
-    cubic-bezier(0.755, 0.05, 0.855, 0.06) both;
+  cubic-bezier(0.755, 0.05, 0.855, 0.06) both;
 }
 
 /* ----------------------------------------------
@@ -443,6 +443,13 @@ pre code {
   }
 }
 
+/* create media queries for mobile */
+/* @media (max-width: 768px) {
+  .theater {
+    display: none;
+  }
+} */
+
 /* Hide the default checkbox */
 .containers input {
   position: absolute;
@@ -549,21 +556,4 @@ pre code {
     right: 0;
     left: unset;
   }
-}
-
-.compact-description {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px; /* Adjust to your desired width */
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, rgba(105, 9, 121, 1) 0%, rgba(235,64,52) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 40px;
-  line-height: 1.2;
-  font-weight: bold;
-  color: #0d324f;
 }

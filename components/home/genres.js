@@ -47,6 +47,7 @@ export default function Genres() {
     } else if (lang === "jp") {
       setLang("jp");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="antialiased">
@@ -74,7 +75,7 @@ export default function Genres() {
                   alt="genres images"
                   width={1000}
                   height={1000}
-                  className="object-cover shrink-0 h-[190px] w-[135px] lg:h-[265px] lg:w-[230px] rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff]"
+                  className="object-cover shrink-0 h-[190px] w-[135px] lg:h-[265px] lg:w-[230px] rounded-md"
                 />
               </Link>
             ))}

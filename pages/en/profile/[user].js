@@ -5,8 +5,8 @@ import Link from "next/link";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getUser } from "@/prisma/user";
-import { toast } from "react-toastify";
 import { NewNavbar } from "@/components/shared/NavBar";
+import { toast } from "sonner";
 
 export default function MyList({ media, sessions, user, time, userSettings }) {
   const [listFilter, setListFilter] = useState("all");
@@ -154,7 +154,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
               <div className="flex p-2 items-center justify-between">
                 <h2
                   className="text-sm text-white/70"
-                  title="Disabling this will stop adding your Anime to 'Watched using Moopa' list."
+                  title="Disabling this will stop adding your Anime to 'Watched using Streamsora' list."
                 >
                   Custom Lists
                 </h2>
@@ -255,68 +255,68 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                   <h1 className="font-karla font-bold text-xl">{item.name}</h1>
                   <table className="bg-secondary rounded-lg">
                     <thead>
-                      <tr>
-                        <th className="font-bold text-xs py-3 text-start pl-10 lg:w-[75%] w-[65%]">
-                          Title
-                        </th>
-                        <th className="font-bold text-xs py-3">Score</th>
-                        <th className="font-bold text-xs py-3">Progress</th>
-                      </tr>
+                    <tr>
+                      <th className="font-bold text-xs py-3 text-start pl-10 lg:w-[75%] w-[65%]">
+                        Title
+                      </th>
+                      <th className="font-bold text-xs py-3">Score</th>
+                      <th className="font-bold text-xs py-3">Progress</th>
+                    </tr>
                     </thead>
                     <tbody className="">
-                      {item.entries.map((item) => {
-                        return (
-                          <tr
-                            key={item.mediaId}
-                            className="hover:bg-orange-400 duration-150 ease-in-out group relative"
-                          >
-                            <td className="font-medium py-2 pl-2 rounded-l-lg">
-                              <div className="flex items-center gap-2">
-                                {item.media.status === "RELEASING" ? (
-                                  <span className="dot group-hover:invisible bg-green-500 shrink-0" />
-                                ) : item.media.status === "NOT_YET_RELEASED" ? (
-                                  <span className="dot group-hover:invisible bg-red-500 shrink-0" />
-                                ) : (
-                                  <span className="dot group-hover:invisible shrink-0" />
-                                )}
+                    {item.entries.map((item) => {
+                      return (
+                        <tr
+                          key={item.mediaId}
+                          className="hover:bg-orange-400 duration-150 ease-in-out group relative"
+                        >
+                          <td className="font-medium py-2 pl-2 rounded-l-lg">
+                            <div className="flex items-center gap-2">
+                              {item.media.status === "RELEASING" ? (
+                                <span className="dot group-hover:invisible bg-green-500 shrink-0" />
+                              ) : item.media.status === "NOT_YET_RELEASED" ? (
+                                <span className="dot group-hover:invisible bg-red-500 shrink-0" />
+                              ) : (
+                                <span className="dot group-hover:invisible shrink-0" />
+                              )}
+                              <Image
+                                src={item.media.coverImage.large}
+                                alt="Cover Image"
+                                width={500}
+                                height={500}
+                                className="object-cover rounded-md w-10 h-10 shrink-0"
+                              />
+                              <div className="absolute -top-10 -left-40 invisible lg:group-hover:visible">
                                 <Image
                                   src={item.media.coverImage.large}
-                                  alt="Cover Image"
-                                  width={500}
-                                  height={500}
-                                  className="object-cover rounded-md w-10 h-10 shrink-0"
+                                  alt={item.media.id}
+                                  width={1000}
+                                  height={1000}
+                                  className="object-cover h-[186px] w-[140px] shrink-0 rounded-md"
                                 />
-                                <div className="absolute -top-10 -left-40 invisible lg:group-hover:visible">
-                                  <Image
-                                    src={item.media.coverImage.large}
-                                    alt={item.media.id}
-                                    width={1000}
-                                    height={1000}
-                                    className="object-cover h-[186px] w-[140px] shrink-0 rounded-md"
-                                  />
-                                </div>
-                                <Link
-                                  href={`/en/anime/${item.media.id}`}
-                                  className="font-semibold font-karla pl-2 text-sm line-clamp-1"
-                                  title={item.media.title.romaji}
-                                >
-                                  {item.media.title.romaji}
-                                </Link>
                               </div>
-                            </td>
-                            <td className="text-center text-xs text-txt">
-                              {item.score === 0 ? null : item.score}
-                            </td>
-                            <td className="text-center text-xs text-txt rounded-r-lg">
-                              {item.progress === item.media.episodes
-                                ? item.progress
-                                : item.media.episodes === null
+                              <Link
+                                href={`/en/anime/${item.media.id}`}
+                                className="font-semibold font-karla pl-2 text-sm line-clamp-1"
+                                title={item.media.title.romaji}
+                              >
+                                {item.media.title.romaji}
+                              </Link>
+                            </div>
+                          </td>
+                          <td className="text-center text-xs text-txt">
+                            {item.score === 0 ? null : item.score}
+                          </td>
+                          <td className="text-center text-xs text-txt rounded-r-lg">
+                            {item.progress === item.media.episodes
+                              ? item.progress
+                              : item.media.episodes === null
                                 ? item.progress
                                 : `${item.progress}/${item.media.episodes}`}
-                            </td>
-                          </tr>
-                        );
-                      })}
+                          </td>
+                        </tr>
+                      );
+                    })}
                     </tbody>
                   </table>
                 </div>
