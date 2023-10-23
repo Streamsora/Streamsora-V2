@@ -1,13 +1,11 @@
 import { redis } from "@/lib/redis";
 import axios from "axios";
 
-const API_KEY = process.env.API_KEY;
-
 export async function fetchInfo(id) {
   try {
     // console.log(id);
     const { data } = await axios
-      .get(`https://api.anify.tv/info/${id}?apikey=${API_KEY}`)
+      .get(`https://api.anify.tv/info/${id}`)
       .catch((err) => {
         return {
           data: null,
@@ -19,7 +17,7 @@ export async function fetchInfo(id) {
     }
 
     const { data: Chapters } = await axios.get(
-      `https://api.anify.tv/chapters/${data.id}?apikey=${API_KEY}`
+      `https://api.anify.tv/chapters/${data.id}`
     );
 
     if (!Chapters) {
@@ -34,7 +32,7 @@ export async function fetchInfo(id) {
 }
 
 export default async function handler(req, res) {
-  //const [romaji, english, native] = req.query.title;
+  // const [romaji, english, native] = req.query.title;
   const { id } = req.query;
   try {
     let cached;
