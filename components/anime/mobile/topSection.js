@@ -26,11 +26,11 @@ export default function DetailTop({
 
   const [showAll, setShowAll] = useState(false);
 
-  const isAnime = info.type === "ANIME";
+  const isAnime = info?.type === "ANIME";
 
   useEffect(() => {
     setReadMore(false);
-  }, [info.id]);
+  }, [info?.id]);
 
   const handleShareClick = async () => {
     try {
@@ -67,13 +67,13 @@ export default function DetailTop({
           <div className="flex flex-col gap-1 text-center md:text-start">
             <h3 className="font-karla text-lg capitalize leading-none">
               {info?.season?.toLowerCase() || getMonth(info?.startDate?.month)}{" "}
-              {info.seasonYear || info?.startDate?.year}
+              {info?.seasonYear || info?.startDate?.year}
             </h3>
             <h1 className="font-outfit font-extrabold text-2xl md:text-4xl line-clamp-2 text-white">
               {info?.title?.romaji || info?.title?.english}
             </h1>
             <h2 className="font-karla line-clamp-1 text-sm md:text-lg md:pb-2 font-light text-white/70">
-              {info.title?.english}
+              {info?.title?.english}
             </h2>
             <InfoChip info={info} color={color} className="hidden md:flex" />
             {info?.description && (
@@ -145,7 +145,7 @@ export default function DetailTop({
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={`https://anilist.co/${info.type.toLowerCase()}/${info.id}`}
+            href={`https://anilist.co/${info?.type.toLowerCase()}/${info?.id}`}
             className="flex-center group relative w-10 h-10 bg-secondary rounded-full"
           >
             <span className="absolute pointer-events-none z-40 opacity-0 -translate-y-8 group-hover:-translate-y-10 group-hover:opacity-100 font-karla shadow-tersier shadow-md whitespace-nowrap bg-secondary px-2 py-1 rounded transition-all duration-200 ease-out">
@@ -216,11 +216,11 @@ export default function DetailTop({
         </button>
       </div>
 
-      {info.nextAiringEpisode?.timeUntilAiring && (
+      {info?.nextAiringEpisode?.timeUntilAiring && (
         <p className="md:hidden">
           Episode {info.nextAiringEpisode.episode} in{" "}
           <span className="font-bold">
-            {convertSecondsToTime(info.nextAiringEpisode.timeUntilAiring)}{" "}
+            {convertSecondsToTime(info?.nextAiringEpisode.timeUntilAiring)}{" "}
           </span>
         </p>
       )}

@@ -1,8 +1,6 @@
 import { redis } from "@/lib/redis";
 import axios from "axios";
 
-const API_KEY = process.env.API_KEY;
-
 export async function fetchInfo(id) {
   try {
     // console.log(id);
@@ -34,7 +32,7 @@ export async function fetchInfo(id) {
 }
 
 export default async function handler(req, res) {
-  //const [romaji, english, native] = req.query.title;
+  // const [romaji, english, native] = req.query.title;
   const { id } = req.query;
   try {
     let cached;

@@ -23,9 +23,9 @@ export default async function handler(req, res) {
 
   try {
     const data = await fetchData(id, number, provider, readId);
-    // if (!data) {
-    //   return res.status(400).json({ error: "Invalid query" });
-    // }
+     if (!data) {
+       return res.status(400).json({ error: "Invalid query" });
+     }
 
     return res.status(200).json(data);
   } catch (error) {
