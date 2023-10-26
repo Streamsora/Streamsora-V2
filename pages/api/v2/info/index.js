@@ -51,7 +51,8 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "Manga not found" });
     }
 
-    if (redis) await redis.set(`manga:${id}`, JSON.stringify(manga), "ex", 60 * 60 * 24);
+    if (redis)
+      await redis.set(`manga:${id}`, JSON.stringify(manga), "ex", 60 * 60 * 24);
 
     res.status(200).json(manga);
   } catch (error) {

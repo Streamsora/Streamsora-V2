@@ -37,7 +37,6 @@ export default function DetailTop({
       if (navigator.share) {
         await navigator.share({
           title: `${isAnime ? "Watch" : "Read"} Now - ${info?.title?.english}`,
-          // text: `Watch [${info?.title?.romaji}] and more on Streamsora. Join us for endless anime entertainment"`,
           url: window.location.href,
         });
       } else {
@@ -56,7 +55,7 @@ export default function DetailTop({
       {/* MAIN */}
       <div className="flex flex-col md:flex-row w-full items-center md:items-end gap-5 pt-12">
         <div className="shrink-0 w-[180px] h-[250px] rounded overflow-hidden">
-          <Image
+          <img
             src={info?.coverImage?.extraLarge || info?.coverImage}
             alt="poster anime"
             width={300}

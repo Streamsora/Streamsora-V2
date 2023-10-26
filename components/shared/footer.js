@@ -1,45 +1,18 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { parseCookies, setCookie } from "nookies";
-import Image from "next/image";
 
 function Footer() {
   const [year] = useState(new Date().getFullYear());
   const [season] = useState(getCurrentSeason());
 
-  const [lang, setLang] = useState("en");
   const [checked, setChecked] = useState(false);
-  const [cookie, setCookies] = useState(null);
 
   const router = useRouter();
-
-  useEffect(() => {
-    let lang = null;
-    if (!cookie) {
-      const cookie = parseCookies();
-      lang = cookie.lang || null;
-      setCookies(cookie);
-    }
-    if (lang === "en" || lang === null) {
-      setLang("en");
-      setChecked(false);
-    } else if (lang === "jp") {
-      setLang("jp");
-      setChecked(true);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   function switchLang() {
     setChecked(!checked);
     if (checked) {
-      console.log("switching to en");
-      setCookie(null, "lang", "en", {
-        maxAge: 365 * 24 * 60 * 60,
-        path: "/",
-      });
       router.push("/en");
     } else {
       router.push("/jp");
@@ -70,38 +43,38 @@ function Footer() {
               <ul className="flex flex-col gap-y-[0.7rem] ">
                 <li className="cursor-pointer hover:text-action">
                   <Link
-                    href={`/${lang}/search/anime?season=${season}&year=${year}`}
+                    href={`/en/search/anime?season=${season}&year=${year}`}
                   >
                     This Season
                   </Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/search/anime`}>Popular Anime</Link>
+                  <Link href={`/en/search/anime`}>Popular Anime</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/search/manga`}>Popular Manga</Link>
+                  <Link href={`/en/search/manga`}>Popular Manga</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/stats`}>Stats</Link>
+                  <Link href={`/en/stats`}>Stats</Link>
                 </li>
               </ul>
               <ul className="flex flex-col gap-y-[0.7rem]">
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/search/anime?format=MOVIE`}>
+                  <Link href={`/en/search/anime?format=MOVIE`}>
                     Movies
                   </Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/search/anime?format=TV`}>TV Shows</Link>
+                  <Link href={`/en/search/anime?format=TV`}>TV Shows</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/credits`}>Credits</Link>
+                  <Link href={`/en/credits`}>Credits</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/dmca`}>DMCA</Link>
+                  <Link href={`/en/dmca`}>DMCA</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/${lang}/contact`}>Contact</Link>
+                  <Link href={`/en/contact`}>Contact</Link>
                 </li>
               </ul>
             </div>

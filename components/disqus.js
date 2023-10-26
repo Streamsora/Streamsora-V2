@@ -1,10 +1,10 @@
 import { DiscussionEmbed } from "disqus-react";
 
 const DisqusComments = ({ post }) => {
-  const disqusShortname = post.name || "Streamsora";
+  const disqusShortname = post.name || "your_disqus_shortname";
   const disqusConfig = {
     url: post.url,
-    identifier: post.id, // Single post id
+    identifier: post.url, // Single post id
     title: `${post.title} - Episode ${post.episode}`, // Single post title
   };
 
