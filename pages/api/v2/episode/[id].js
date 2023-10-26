@@ -1,12 +1,11 @@
 import axios from "axios";
 import { rateLimitStrict, rateLimiterRedis, redis } from "@/lib/redis";
-import appendImagesToEpisodes from "@/utils/combineImages";
 import appendMetaToEpisodes from "@/utils/appendMetaToEpisodes";
 
 let CONSUMET_URI;
 
-CONSUMET_URI = process.env.API_URI;
-if (CONSUMET_URI.endsWith("/")) {
+CONSUMET_URI = process.env.API_URI || null;
+if (CONSUMET_URI && CONSUMET_URI.endsWith("/")) {
   CONSUMET_URI = CONSUMET_URI.slice(0, -1);
 }
 
@@ -97,21 +96,13 @@ async function fetchConsumet(id) {
 
 async function fetchAnify(id) {
   try {
-    if (!process.env.API_KEY) {
-      return [];
-    }
-
-    const { data } = await axios.get(
-      `https://api.anify.tv/episodes/${id}?apikey=${API_KEY}`
-    );
+    const { data } = await axios.get(`https://api.anify.tv/episodes/${id}`);
 
     if (!data) {
       return [];
     }
 
-    const filtered = data.filter(
-      (item) => item.providerId !== "animepahe" && item.providerId !== "kass"
-    );
+    const filtered = data.filter((item) => item.providerId !== "kass");
     // const modifiedData = filtered.map((provider) => {
     //   if (provider.providerId === "gogoanime") {
     //     const reversedEpisodes = [...provider.episodes].reverse();
@@ -139,7 +130,7 @@ async function fetchCoverImage(id, available = false) {
     }
 
     const { data } = await axios.get(
-      `https://api.anify.tv/content-metadata/${id}?apikey=${API_KEY}`
+      `https://api.anify.tv/content-metadata/${id}`
     );
 
     if (!data) {
@@ -158,8 +149,13 @@ async function fetchCoverImage(id, available = false) {
 export default async function handler(req, res) {
   const { id, releasing = "false", dub = false, refresh = null } = req.query;
 
-  // if releasing is true then cache for 10 minutes, if it false cache for 1 month;
-  const cacheTime = releasing === "true" ? 60 * 10 : 60 * 60 * 24 * 30;
+  // if releasing is true then cache for 1 hour, if it false cache for 1 month;
+  let cacheTime = null;
+  if (releasing === "true") {
+    cacheTime = 60 * 60; // 1 hour
+  } else if (releasing === "false") {
+    cacheTime = 60 * 60 * 24 * 30; // 1 month
+  }
 
   let cached;
   let meta;
