@@ -601,7 +601,7 @@ export default function Home({ detail, populars, upComing }) {
               <Genres />
 
               {/* Schedule */}
-            {anime.length > 0 && (
+            {anime.length > 1 && (
               <motion.section // Add motion.div to each child component
                 key="schedule"
                 initial={{ y: 20, opacity: 0 }}

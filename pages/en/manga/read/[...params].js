@@ -12,10 +12,7 @@ import TopBar from "@/components/manga/mobile/topBar";
 import Head from "next/head";
 import ShortCutModal from "@/components/manga/modals/shortcutModal";
 import ChapterModal from "@/components/manga/modals/chapterModal";
-// import getConsumetPages from "@/lib/consumet/manga/getPage";
 import { mediaInfoQuery } from "@/lib/graphql/query";
-// import { redis } from "@/lib/redis";
-// import getConsumetChapters from "@/lib/consumet/manga/getChapters";
 import { toast } from "sonner";
 import axios from "axios";
 import { redis } from "@/lib/redis";
@@ -368,20 +365,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
-  /*
-  const { data } = await axios.get(
-    `https://beta.moopa.live/api/v2/info/${romaji}${
-      english ? `/${english}` : ""
-    }${native ? `/${native}` : ""}?id=${anilistId}`
-  );
-
-  if (data.error) {
-    return {
-      notFound: true,
-    };
-  }
-  */
 
   return {
     props: {

@@ -123,7 +123,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
             </div>
           </div>
 
-          <div className="bg-secondary font-karla rounded-md h-20 p-1 grid grid-cols-3 place-items-center text-center text-txt">
+          <div className="bg-secondary font-karla rounded-md h-25 p-1 grid grid-cols-3 place-items-center text-center text-txt">
             <div>
               <h1 className="text-action font-bold">
                 {user.statistics.anime.episodesWatched}
@@ -147,6 +147,18 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                 <h2 className="text-sm">hours</h2>
               </div>
             )}
+            <div>
+              <h1 className="text-action font-bold">
+                {user.statistics.anime.episodesWatched}
+              </h1>
+              <h2 className="text-sm">Total Episodes</h2>
+            </div>
+            <div>
+              <h1 className="text-action font-bold">
+                {user.statistics.anime.count}
+              </h1>
+              <h2 className="text-sm">Total Manga</h2>
+            </div>
           </div>
           {sessions && user.name === sessions?.user.name && (
             <div className="font-karla flex flex-col gap-4">

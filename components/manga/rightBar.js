@@ -3,7 +3,7 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { useAniList } from "../../lib/anilist/useAnilist";
+import { useAniList } from "@/lib/anilist/useAnilist";
 import AniList from "../media/aniList";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";

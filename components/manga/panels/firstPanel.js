@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useAniList } from "../../../lib/anilist/useAnilist";
+import { useAniList } from "@/lib/anilist/useAnilist";
 import { getHeaders, getRandomId } from "@/utils/imageUtils";
 
 export default function FirstPanel({
@@ -141,7 +141,7 @@ export default function FirstPanel({
               ref={(el) => (imageRefs.current[index] = el)}
             >
               <Image
-                src={`https://api.consumet.org/utils/image-proxy?url=${encodeURIComponent(
+                src={`https://api.streamsora.live/utils/image-proxy?url=${encodeURIComponent(
                   i.url
                 )}${
                   i?.headers?.Referer
