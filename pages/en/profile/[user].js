@@ -147,7 +147,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                 <h2 className="text-sm">hours</h2>
               </div>
             )}
-            <div>
+{/*            <div>
               <h1 className="text-action font-bold">
                 {user.statistics.anime.episodesWatched}
               </h1>
@@ -158,7 +158,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                 {user.statistics.anime.count}
               </h1>
               <h2 className="text-sm">Total Manga</h2>
-            </div>
+            </div>*/}
           </div>
           {sessions && user.name === sessions?.user.name && (
             <div className="font-karla flex flex-col gap-4">
