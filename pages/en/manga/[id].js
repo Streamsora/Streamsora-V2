@@ -90,14 +90,14 @@ export default function Manga({ info, anifyData, color, chapterNotFound }) {
         <title>
           {info
             ? `Manga - ${
-              info.title.romaji || info.title.english || info.title.native
-            }`
+                info.title.romaji || info.title.english || info.title.native
+              }`
             : "Getting Info..."}
         </title>
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content={`Moopa - ${info.title.romaji || info.title.english}`}
+          content={`Streamsora - ${info.title.romaji || info.title.english}`}
         />
         <meta
           name="twitter:description"
