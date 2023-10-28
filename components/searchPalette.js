@@ -3,11 +3,11 @@ import { Combobox, Dialog, Menu, Transition } from "@headlessui/react";
 import useDebounce from "../lib/hooks/useDebounce";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSearch } from "@/lib/context/isOpenState";
+import { useSearch } from "../lib/context/isOpenState";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { BookOpenIcon, PlayIcon } from "@heroicons/react/20/solid";
-import { useAniList } from "@/lib/anilist/useAnilist";
-import { getFormat } from "@/utils/getFormat";
+import { useAniList } from "../lib/anilist/useAnilist";
+import { getFormat } from "../utils/getFormat";
 import SearchByImage from "./search/searchByImage";
 
 export default function SearchPalette() {
@@ -149,6 +149,7 @@ export default function SearchPalette() {
                               <Menu.Item>
                                 {({ active }) => (
                                   <button
+                                    title="Anime"
                                     onClick={() => setType("ANIME")}
                                     className={`${
                                       active
@@ -164,6 +165,7 @@ export default function SearchPalette() {
                               <Menu.Item>
                                 {({ active }) => (
                                   <button
+                                    title="Manga"
                                     onClick={() => setType("MANGA")}
                                     className={`${
                                       active
@@ -239,6 +241,7 @@ export default function SearchPalette() {
                         {nextPage && (
                           <button
                             type="button"
+                            title="View More"
                             onClick={() => {
                               router.push(
                                 `/en/search/${type.toLowerCase()}/${

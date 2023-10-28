@@ -1,15 +1,19 @@
 import Link from "next/link";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import Image from "next/image";
 import { MdChevronRight } from "react-icons/md";
-import { ArrowRightCircleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronRightIcon,
+  ArrowRightCircleIcon,
+} from "@heroicons/react/24/outline";
 
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { ExclamationCircleIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import HistoryOptions from "./content/historyOptions";
 import { toast } from "sonner";
+import { truncateImgUrl } from "@/utils/imageUtils";
 
 export default function Content({
                                   ids,
@@ -82,7 +86,8 @@ export default function Content({
     }
   }
 
-  let filteredData = data?.filter((item) => item !== null);
+  const array = data;
+  let filteredData = array?.filter((item) => item !== null);
   const slicedData =
     filteredData?.length > 15 ? filteredData?.slice(0, 15) : filteredData;
 
@@ -283,7 +288,7 @@ export default function Content({
                           anime.image ||
                           anime.coverImage?.extraLarge ||
                           anime.coverImage?.large ||
-                          anime?.coverImage ||
+                          truncateImgUrl(anime?.coverImage) ||
                           "https://cdn.discordapp.com/attachments/986579286397964290/1058415946945003611/gray_pfp.png"
                         }
                         alt={

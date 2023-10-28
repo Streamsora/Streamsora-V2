@@ -599,139 +599,8 @@ export default function Home({ detail, populars, upComing }) {
               viewport={{ once: true }}
             >
               <Genres />
-            </motion.section>
-            <div className="flex flex-col md:flex-row justify-center space-x-4 max-w-screen-md mx-auto">
-              <motion.div
-                className="border-2 border-[#245ac7] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
-                style={{
-                  backgroundImage: `url('/svg/catagwave1.svg')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <p className="font-semibold text-2xl text-gray-300 relative z-20">
-                  Movies That You Will Love
-                </p>
 
-                <div className="grid grid-cols-3 gap-0 px-6 overflow-hidden">
-                  <Link href='en/anime/21519'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
-                      whileHover={{ top: -6, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21519-XIr3PeczUjjF.png"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#245ac7] transform -rotate-12 '
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-
-                  <Link href='en/anime/20954'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-4 hover:top-3 transform duration-150"
-                      whileHover={{ top: -3, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20954-UMb6Kl7ZL8Ke.jpg"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#245ac7]'
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-
-                  <Link href='en/anime/431'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
-                      whileHover={{ top: -6, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx431-dDgk19xDZjVX.jpg"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#245ac7] transform rotate-12'
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="border-2 border-[#FF0066] pt-5 w-full md:w-fit relative rounded-lg cursor-pointer justify-center items-center flex flex-col"
-                style={{
-                  backgroundImage: `url('/svg/catagwave2.svg')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <p className="font-semibold text-2xl text-gray-300 relative z-20">The Big Threes</p>
-
-                <div className="grid grid-cols-3 gap-0 px-6 overflow-hidden">
-                  <Link href='en/anime/20'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
-                      whileHover={{ top: -6, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20-YJvLbgJQPCoI.jpg"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#FF0066] transform -rotate-12 '
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-
-                  <Link href='en/anime/269'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-4 hover:top-3 transform duration-150"
-                      whileHover={{ top: -3, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx269-KxkqTIuQgJ6v.png"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#FF0066]'
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-
-                  <Link href='en/anime/21'>
-                    <motion.div
-                      className="relative aspect-[3/4] top-8 hover:top-6 transform duration-150"
-                      whileHover={{ top: -6, scale: 1.1 }}
-                    >
-                      <Image
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg"
-                        alt="Anime Cover"
-                        width={150}
-                        height={150}
-                        className='selector object-cover rounded-lg border-2 border-[#FF0066] transform rotate-12'
-                        loading='lazy'
-                      />
-                    </motion.div>
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-                          {/* Schedule */}
+              {/* Schedule */}
             {anime.length > 0 && (
               <motion.section // Add motion.div to each child component
                 key="schedule"
@@ -748,6 +617,7 @@ export default function Home({ detail, populars, upComing }) {
                 />
               </motion.section>
             )}
+              </motion.section>
           </motion.div>
         </div>
       </div>
