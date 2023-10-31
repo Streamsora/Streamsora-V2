@@ -160,7 +160,6 @@ export default function AnimeEpisode({
 
         setProgress(maxWatchedEpisode);
       } else {
-        return;
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,7 +220,7 @@ export default function AnimeEpisode({
 
           if (allProvider.length > 0) {
             const defaultProvider = allProvider.find(
-              (x) => x.providerId === "gogoanime" || x.providerId === "9anime"
+              (x) => x.providerId === "gogoanime" || x.providerId === "zoro"
             );
             setProviderId(
               defaultProvider?.providerId || allProvider[0].providerId

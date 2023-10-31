@@ -66,7 +66,7 @@ export default function Credits() {
                   <strong>Website Developers:</strong> Factiven, Araxyso
                 </p>
                 <p>
-                  <strong>Design and Graphics:</strong> Factiven, Araxyso
+                  <strong>Design and Graphics:</strong> Factiven
                 </p>
               </motion.div>
               <motion.p
@@ -99,6 +99,8 @@ export default function Credits() {
                   </li>
                   <li>
                     <strong>Backend Services:</strong> <a href="https://consumet.org" target="_blank">Consumet</a>
+                    <li></li>
+                    <strong>Backend Services:</strong> <a href="https://docs.anify.tv" target="_blank">Anify</a>
                   </li>
                 </ul>
               </motion.div>
