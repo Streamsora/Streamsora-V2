@@ -12,28 +12,6 @@
  <img src="https://github.com/Streamsora/Streamsora-V2/blob/main/public/showcase.png?raw=true" alt="main">
 </p>
 
-<details>
-<summary>More Screenshots</summary>
-
-<h3 align="center">Home page after you login</h3>
-<img src="https://github.com/Ani-Moopa/Moopa/assets/97084324/4eab1606-adc3-43e6-8c62-712354732083"/>
-
-<h3 align="center">Profile Page</h3>
-<img src="https://user-images.githubusercontent.com/97084324/234556937-76ec236c-a077-4af5-a910-0cb85e900e38.gif"/>
-
-<h3 align="center">Info page for PC/Mobile</h3>
-<p align="center">
-<img src="https://github.com/Ani-Moopa/Moopa/assets/97084324/7126ca71-26dc-4a02-819d-9e84c938d5c6"/>
-</p>
-
-<h3 align="center">Watch Page</h3>
-<img src="https://github.com/Ani-Moopa/Moopa/assets/97084324/c654aa13-76d7-47fe-ac02-924fbbb40f76"/>
- 
-<h3 align="center">Manga Reader</h3>
-<img src="https://github.com/DevanAbinaya/Ani-Moopa/assets/97084324/ccd2ee11-4ee3-411c-b634-d48c84f1a9e2"/>
-
-</details>
-
 ## Introduction
 
 <p><a href="https://moopa.live">Moopa</a> is an anime streaming website made possible by the <a href="https://github.com/consumet">Consumet API</a>, built with <a href="https://github.com/vercel/next.js/">Next.js</a> and <a href="https://github.com/tailwindlabs/tailwindcss">Tailwind</a>, featuring a sleek and modern design. It offers Anilist integration to help you keep track of your favorite anime series. Moopa is entirely free and does not display any ads, making it a great option for those who want an uninterrupted viewing experience.</p>
@@ -62,75 +40,13 @@
 
 ## Bug Report
 
-If you encounter any issues or bug on the site please head to [issues](https://github.com/DevanAbinaya/Ani-Moopa/issues) and create a bug report there.
-
-## For Local Development
-
-> If you want to self-host this app, please note that it is only allowed for personal use. Commercial use is not permitted, and including ads on your self-hosted site may result in actions such as site takedown.
-
-1. Clone this repository using :
-
-```bash
-git clone https://github.com/DevanAbinaya/Ani-Moopa.git
-```
-
-2. Install package using npm :
-
-```bash
-npm install
-```
-
-3. Generate Prisma :
-
-```bash
-npx prisma migrate dev
-npx prisma generate
-```
-
-4. Create `.env` file in the root folder and put this inside the file :
-
-```bash
-## AniList
-CLIENT_ID="get the id from here https://anilist.co/settings/developer"
-CLIENT_SECRET="get the secret from here https://anilist.co/settings/developer"
-GRAPHQL_ENDPOINT="https://graphql.anilist.co"
-
-## NextAuth
-NEXTAUTH_SECRET='run this cmd in your bash terminal (openssl rand -base64 32) with no bracket, and paste it here'
-NEXTAUTH_URL="for development use http://localhost:3000/ and for production use your domain url"
-
-## NextJS
-PROXY_URI="This is what I use for proxying video https://github.com/chaycee/M3U8Proxy. Don't put / at the end of the url."
-API_URI="host your own API from this repo https://github.com/consumet/api.consumet.org. Don't put / at the end of the url."
-API_KEY="this API key is used for schedules, anime and manga page. get the key from https://anify.tv/discord"
-DISQUS_SHORTNAME='put your disqus shortname here (optional)'
-# ADMIN_USERNAME=""
-
-## Prisma
-DATABASE_URL="Your postgresql connection url"
-
-## Redis
-# If you don't want to use redis, just comment the REDIS_URL (press ctrl + / on windows or cmd + / on mac)
-REDIS_URL="rediss://username:password@host:port"
-```
-
-5. Add this endpoint as Redirect Url on AniList Developer :
-
-```bash
-https://your-website-url/api/auth/callback/AniListProvider
-```
-
-6. Start local server :
-
-```bash
-npm run dev
-```
+If you encounter any issues or bug on the site please head to [issues](https://github.com/streamsora/streamsora-v2/issues) and create a bug report there.
 
 ## Credits
 
 - [Consumet API](https://github.com/consumet/api.consumet.org) for anime sources
 - [AniList API](https://github.com/AniList/ApiV2-GraphQL-Docs) for anime details source
-- [Anify API](https://anify.tv/discord) for manga sources
+- [Anify API](https://anify.tv/discord) for manga sources and anime sources
 - [miru](https://github.com/ThaUnknown/miru/) for inspiring me making this site
 
 ## License
@@ -143,15 +59,10 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 Thank You for passing by!!
 
-If you have any questions or feedback, please reach out to us at [contact@moopa.live](mailto:contact@moopa.live?subject=[Moopa]%20-%20Your%20Subject), or you can join our [discord sever](https://discord.gg/4xTGhr85BG).
+If you have any questions or feedback, please reach out to us at [contact@streamsora.live](mailto:contact@streamsora.live?subject=[Streamsora]%20-%20Your%20Subject), or you can join our [discord sever](https://discord.gg/FQbfNWPSJM).
 <br>
-or you can DM me on Discord `Factiven#9110`.
-
-[![Discord Banner](https://discordapp.com/api/guilds/822413263148285973/widget.png?style=banner2)](https://discord.gg/v5fjSdKwr2)
+or you can DM me on Discord `Araxyso`.
 
 ## Support This Project
 
-✨ [Star this project](https://github.com/DevanAbinaya/Ani-Moopa)
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E6F9XZ3)  
-<a href="https://trakteer.id/factiven" target="_blank"><img id="wse-buttons-preview" src="https://cdn.trakteer.id/images/embed/trbtn-red-5.png" height="36" style="border: 0px; height: 36px;" alt="Trakteer Saya"></a>
+✨ [Star this project](https://github.com/streamsora/streamsora-v2)
