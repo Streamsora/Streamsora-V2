@@ -9,7 +9,7 @@
 </h1>
 
 <p align="center">
- <img src="https://github.com/Ani-Moopa/Moopa/assets/97084324/c17d5d6a-36a2-4d08-957d-ad4683dcdf0d" alt="main">
+ <img src="https://github.com/Streamsora/Streamsora-V2/blob/main/public/showcase.png?raw=true" alt="main">
 </p>
 
 <details>
