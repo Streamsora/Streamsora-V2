@@ -14,7 +14,7 @@
 
 ## Introduction
 
-<p><a href="https://moopa.live">Moopa</a> is an anime streaming website made possible by the <a href="https://github.com/consumet">Consumet API</a>, built with <a href="https://github.com/vercel/next.js/">Next.js</a> and <a href="https://github.com/tailwindlabs/tailwindcss">Tailwind</a>, featuring a sleek and modern design. It offers Anilist integration to help you keep track of your favorite anime series. Moopa is entirely free and does not display any ads, making it a great option for those who want an uninterrupted viewing experience.</p>
+<p><a href="https://streamsora.live">Streamsora</a> is an anime streaming website made possible by the <a href="https://github.com/streamsora">Streamsora API</a>, built with <a href="https://github.com/vercel/next.js/">Next.js</a> and <a href="https://github.com/tailwindlabs/tailwindcss">Tailwind</a>, featuring a sleek and modern design. It offers Anilist integration to help you keep track of your favorite anime series. Streamsora is entirely free and does not display any ads, making it a great option for those who want an uninterrupted viewing experience.</p>
 
 ## Features
 
