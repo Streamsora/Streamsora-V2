@@ -1,26 +1,12 @@
 <div align="center">
-<a href="https://moopa.live">
-  <img src="https://user-images.githubusercontent.com/97084324/234460363-216b29d3-acba-4c29-a321-780de84c9ab0.png" alt="logo" width="180"/>
+<a href="https://streamsora.live">
+  <img src="https://github.com/Streamsora/Streamsora-V2/blob/main/public/streamsora.png?raw=true" alt="logo" width="180"/>
 </a>
 </div>
 
 <h1 align="center">
-  <a href="https://moopa.live">Moopa Anime Streaming Website</a>
+  <a href="https://streamsora.live">Streamsora</a>
 </h1>
-
-<p align="center">
-
- <a href="https://github.com/DevanAbinaya/Ani-Moopa/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/github/license/DevanAbinaya/Ani-Moopa" alt="license"/>
-  </a>
-  <a href="https://github.com/DevanAbinaya/Ani-Moopa/fork">
-    <img src="https://img.shields.io/github/forks/DevanAbinaya/Ani-Moopa?style=social" alt="fork"/>
-  </a>
-  <a href="https://github.com/DevanAbinaya/Ani-Moopa">
-    <img src="https://img.shields.io/github/stars/DevanAbinaya/Ani-Moopa?style=social" alt="stars"/>
-  </a>
-  
-</p>
 
 <p align="center">
  <img src="https://github.com/Ani-Moopa/Moopa/assets/97084324/c17d5d6a-36a2-4d08-957d-ad4683dcdf0d" alt="main">
