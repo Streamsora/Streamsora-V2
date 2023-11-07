@@ -99,7 +99,8 @@ export default function Credits() {
                   </li>
                   <li>
                     <strong>Backend Services:</strong> <a href="https://consumet.org" target="_blank">Consumet</a>
-                    <li></li>
+                  </li>
+                  <li>
                     <strong>Backend Services:</strong> <a href="https://docs.anify.tv" target="_blank">Anify</a>
                   </li>
                 </ul>
