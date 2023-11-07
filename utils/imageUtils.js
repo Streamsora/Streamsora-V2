@@ -12,7 +12,7 @@ export function getHeaders(providerId) {
       return { Referer: "https://mangasee123.com" };
     case "comick":
       return { Referer: "https://comick.app" };
-    case "mangapark";
+    case "mangapark":
       return { Referer: "https://mangapark.net" };
     default:
       return null;
