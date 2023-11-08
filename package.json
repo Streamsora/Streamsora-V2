@@ -16,6 +16,7 @@
     "@heroicons/react": "^2.0.17",
     "@prisma/client": "^5.3.1",
     "@vercel/og": "^0.5.4",
+    "adblock-checker": "^0.1.6",
     "artplayer": "^5.0.9",
     "artplayer-plugin-hls-quality": "^2.0.0",
     "axios": "^1.4.0",

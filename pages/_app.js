@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { unixTimestampToRelativeTime } from "@/utils/getTimes";
 import SecretPage from "@/components/secret";
 import { Toaster, toast } from "sonner";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function App({
                               Component,
@@ -86,7 +87,7 @@ export default function App({
                   cheatCode={"aofienaef"}
                   onCheatCodeEntered={handleCheatCodeEntered}
                 />
-                {/* {info && (
+                 {info && (
                   <div className="relative px-3 flex items-center justify-center font-karla w-full py-2 bg-secondary/80 text-white text-center">
                     <span className="line-clamp-1 mr-5">🚧{info}🚧</span>
                     <span
@@ -96,7 +97,7 @@ export default function App({
                       <XMarkIcon className="w-6 h-6" />
                     </span>
                   </div>
-                )} */}
+                )}
                 <m.div
                   key={`route-${router.route}`}
                   transition={{ duration: 0.5 }}

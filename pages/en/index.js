@@ -19,6 +19,9 @@ import MobileNav from "@/components/shared/MobileNav";
 import { getGreetings } from "@/utils/getGreetings";
 import { redis } from "@/lib/redis";
 import { NewNavbar } from "@/components/shared/NavBar";
+import { checkAdBlock } from "adblock-checker";
+import { toast } from "sonner";
+import { unixTimestampToRelativeTime } from "@/utils/getTimes";
 
 export async function getServerSideProps() {
   let cachedData;
@@ -87,6 +90,24 @@ export default function Home({ detail, populars, upComing }) {
   const [anime, setAnime] = useState([]);
 
   const [recentAdded, setRecentAdded] = useState([]);
+
+  useEffect(() => {
+    async function adBlock() {
+      const ad = await checkAdBlock();
+      if (ad) {
+        toast.message(
+          `Please disable your adblock for better experience, we don't have any ads on our site.`,
+          {
+            position: "bottom-right",
+            important: true,
+            duration: 100000,
+            className: "flex-center font-karla text-white",
+          }
+        );
+      }
+    }
+    adBlock();
+  }, []);
 
   async function getRecent() {
     const data = await fetch(`/api/v2/etc/recent/1`)
