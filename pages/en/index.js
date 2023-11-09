@@ -139,7 +139,7 @@ export default function Home({ detail, populars, upComing }) {
     }
   }, [upComing]);
 
-/*  useEffect(() => {
+  useEffect(() => {
     const getSchedule = async () => {
       try {
         const res = await fetch(`/api/v2/etc/schedule`);
@@ -155,7 +155,7 @@ export default function Home({ detail, populars, upComing }) {
       }
     };
     getSchedule();
-  }, []);*/
+  }, []);
 
   const [releaseData, setReleaseData] = useState([]);
 

@@ -69,6 +69,7 @@ export default function App({
     alert("Cheat code entered!"); // You can replace this with your desired action
   };
 
+
   return (
     <>
       <Head>
@@ -87,7 +88,7 @@ export default function App({
                   cheatCode={"aofienaef"}
                   onCheatCodeEntered={handleCheatCodeEntered}
                 />
-                 {info && (
+{/*                 {info && (
                   <div className="relative px-3 flex items-center justify-center font-karla w-full py-2 bg-secondary/80 text-white text-center">
                     <span className="line-clamp-1 mr-5">🚧{info}🚧</span>
                     <span
@@ -97,7 +98,7 @@ export default function App({
                       <XMarkIcon className="w-6 h-6" />
                     </span>
                   </div>
-                )}
+                )}*/}
                 <m.div
                   key={`route-${router.route}`}
                   transition={{ duration: 0.5 }}
