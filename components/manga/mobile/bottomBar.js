@@ -119,9 +119,6 @@ export default function BottomBar({
                               JSON.stringify(getHeaders(chapter.providerId))
                             )}`
                         }`}
-                        // &headers=${encodeURIComponent(
-                        //   JSON.stringify({ Referer: x.headers.Referer })
-                        // )}
                         alt="chapter image"
                         width={100}
                         height={200}
