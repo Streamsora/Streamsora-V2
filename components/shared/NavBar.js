@@ -148,21 +148,10 @@ export function NewNavbar({
                 <li>
                   <button
                     onClick={() => signIn("AniListProvider")}
-                    className="hover:text-action/80 transition-all duration-150 ease-linear "
-                    // className="px-2 py-1 ring-1 ring-action font-bold font-karla rounded-md"
+                    className="hover:text-action/80 transition-all duration-150 ease-linear"
                   >
                     Sign In
                   </button>
-                </li>
-              )}
-              {session && (
-                <li className="text-center">
-                  <Link
-                    href={`/en/profile/${session?.user.name}`}
-                    className="hover:text-action/80 transition-all duration-150 ease-linear"
-                  >
-                    My List
-                  </Link>
                 </li>
               )}
             </ul>
@@ -231,8 +220,10 @@ export function NewNavbar({
                 title="Login With AniList"
                 className="w-7 h-7 bg-white/30 rounded-full overflow-hidden shrink-0"
               >
-                <img
+                <Image
                   className="h-7 w-7 rounded-full"
+                  width={0}
+                  height={0}
                   src={`https://avatar.vercel.sh/1`}
                   alt="pfp"
                 />
