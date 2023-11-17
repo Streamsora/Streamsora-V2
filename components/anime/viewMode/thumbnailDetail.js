@@ -2,21 +2,27 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ThumbnailDetail({
-  index,
-  epi,
-  info,
-  image,
-  title,
-  description,
-  provider,
-  artStorage,
-  progress,
-  dub,
-}) {
+                                          index,
+                                          epi,
+                                          info,
+                                          image,
+                                          title,
+                                          description,
+                                          provider,
+                                          artStorage,
+                                          progress,
+                                          dub,
+                                        }) {
   const time = artStorage?.[epi?.id]?.timeWatched;
   const duration = artStorage?.[epi?.id]?.duration;
   let prog = (time / duration) * 100;
   if (prog > 90) prog = 100;
+
+  const parsedImage = image
+    ? image?.includes("null")
+      ? info.coverImage?.extraLarge
+      : image
+    : info.coverImage?.extraLarge || null;
 
   return (
     <Link
@@ -28,9 +34,9 @@ export default function ThumbnailDetail({
     >
       <div className="w-[43%] lg:w-[30%] relative shrink-0 z-40 rounded-lg overflow-hidden shadow-[4px_0px_5px_0px_rgba(0,0,0,0.3)]">
         <div className="relative">
-          {image && (
+          {parsedImage && (
             <Image
-              src={image || ""}
+              src={parsedImage || ""}
               alt={`Episode ${epi?.number} Thumbnail`}
               width={520}
               height={236}
@@ -44,8 +50,8 @@ export default function ThumbnailDetail({
                 progress !== undefined && progress >= epi?.number
                   ? "100%"
                   : artStorage?.[epi?.id] !== undefined
-                  ? `${prog}%`
-                  : "0%",
+                    ? `${prog}%`
+                    : "0%",
             }}
           />
           <span className="absolute bottom-2 left-2 font-karla font-semibold text-sm lg:text-lg">

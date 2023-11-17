@@ -2,18 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ThumbnailOnly({
-  info,
-  image,
-  providerId,
-  episode,
-  artStorage,
-  progress,
-  dub,
-}) {
+                                        info,
+                                        image,
+                                        providerId,
+                                        episode,
+                                        artStorage,
+                                        progress,
+                                        dub,
+                                      }) {
   const time = artStorage?.[episode?.id]?.timeWatched;
   const duration = artStorage?.[episode?.id]?.duration;
   let prog = (time / duration) * 100;
   if (prog > 90) prog = 100;
+
+  const parsedImage = image
+    ? image?.includes("null")
+      ? info.coverImage?.extraLarge
+      : image
+    : info.coverImage?.extraLarge || null;
   return (
     <Link
       // key={index}
@@ -32,14 +38,14 @@ export default function ThumbnailOnly({
             progress && episode?.number <= progress
               ? "100%"
               : artStorage?.[episode?.id]
-              ? `${prog}%`
-              : "0%",
+                ? `${prog}%`
+                : "0%",
         }}
       />
       {/* <div className="absolute inset-0 bg-black z-30 opacity-20" /> */}
-      {image && (
+      {parsedImage && (
         <Image
-          src={image || ""}
+          src={parsedImage || ""}
           alt={`Episode ${episode?.number} Thumbnail`}
           width={500}
           height={500}

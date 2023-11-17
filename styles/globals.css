@@ -557,3 +557,10 @@ pre code {
     left: unset;
   }
 }
+
+.gradient-border {
+  border: 2px solid;
+  border-image: linear-gradient(to right, #800080, #FFA500);
+  border-image-slice: 1;
+  border-radius: 10%;
+}
