@@ -53,3 +53,4 @@ service-account.json
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
 **/public/fallback-*.js
+/package-lock.json
