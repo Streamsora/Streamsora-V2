@@ -169,7 +169,7 @@ export default function FirstPanel({
         )}
       </div>
       <div className="absolute hidden lg:flex bottom-5 left-5 gap-5">
-        {/* <button
+         <button
           type="button"
           disabled={imageQuality >= 100}
           onClick={() => {
@@ -188,7 +188,7 @@ export default function FirstPanel({
           className="flex-center p-2 bg-secondary"
         >
           <MinusIcon className="w-5 h-5" />
-        </button> */}
+        </button>
         <span className="flex bg-secondary p-2 rounded-sm">
           {visible ? (
             <button type="button" onClick={() => setVisible(!visible)}>

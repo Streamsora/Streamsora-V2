@@ -111,10 +111,10 @@ export default function ShortCutModal({ isOpen, setIsOpen }) {
                       <label className="text-gray-100 font-bold">
                         RIGHT TO LEFT
                       </label>
-                      {/* <p className="text-sm text-gray-400 w-[18rem]">
+                       <p className="text-sm text-gray-400 w-[18rem]">
                         these shorcuts only work when focused on Right to Left
                         mode.
-                      </p> */}
+                      </p>
                       <div className="space-y-2">
                         <label className="text-gray-400 text-sm font-karla font-extrabold uppercase">
                           Navigate Through Panels

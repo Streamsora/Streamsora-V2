@@ -13,7 +13,6 @@ export default function TopBar({ info }) {
             <ArrowLeftIcon className="w-6 h-6" />
             <h1>back</h1>
           </Link>
-          {/* <h1 className="font-outfit text-action font-bold text-lg">moopa</h1> */}
           <h1 className="w-[50%] line-clamp-1 text-end">{info.title.romaji}</h1>
         </>
       )}
