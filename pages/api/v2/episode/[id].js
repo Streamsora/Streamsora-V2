@@ -137,9 +137,7 @@ async function fetchCoverImage(id, available = false) {
       return [];
     }
 
-    const getData = data[0].data;
-
-    return getData;
+    return data[0].data;
   } catch (error) {
     console.error("Error fetching and processing data:", error.message);
     return [];

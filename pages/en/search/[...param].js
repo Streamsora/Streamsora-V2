@@ -366,7 +366,7 @@ export default function Card({
                       >
                         <Link
                           href={
-                            anime.format === "MANGA" || anime.format === "NOVEL"
+                            anime.type === "MANGA" || anime.type === "NOVEL"
                               ? `/en/manga/${anime.id}`
                               : `/en/anime/${anime.id}`
                           }
@@ -394,7 +394,7 @@ export default function Card({
                           </h1>
                         </Link>
                         <h2 className="font-outfit xl:text-[15px] text-[11px] font-light pt-2 text-[#8B8B8B]">
-                          {anime.format || <p>-</p>} &#183;{" "}
+                          {anime.type || <p>-</p>} &#183;{" "}
                           {anime.status || <p>-</p>} &#183;{" "}
                           {anime.episodes
                             ? `${anime.episodes || "N/A"} Episodes`

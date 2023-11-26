@@ -249,7 +249,7 @@ export async function getServerSideProps(ctx) {
     const json = await resp.json();
     const data = json?.data?.Media;
 
-    const cacheTime = data.nextAiringEpisode?.episode
+    const cacheTime = data?.nextAiringEpisode?.episode
       ? 60 * 10
       : 60 * 60 * 24 * 30;
 
