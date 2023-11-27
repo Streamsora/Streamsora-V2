@@ -34,7 +34,7 @@ export function LeftBar({
 
         <div className="flex flex-col p-2 gap-2">
           <div className="flex font-karla flex-col gap-2">
-            <h1 className="font-bold xl:text-lg">Provider</h1>
+            <h1 className="font-bold xl:text-lg">Currect Provider</h1>
             <div className="w-full px-2">
               <p className="bg-[#161617] text-sm xl:text-base capitalize rounded-md py-1 px-2">
                 {data.providerId}
@@ -43,7 +43,7 @@ export function LeftBar({
           </div>
           {/* Chapters */}
           <div className="flex font-karla flex-col gap-2">
-            <h1 className="font-bold xl:text-lg">Chapters</h1>
+            <h1 className="font-bold xl:text-lg">Total Chapters</h1>
             <div className="px-2">
               <div className="w-full text-sm xl:text-base px-1 h-[8rem] xl:h-[30vh] bg-[#161617] rounded-md overflow-auto scrollbar-thin scrollbar-thumb-[#363639] scrollbar-thumb-rounded-md hover:scrollbar-thumb-[#424245]">
                 {data?.chapters?.map((x, index) => {
@@ -104,9 +104,6 @@ export function LeftBar({
                                     JSON.stringify(getHeaders(providerId))
                                   )}`
                               }`}
-                              // &headers=${encodeURIComponent(
-                              //   JSON.stringify({ Referer: x.headers.Referer })
-                              // )}
                               alt="chapter image"
                               width={100}
                               height={200}

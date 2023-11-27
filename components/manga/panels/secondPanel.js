@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   ArrowsPointingOutIcon,
-  ArrowsPointingInIcon,
+  ArrowsPointingInIcon, PlusIcon, MinusIcon
 } from "@heroicons/react/24/outline";
-import { useAniList } from "../../../lib/anilist/useAnilist";
+import { useAniList } from "@/lib/anilist/useAnilist";
 import { getHeaders } from "@/utils/imageUtils";
 
 export default function SecondPanel({
@@ -22,6 +22,7 @@ export default function SecondPanel({
                                       providerId,
                                     }) {
   const [index, setIndex] = useState(0);
+  const [imageQuality, setImageQuality] = useState(80);
   const [image, setImage] = useState(null);
 
   const { markProgress } = useAniList(session);
@@ -191,7 +192,28 @@ export default function SecondPanel({
             {data.error || "Not found"} :(
           </div>
         )}
-        <span className="absolute hidden group-hover:flex bottom-5 left-5 bg-secondary p-2">
+        <div className="absolute hidden lg:flex bottom-5 left-5 gap-5">
+          <button
+            type="button"
+            disabled={imageQuality >= 100}
+            onClick={() => {
+              setImageQuality((prev) => (prev <= 100 ? prev + 10 : prev));
+            }}
+            className="flex-center p-2 bg-secondary"
+          >
+            <PlusIcon className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            disabled={imageQuality <= 10}
+            onClick={() => {
+              setImageQuality((prev) => (prev >= 10 ? prev - 10 : prev));
+            }}
+            className="flex-center p-2 bg-secondary"
+          >
+            <MinusIcon className="w-5 h-5" />
+          </button>
+          <span className="flex bg-secondary p-2 rounded-sm">
           {visible ? (
             <button type="button" onClick={() => setVisible(!visible)}>
               <ArrowsPointingOutIcon className="w-5 h-5" />
@@ -202,6 +224,7 @@ export default function SecondPanel({
             </button>
           )}
         </span>
+        </div>
         <span className="absolute hidden group-hover:flex bottom-5 right-5 bg-secondary p-2">
           Page {index + 1}
           {index + 2 > data.length ? "" : `-${index + 2}`}/{data.length}
