@@ -3,9 +3,10 @@ import {
   ArrowSmallDownIcon,
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
-  ArrowSmallUpIcon,
+  ArrowSmallUpIcon, PlusIcon, MinusIcon
 } from "@heroicons/react/24/solid";
 import { Fragment } from "react";
+import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 
 export default function ShortCutModal({ isOpen, setIsOpen }) {
   function closeModal() {
@@ -170,6 +171,19 @@ export default function ShortCutModal({ isOpen, setIsOpen }) {
                           <div className="flex">
                             <div className="bg-[#424245] text-white text-sm font-bold px-2 py-1 shadow-md shadow-[#141415] rounded-md">
                               F
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-gray-400 text-sm font-karla font-extrabold uppercase">
+                            Image Quality
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <div className="bg-[#424245] text-white text-sm font-bold px-2 py-1 shadow-md shadow-[#141415] rounded-md">
+                              <PlusIcon className="w-5 h-5" />
+                            </div>
+                            <div className="bg-[#424245] text-white px-2 py-1 shadow-md shadow-[#141415] rounded-md">
+                              <MinusIcon className="w-5 h-5" />
                             </div>
                           </div>
                         </div>
