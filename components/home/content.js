@@ -1,12 +1,9 @@
 import Link from "next/link";
-import React, { useState, useRef, useEffect, Fragment } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import Image from "next/image";
 import { MdChevronRight } from "react-icons/md";
-import {
-  ChevronRightIcon,
-  ArrowRightCircleIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowRightCircleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { ExclamationCircleIcon, PlayIcon } from "@heroicons/react/24/solid";
@@ -86,8 +83,7 @@ export default function Content({
     }
   }
 
-  const array = data;
-  let filteredData = array?.filter((item) => item !== null);
+  let filteredData = data?.filter((item) => item !== null);
   const slicedData =
     filteredData?.length > 15 ? filteredData?.slice(0, 15) : filteredData;
 
@@ -351,7 +347,7 @@ export default function Content({
               );
             })
             : userData
-              ?.filter((i) => i.title && i.title !== null)
+              ?.filter((i) => i.title && true)
               ?.slice(0, 10)
               .map((i) => {
                 const time = i.timeWatched;
@@ -423,6 +419,7 @@ export default function Content({
                           src={i?.image}
                           width={320}
                           height={180}
+                          quality={100}
                           alt="Episode Thumbnail"
                           className="w-full object-cover group-hover:scale-[1.02] duration-300 ease-out z-10"
                         />
@@ -528,6 +525,4 @@ function checkProgress(entry) {
       return `${missedEpisodes} episode${missedEpisodes > 1 ? "s" : ""} behind`;
     }
   }
-
-  return;
 }

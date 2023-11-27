@@ -206,8 +206,7 @@ export default function Schedule({ schedule }) {
         const containerWidth = scrollContainerRef.current.clientWidth;
         const buttonLeft = activeButton.offsetLeft;
         const buttonWidth = activeButton.clientWidth;
-        const scrollLeft = buttonLeft - containerWidth / 2 + buttonWidth / 2;
-        scrollContainerRef.current.scrollLeft = scrollLeft;
+        scrollContainerRef.current.scrollLeft = buttonLeft - containerWidth / 2 + buttonWidth / 2;
       }
     }
   }, [filterDay]);

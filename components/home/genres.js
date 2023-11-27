@@ -56,6 +56,7 @@ export default function Genres() {
                   alt="genres images"
                   width={1000}
                   height={1000}
+                  quality={100}
                   className="object-cover shrink-0 h-[190px] w-[135px] lg:h-[265px] lg:w-[230px] rounded-md"
                 />
               </Link>

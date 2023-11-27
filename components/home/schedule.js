@@ -82,6 +82,7 @@ export default function Schedule({ data, scheduleData, anime, update }) {
               src={data.coverImage.extraLarge}
               width={500}
               height={500}
+              quality={100}
               sizes="100vw"
               alt="banner next anime"
               className="absolute z-10 top-0 right-0 w-3/4 lg:w-auto h-full object-cover lg:object-contain object-right opacity-30 lg:opacity-100 brightness-[90%]"
