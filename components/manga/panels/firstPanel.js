@@ -29,7 +29,6 @@ export default function FirstPanel({
                                      mobileVisible,
                                      setMobileVisible,
                                      setCurrentPage,
-                                     number,
                                      mangadexId,
                                    }) {
   const { markProgress } = useAniList(session);
@@ -163,7 +162,7 @@ export default function FirstPanel({
           ))
         ) : (
           <div className="w-full flex-center h-full">
-            {/* {data.error || "Not found"} :( */}
+             {data.error || "Not found"} :(
             <p dangerouslySetInnerHTML={{ __html: data }} />
           </div>
         )}

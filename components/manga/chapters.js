@@ -104,7 +104,6 @@ const ChapterSelector = ({ chaptersData, data, setWatch, mangaId }) => {
             value={selectedProvider}
             onChange={(e) => setSelectedProvider(e.target.value)}
           >
-            {/* <option value="">--Select a provider--</option> */}
             {chaptersData.map((provider, index) => (
               <option key={provider.providerId} value={provider.providerId}>
                 {provider.providerId}

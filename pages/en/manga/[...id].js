@@ -160,6 +160,7 @@ export default function Manga({ info, anifyData, color, chapterNotFound }) {
               alt="banner anime"
               height={1000}
               width={1000}
+              quality={100}
               blurDataURL={info?.bannerImage}
               className="object-cover bg-image blur-[2px] w-screen absolute top-0 left-0 h-[250px] brightness-[55%] z-0"
             />
@@ -263,12 +264,12 @@ export async function getServerSideProps(context) {
         backgroundColor: `${"#ffff"}`,
         color: "#000",
       };
-      // return {
-      //   redirect: {
-      //     destination: "/404",
-      //     permanent: false,
-      //   },
-      // };
+       return {
+         redirect: {
+           destination: "/404",
+           permanent: false,
+         },
+       };
     }
   } else if (aniId && !mangadexId) {
     // console.log({ aniId });
@@ -330,12 +331,11 @@ export async function getServerSideProps(context) {
 
     if (!aniId) {
       info = data;
-      // return {
-      //   redirect: {
-      //     destination: "/404",
-      //     permanent: false,
-      //   },
-      // };
+       return {
+         redirect: {
+           destination: "/404",
+         },
+       };
     }
 
     return {
