@@ -255,7 +255,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
           )}
         </div>
 
-        <div className="lg:w-[75%] grid gap-10 my-5 lg:my-12 lg:pt-16">
+        <div className="lg:w-[70%] grid grid-cols-1 md:grid-cols-2 gap-10 my-5 lg:my-12 lg:pt-16">
           {media.length !== 0 ? (
             filterMedia(listFilter).map((item, index) => {
               return (
@@ -296,7 +296,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                                 alt="Cover Image"
                                 width={500}
                                 height={500}
-                                className="object-cover rounded-md w-10 h-10 shrink-0"
+                                className="object-cover rounded-md w-20 h-20 shrink-0"
                               />
                               <div className="absolute -top-10 -left-40 invisible lg:group-hover:visible">
                                 <Image
@@ -309,7 +309,7 @@ export default function MyList({ media, sessions, user, time, userSettings }) {
                               </div>
                               <Link
                                 href={`/en/anime/${item.media.id}`}
-                                className="font-semibold font-karla pl-2 text-sm line-clamp-1"
+                                className="font-bold font-karla pl-2 text-lg  line-clamp-1"
                                 title={item.media.title.romaji}
                               >
                                 {item.media.title.romaji}

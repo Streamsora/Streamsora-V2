@@ -371,15 +371,14 @@ export default function Home({ detail, populars, upComing }) {
               >
                 <div className="absolute lg:h-auto lg:w-[100%]" />
                 <Image
-                  src={data?.bannerImage}
-                  alt={`image`}
-                  width={2048}
-                  height={1536}
+                  src={data?.bannerImage} // Add the optional chaining operator
+                  alt={`cover ${(data && (data.title.english || data.title.romaji)) || ''}`}
+                  width={2048} // Set the width for larger screens
+                  height={1536} // Set the height for larger screens
                   quality={100}
                   priority
                   className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[100%]"
                 />
-
 
                 <motion.div
                   initial={{ opacity: 0 }}
