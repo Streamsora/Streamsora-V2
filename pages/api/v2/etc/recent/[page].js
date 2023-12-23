@@ -6,6 +6,12 @@ if (API_URL && API_URL.endsWith("/")) {
   API_URL = API_URL.slice(0, -1);
 }
 
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+};
+
 export default async function handler(req, res) {
   try {
     if (redis) {
@@ -30,8 +36,8 @@ export default async function handler(req, res) {
     } else {
       const page = req.query.page || 1;
 
-      var hasNextPage = true;
-      var datas = [];
+      const hasNextPage = true;
+      let datas = [];
 
       async function fetchData(page) {
         const data = await fetch(
