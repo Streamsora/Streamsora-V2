@@ -43,7 +43,7 @@ export default function AgeVerificationModal({ isOpen, setIsOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-800 shadow-xl rounded-md border-2 animate-border">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all border-2 transform bg-transparent shadow-xl rounded-md animate-border">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white"
