@@ -32,5 +32,4 @@ export default function SecretPage({ cheatCode, onCheatCodeEntered }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typedCode]);
 
-  return;
 }
