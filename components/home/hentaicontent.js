@@ -103,6 +103,7 @@ export default function HentaiContent({ section }) {
                 <h1 className="font-karla font-semibold xl:text-base text-[15px]">
                   {item.name}
                 </h1>
+                <p className="text-sm text-gray-500">Views: {item.views}</p>
               </div>
             </div>
           ))}

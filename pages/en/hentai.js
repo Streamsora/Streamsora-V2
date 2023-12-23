@@ -373,7 +373,7 @@ export default function Home({ detail, populars, upComing }) {
               </h1>
               <p
                 className="font-roboto font-light lg:text-[18px] line-clamp-5"
-                dangerouslySetInnerHTML={{ __html: data1?.slug }}
+                dangerouslySetInnerHTML={{ __html: `Views: ${data1?.views}` }}
               />
 
               <div className="lg:pt-5 flex">

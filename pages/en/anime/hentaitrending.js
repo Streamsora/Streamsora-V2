@@ -62,7 +62,7 @@ export default function TrendingHentai({ sessions, trendingData }) {
   return (
     <Fragment>
       <Head>
-        <title>Streamsora - Trending Anime</title>
+        <title>Streamsora - Trending Hentai</title>
         <meta name="title" content="Trending Anime" />
         <meta
           name="description"
@@ -104,6 +104,7 @@ export default function TrendingHentai({ sessions, trendingData }) {
                 <h1 className="font-karla font-bold xl:text-base text-[15px] line-clamp-2">
                   {i.name}
                 </h1>
+                <p className="text-sm text-gray-500">Views: {i.views}</p>
               </Link>
             </div>
           ))}
