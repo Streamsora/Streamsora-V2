@@ -564,3 +564,21 @@ pre code {
   border-image-slice: 1;
   border-radius: 10%;
 }
+
+@keyframes borderAnimation {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+.animate-border {
+  animation: borderAnimation 2s infinite;
+}
+
+

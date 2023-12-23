@@ -28,6 +28,10 @@ module.exports = withPWA({
         protocol: "https",
         hostname: "tenor.com",
       },
+      {
+        protocol: "https",
+        hostname: "akidoo.top",
+      },
     ],
   },
   async redirects() {
