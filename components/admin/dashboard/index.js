@@ -133,7 +133,7 @@ export default function AdminDashboard({
               ></span>
             </span>
           </p>
-          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-full">
+          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-[20vh]">
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
@@ -189,6 +189,11 @@ export default function AdminDashboard({
                 Unix Timestamp: <strong>{unixTimestamp}</strong>
               </p>
             )}
+          </div>
+          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-[20vh]">
+
+          </div>
+          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-[20vh]">
           </div>
         </div>
         <div className="flex flex-col gap-2">

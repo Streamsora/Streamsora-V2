@@ -55,12 +55,12 @@ export default function AdminLayout({ children, page, setPage }) {
                 setPage(item.page);
               }}
               className={`flex items-center gap-2 p-2 group ${
-                page == item.page ? "bg-image/50" : "text-txt"
+                page === item.page ? "bg-image/50" : "text-txt"
               } hover:bg-image rounded transition-colors duration-200 ease-in-out`}
             >
               <div
                 className={`w-5 h-5 ${
-                  page == item.page ? "text-action" : "text-txt"
+                  page === item.page ? "text-action" : "text-txt"
                 } group-hover:text-action`}
               >
                 {item.icon}
