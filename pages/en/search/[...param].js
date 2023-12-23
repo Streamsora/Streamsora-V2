@@ -91,7 +91,6 @@ export default function Card({
 }) {
   const inputRef = useRef(null);
   const router = useRouter();
-  // const { data: session } = useSession();
 
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);

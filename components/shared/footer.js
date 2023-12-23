@@ -58,7 +58,7 @@ function Footer() {
                   <Link href={`/en/stats`}>Stats</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/en/hentai`}>Hentai</Link>
+                  <Link href={`/en/hanime/hentai`}>Hentai</Link>
                 </li>
               </ul>
               <ul className="flex flex-col gap-y-[0.7rem]">
