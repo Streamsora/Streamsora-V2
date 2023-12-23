@@ -56,7 +56,7 @@ export default function HentaiContent({ section }) {
         className={`flex items-center justify-between lg:justify-normal lg:gap-3 px-5 z-40 ${
           section === "Recommendations" ? "" : "cursor-pointer"
         }`}
-        onClick={() => router.push(`/en/anime/trending`)}
+        onClick={() => router.push(`/en/anime/hentaitrending`)}
       >
         <h1 className="font-karla text-[20px] font-bold">{section}</h1>
         <ChevronRightIcon className="w-5 h-5" />
