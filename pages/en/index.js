@@ -5,6 +5,7 @@ import Link from "next/link";
 import Footer from "@/components/shared/footer";
 import Image from "next/image";
 import Content from "@/components/home/content";
+import ChangelogModal from "@/components/Modals/ChangeLogs";
 
 import { motion } from "framer-motion";
 
@@ -90,6 +91,13 @@ export default function Home({ detail, populars, upComing }) {
   const [anime, setAnime] = useState([]);
 
   const [recentAdded, setRecentAdded] = useState([]);
+
+  const [isChangelogModalOpen, setIsChangelogModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Open the ChangelogModal automatically when the component mounts
+    setIsChangelogModalOpen(true);
+  }, []);
 
   useEffect(() => {
     async function adBlock() {
@@ -348,6 +356,9 @@ export default function Home({ detail, populars, upComing }) {
         />
         <meta name="twitter:image" content="/streamsora.png" />
       </Head>
+      {isChangelogModalOpen && (
+        <ChangelogModal isOpen={isChangelogModalOpen} setIsOpen={setIsChangelogModalOpen} />
+      )}
       <MobileNav sessions={sessions} hideProfile={true} />
 
       <NewNavbar paddingY="pt-2 lg:pt-10" withNav={true} home={true} />
