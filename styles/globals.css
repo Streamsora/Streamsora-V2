@@ -672,3 +672,79 @@ pre code {
 .shape {
   fill: #0E1822;
 }
+
+/* styles.css */
+.episode-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.video-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.poster-image {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.video-details {
+  flex-grow: 1;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tags a {
+  text-decoration: none;
+  color: #3498db;
+  border: 1px solid #3498db;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.episode-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.episode-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.episode-cover {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.episode-details {
+  text-align: center;
+}
+
+.episode-details h2 {
+  margin-bottom: 5px;
+}
+
+.episode-details p {
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.episode-details a {
+  text-decoration: none;
+  color: #27ae60;
+  font-weight: bold;
+}
