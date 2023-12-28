@@ -5,7 +5,7 @@ export async function fetchInfo(id) {
   try {
     // console.log(id);
     const { data } = await axios
-      .get(`https://api.anify.tv/info/${id}`)
+      .get(`https://scrape.streamsora.live/info/${id}`)
       .catch((err) => {
         return {
           data: null,
@@ -17,7 +17,7 @@ export async function fetchInfo(id) {
     }
 
     const { data: Chapters } = await axios.get(
-      `https://api.anify.tv/chapters/${data.id}`
+      `https://scrape.streamsora.live/chapters/${data.id}`
     );
 
     if (!Chapters) {

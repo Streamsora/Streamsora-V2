@@ -10,6 +10,7 @@
 /coverage
 /pages/test.js
 /components/devComp
+/code snippets/PlayerComponent.txt
 
 # next.js
 /.next/

@@ -4,6 +4,8 @@ export function getHeaders(providerId) {
       return { Referer: "https://mangahere.org" };
     case "mangadex":
       return { Referer: "https://mangadex.org" };
+    case "mangapark":
+      return { Referer: "https://mangapark.org" };
     case "mangakakalot":
       return { Referer: "https://mangakakalot.com" };
     case "mangapill":
@@ -22,7 +24,7 @@ export function getRandomId() {
 }
 
 export function truncateImgUrl(url) {
-  // Find the index of .png if not found find the index of .jpg
+  // Find the index of .png if not found the index of .jpg
   let index =
     url?.indexOf(".png") !== -1 ? url?.indexOf(".png") : url?.indexOf(".jpg");
 

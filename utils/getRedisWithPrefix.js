@@ -70,7 +70,7 @@ export async function getKeysWithNumericKeys() {
   const values = [];
 
   for (const key of numericKeys) {
-    const value = await redis.del(key);
+    await redis.del(key);
   }
 
   return values;

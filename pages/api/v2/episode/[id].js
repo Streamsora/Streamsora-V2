@@ -40,8 +40,7 @@ function filterData(data, type) {
     return item;
   });
 
-  const noEmpty = filteredData.filter((i) => i !== null);
-  return noEmpty;
+  return filteredData.filter((i) => i !== null);
 }
 
 async function fetchConsumet(id) {
@@ -96,7 +95,7 @@ async function fetchConsumet(id) {
 
 async function fetchAnify(id) {
   try {
-    const { data } = await axios.get(`https://api.anify.tv/episodes/${id}`);
+    const { data } = await axios.get(`https://scrape.streamsora.live/episodes/${id}`);
 
     if (!data) {
       return [];
@@ -130,7 +129,7 @@ async function fetchCoverImage(id, available = false) {
     }
 
     const { data } = await axios.get(
-      `https://api.anify.tv/content-metadata/${id}`
+      `https://scrape.streamsora.live/content-metadata/${id}`
     );
 
     if (!data) {

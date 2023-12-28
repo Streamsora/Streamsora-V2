@@ -80,7 +80,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                 <div className="my-2 flex items-center justify-evenly">
                   <div className="w-full h-[1px] bg-gradient-to-r from-white/5 to-white/40"></div>
                   <p className="relative flex flex-1 whitespace-nowrap font-bold mx-2 font-inter">
-                    v4.3.1
+                    v4.3.2
                     <span className="flex text-xs font-light font-roboto ml-1 italic">
                       pre
                     </span>
@@ -99,7 +99,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                 <div className="my-2 flex items-center justify-evenly">
                   <div className="w-full h-[1px] bg-gradient-to-r from-white/5 to-white/40"></div>
                   <p className="relative flex flex-1 whitespace-nowrap font-bold mx-2 font-inter">
-                    v4.3.0
+                    v4.3.1
                     <span className="flex text-xs font-light font-roboto ml-1 italic">
                       pre
                     </span>
@@ -110,6 +110,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                   <div>
                     <p>- Added changelogs section</p>
                     <p>- Added hanime section</p>
+                    <p>- Added: New video player</p>
                     <p>- Added notifications section (Coming Soon)</p>
                     <p>- And other minor bug fixes!</p>
                   </div>

@@ -84,7 +84,7 @@ export default function TrendingHentai({ sessions, trendingData }) {
               className="flex flex-col items-center w-[150px] lg:w-[180px]"
             >
               <Link
-                href={`/en/anime/${i.slug}`}
+                href={`/en/hanime/watch/${i.id}`}
                 className="p-2"
                 title={i.name}
               >
@@ -97,7 +97,7 @@ export default function TrendingHentai({ sessions, trendingData }) {
                 />
               </Link>
               <Link
-                href={`/en/anime/${i.slug}`}
+                href={`/en/hanime/watch/${i.id}`}
                 className="w-full px-2"
                 title={i.name}
               >

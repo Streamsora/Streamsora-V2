@@ -6,7 +6,7 @@ import { rateLimiterRedis, redis } from "@/lib/redis";
 async function fetchData() {
   try {
     const { data } = await axios.get(
-      `https://api.anify.tv/schedule?fields=[id,coverImage,title,bannerImage]`
+      `https://scrape.streamsora.live/schedule?fields=[id,coverImage,title,bannerImage]`
     );
     return data;
   } catch (error) {

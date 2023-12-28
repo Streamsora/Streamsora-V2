@@ -23,7 +23,7 @@ async function consumetSource(id) {
 async function anifySource(providerId, watchId, episode, id, sub) {
   try {
     const { data } = await axios.get(
-      `https://api.anify.tv/sources?providerId=${providerId}&watchId=${encodeURIComponent(
+      `https://scrape.streamsora.live/sources?providerId=${providerId}&watchId=${encodeURIComponent(
         watchId
       )}&episodeNumber=${episode}&id=${id}&subType=${sub}`
     );

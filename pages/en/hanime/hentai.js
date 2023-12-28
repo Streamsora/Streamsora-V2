@@ -1,4 +1,3 @@
-import { aniListData } from "@/lib/anilist/AniList";
 import { useState, useEffect, Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,28 +6,20 @@ import Image from "next/image";
 import Content from "@/components/home/hentaicontent";
 import { isMobile } from 'react-device-detect';
 import { motion } from "framer-motion";
-
 import { signOut, useSession } from "next-auth/react";
 import getUpcomingAnime from "@/lib/anilist/getUpcomingAnime";
-
 import GetMedia from "@/lib/anilist/getMedia";
-// import UserRecommendation from "../../components/home/recommendation";
 import MobileNav from "@/components/shared/MobileNav";
-import { getGreetings } from "@/utils/getGreetings";
 import { redis } from "@/lib/redis";
 import { NewNavbar } from "@/components/shared/NavBar";
-import { checkAdBlock } from "adblock-checker";
-import { toast } from "sonner";
-import { unixTimestampToRelativeTime } from "@/utils/getTimes";
 import AgeVerificationModal from "@/components/Modals/AgeRequirements";
+import { aniListData } from "@/lib/anilist/AniList";
 
 export async function getServerSideProps() {
   let cachedData;
-
   if (redis) {
     cachedData = await redis.get("index_server");
   }
-
   if (cachedData) {
     const { genre, detail, populars } = JSON.parse(cachedData);
     const upComing = await getUpcomingAnime();
@@ -50,7 +41,6 @@ export async function getServerSideProps() {
       page: 1,
     });
     const genreDetail = await aniListData({ sort: "TYPE", page: 1 });
-
     if (redis) {
       await redis.set(
         "index_server",
@@ -63,9 +53,7 @@ export async function getServerSideProps() {
         60 * 60 * 2
       );
     }
-
     const upComing = await getUpcomingAnime();
-
     return {
       props: {
         genre: genreDetail.props,
@@ -86,63 +74,32 @@ export default function Home({ detail, populars, upComing }) {
   });
   const { anime: plan } = GetMedia(sessions, { stats: "PLANNING" });
   const { anime: release } = GetMedia(sessions);
-
   const [schedules, setSchedules] = useState(null);
   const [anime, setAnime] = useState([]);
-
   const [recentAdded, setRecentAdded] = useState([]);
-
   useEffect(() => {
-    // Check if the device is mobile, and if it is, redirect or handle accordingly
     if (isMobile) {
-      // Redirect or show a message to the user indicating that mobile devices are not supported
-      // For example, you can redirect to a dedicated mobile page or display a message
-      // window.location.href = '/mobile-not-supported';
-      setIsAgeVerificationModalOpen(false); // Close the age verification modal
+      setIsAgeVerificationModalOpen(false);
     }
   }, []);
-
-  useEffect(() => {
-    async function adBlock() {
-      const ad = await checkAdBlock();
-      if (ad) {
-        toast.message(
-          `Please disable your adblock for better experience, we don't have any ads on our site.`,
-          {
-            position: "bottom-right",
-            important: true,
-            duration: 100000,
-            className: "flex-center font-karla text-white",
-          }
-        );
-      }
-    }
-    adBlock();
-  }, []);
-
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://hanime-api-five.vercel.app/trending/day/2");
+        const response = await fetch("https://hanime-api-five.vercel.app/trending/day/1");
         const result = await response.json();
-        setData(result.results[0]); // Assuming you want to display the first result
+        setData(result.results[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
-
     fetchData();
-  }, [setData]);  // Make sure to include setData in the dependency array
-
+  }, [setData]);
   async function getRecent() {
     const data = await fetch(`/api/v2/etc/recent/1`)
       .then((res) => res.json())
       .catch((err) => console.log(err));
-
     setRecentAdded(data?.results);
   }
-
   useEffect(() => {
     if (sessions?.user?.version) {
       if (sessions.user.version !== "1.0.1") {
@@ -150,28 +107,23 @@ export default function Home({ detail, populars, upComing }) {
       }
     }
   }, [sessions?.user?.version]);
-
   useEffect(() => {
     getRecent();
   }, []);
-
   const update = () => {
     setAnime((prevAnime) => prevAnime.slice(1));
   };
-
   useEffect(() => {
     if (upComing && upComing.length > 0) {
       setAnime(upComing);
     }
   }, [upComing]);
-
   const [releaseData, setReleaseData] = useState([]);
-
   useEffect(() => {
     function getRelease() {
       let releasingAnime = [];
       let progress = [];
-      let seenIds = new Set(); // Create a Set to store the IDs of seen anime
+      let seenIds = new Set();
       release.map((list) => {
         list.entries.map((entry) => {
           if (
@@ -179,7 +131,7 @@ export default function Home({ detail, populars, upComing }) {
             !seenIds.has(entry.media.id)
           ) {
             releasingAnime.push(entry.media);
-            seenIds.add(entry.media.id); // Add the ID to the Set
+            seenIds.add(entry.media.id);
           }
           progress.push(entry);
         });
@@ -189,18 +141,14 @@ export default function Home({ detail, populars, upComing }) {
     }
     getRelease();
   }, [release]);
-
   const [listAnime, setListAnime] = useState(null);
   const [listManga, setListManga] = useState(null);
   const [planned, setPlanned] = useState(null);
   const [user, setUser] = useState(null);
   const [removed, setRemoved] = useState();
-
   const [prog, setProg] = useState(null);
-
   const popular = populars?.data;
   const data = detail.data[0];
-
   useEffect(() => {
     async function userData() {
       try {
@@ -241,12 +189,10 @@ export default function Home({ detail, populars, upComing }) {
             }
           } else {
             data = await res.json();
-            // Do something with the data
           }
         }
       } catch (error) {
         console.error(error);
-        // Handle the error here
       }
       if (!data) {
         const dat = JSON.parse(localStorage.getItem("artplayer_settings"));
@@ -255,10 +201,7 @@ export default function Home({ detail, populars, upComing }) {
           const newFirst = arr?.sort((a, b) => {
             return new Date(b?.createdAt) - new Date(a?.createdAt);
           });
-
           const uniqueTitles = new Set();
-
-          // Filter out duplicates and store unique entries
           const filteredData = newFirst.filter((entry) => {
             if (uniqueTitles.has(entry.aniTitle)) {
               return false;
@@ -266,14 +209,10 @@ export default function Home({ detail, populars, upComing }) {
             uniqueTitles.add(entry.aniTitle);
             return true;
           });
-
           setUser(filteredData);
         }
       } else {
-        // Create a Set to store unique aniTitles
         const uniqueTitles = new Set();
-
-        // Filter out duplicates and store unique entries
         const filteredData = data?.WatchListEpisode.filter((entry) => {
           if (uniqueTitles.has(entry.aniTitle)) {
             return false;
@@ -283,31 +222,25 @@ export default function Home({ detail, populars, upComing }) {
         });
         setUser(filteredData);
       }
-      // const data = await res.json();
     }
     userData();
   }, [sessions?.user?.name, removed]);
-
   useEffect(() => {
     async function userData() {
       if (!sessions?.user?.name) return;
-
       const getMedia =
         currentAnime.find((item) => item.status === "CURRENT") || null;
       const listAnime = getMedia?.entries
         .map(({ media }) => media)
         .filter((media) => media);
-
       const getManga =
         currentManga?.find((item) => item.status === "CURRENT") || null;
       const listManga = getManga?.entries
         .map(({ media }) => media)
         .filter((media) => media);
-
       const planned = plan?.[0]?.entries
         .map(({ media }) => media)
         .filter((media) => media);
-
       if (listManga) {
         setListManga(listManga);
       }
@@ -320,9 +253,6 @@ export default function Home({ detail, populars, upComing }) {
     }
     userData();
   }, [sessions?.user?.name, currentAnime, plan]);
-
-  // console.log({ recentAdded });
-
   return (
     <Fragment>
       <Head>
@@ -330,13 +260,11 @@ export default function Home({ detail, populars, upComing }) {
         <meta charSet="UTF-8"></meta>
         <link rel="icon" href="/streamsora.png" />
         <link rel="canonical" href="https://streamsora.live/en/" /><meta name="twitter:card" content="summary_large_image" />
-        {/* Write the best SEO for this homepage */}
         <meta
           name="description"
           content="Unveil your next cherished anime or manga obsession! Streamsora presents an expansive vault of premium content, conveniently available across various devices, guaranteeing uninterrupted enjoyment. Dive into the Streamsora experience today and commence your journey into a world of limitless entertainment!"
         />
         <meta name="robots" content="index, follow" />
-
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://streamsora.live/" />
         <meta
@@ -357,14 +285,11 @@ export default function Home({ detail, populars, upComing }) {
         <meta name="twitter:image" content="/streamsora.png" />
       </Head>
       <MobileNav sessions={sessions} hideProfile={true} />
-
       <NewNavbar paddingY="pt-2 lg:pt-10" withNav={true} home={true} />
-      {/* Render AgeVerificationModal if it's open */}
       {isAgeVerificationModalOpen && (
         <AgeVerificationModal isOpen={isAgeVerificationModalOpen} setIsOpen={setIsAgeVerificationModalOpen} />
       )}
       <div className="h-auto w-screen bg-[#141519] text-[#dbdcdd]">
-        {/* PC / TABLET */}
         <div className=" hidden justify-center lg:flex my-16">
           <div className="relative grid grid-rows-2 items-center lg:flex lg:h-[467px] lg:w-[80%] lg:justify-between">
             <div className="row-start-2 flex h-full flex-col gap-7 lg:w-[55%] lg:justify-center">
@@ -375,10 +300,9 @@ export default function Home({ detail, populars, upComing }) {
                 className="font-roboto font-light lg:text-[18px] line-clamp-5"
                 dangerouslySetInnerHTML={{ __html: `Views: ${data1?.views}` }}
               />
-
               <div className="lg:pt-5 flex">
                 <Link
-                  href={`/en/anime/${data1?.id}`}
+                  href={`/en/hanime/watch/${data1?.id}`}
                   className="rounded-sm rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] p-3 text-[#66ccff] border border-[#66ccff] hover:bg-[#66ccff] hover:text-white hover:ring-2 hover:ring-[#66ccff] transition-all duration-300 text-md font-karla font-light m-3"
                 >
                   START WATCHING
@@ -400,17 +324,15 @@ export default function Home({ detail, populars, upComing }) {
             </div>
           </div>
         </div>
-
         <div className="lg:mt-16 mt-5 flex flex-col items-center">
           <motion.div
             className="w-screen flex-none lg:w-[87%]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, staggerChildren: 0.2 }} // Add staggerChildren prop
+            transition={{ duration: 0.5, staggerChildren: 0.2 }}
           >
-            {/* SECTION 3 */}
             {recentAdded?.length > 0 && (
-              <motion.section // Add motion.div to each child component
+              <motion.section
                 key="recentAdded"
                 initial={{ y: 20, opacity: 0 }}
                 transition={{ duration: 0.5 }}
