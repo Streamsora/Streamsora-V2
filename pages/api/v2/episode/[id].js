@@ -57,7 +57,7 @@ async function fetchConsumet(id) {
         if (!data?.episodes?.some((i) => i.id.includes("dub"))) return [];
       }
 
-      const reformatted = data.episodes?.map((item) => ({
+      return data.episodes?.map((item) => ({
         id: item?.id || null,
         title: item?.title || null,
         img: item?.image || null,
@@ -66,8 +66,6 @@ async function fetchConsumet(id) {
         description: item?.description || null,
         url: item?.url || null,
       }));
-
-      return reformatted;
     }
 
     const [subData, dubData] = await Promise.all([
@@ -95,22 +93,20 @@ async function fetchConsumet(id) {
 
 async function fetchAnify(id) {
   try {
-    const { data } = await axios.get(`https://scrape.streamsora.live/episodes/${id}`);
+    const { data } = await axios.get(`https://api.anify.tv/episodes/${id}`);
 
     if (!data) {
       return [];
     }
 
     const filtered = data.filter((item) => item.providerId !== "kass");
-    // const modifiedData = filtered.map((provider) => {
-    //   if (provider.providerId === "gogoanime") {
-    //     const reversedEpisodes = [...provider.episodes].reverse();
-    //     return { ...provider, episodes: reversedEpisodes };
-    //   }
-    //   return provider;
-    // });
-
-    // return modifiedData;
+    return filtered.map((provider) => {
+       if (provider.providerId === "gogoanime") {
+         const reversedEpisodes = [...provider.episodes].reverse();
+         return { ...provider, episodes: reversedEpisodes };
+       }
+       return provider;
+     });
     return filtered;
   } catch (error) {
     console.error("Error fetching and processing data:", error.message);
@@ -129,7 +125,7 @@ async function fetchCoverImage(id, available = false) {
     }
 
     const { data } = await axios.get(
-      `https://scrape.streamsora.live/content-metadata/${id}`
+      `https://api.anify.tv/content-metadata/${id}`
     );
 
     if (!data) {
@@ -226,12 +222,6 @@ export default async function handler(req, res) {
       fetchAnify(id),
       fetchCoverImage(id, meta),
     ]);
-
-    // const hasImage = consumet.map((i) =>
-    //   i.episodes?.sub?.some(
-    //     (e) => e.img !== null || !e.img.includes("https://s4.anilist.co/")
-    //   )
-    // );
 
     let subDub = "sub";
     if (dub) {

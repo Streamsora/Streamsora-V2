@@ -3,7 +3,7 @@ import axios from "axios";
 async function fetchData(id, number, provider, readId) {
   try {
     const { data } = await axios.get(
-      `https://scrape.streamsora.live/pages?id=${id}&chapterNumber=${number}&providerId=${provider}&readId=${encodeURIComponent(
+      `https://api.anify.tv/pages?id=${id}&chapterNumber=${number}&providerId=${provider}&readId=${encodeURIComponent(
         readId
       )}`
     );

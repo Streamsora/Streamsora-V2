@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
       async function fetchData(page) {
         const data = await fetch(
-          `https://scrape.streamsora.live/recent?type=anime&page=${page}&perPage=45`
+          `https://api.anify.tv/recent?type=anime&page=${page}&perPage=45`
         ).then((res) => res.json());
 
         datas = data;

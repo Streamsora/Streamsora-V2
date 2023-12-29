@@ -11,7 +11,7 @@ export default function Stats() {
 /*  const [apiData1, setApiData1] = useState(null);*/
 
   useEffect(() => {
-    fetch("https://scrape.streamsora.live/stats")
+    fetch("https://api.anify.tv/stats")
       .then((response) => response.json())
       .then((data) => setApiData(data))
       .catch((error) => console.error("Error fetching API data:", error));
