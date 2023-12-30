@@ -5,6 +5,7 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaVideo, FaBook, FaRegClock, FaKey } from "react-icons/fa"; // Import icons
+import { BsFiletypeKey } from "react-icons/bs";
 
 export default function Stats() {
   const [apiData, setApiData] = useState(null);
@@ -89,51 +90,13 @@ export default function Stats() {
                 <p className="text-2xl font-semibold ml-auto">{apiData.apiKeys}</p>
               </div>
               <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaKey className="stat-icon mr-2 text-orange-500" />
+                <BsFiletypeKey className="stat-icon mr-2 text-orange-500" />
                 <p className="text-lg">Zoro Key</p>
-                <p className="text-2x1 font-semibold ml-auto">{apiData2?.key}</p>
+                <p className="text-1x1 font-semibold ml-auto">{apiData2?.key}</p>
               </div>
             </div>
           )}
         </motion.div>
-{/*         Second Table (Development Stats)
-        <motion.div
-          className="w-full max-w-screen-lg p-8 rounded-lg bg-secondary shadow-lg"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <h1 className="text-4xl font-bold text-center mb-6">Development Stats</h1>
-          {apiData1 && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-[#ccc]">
-              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaVideo className="stat-icon mr-2 text-blue-500" />
-                <p className="text-lg">Anime</p>
-                <p className="text-2xl font-semibold ml-auto">{apiData1.anime}</p>
-              </div>
-              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaBook className="stat-icon mr-2 text-green-500" />
-                <p className="text-lg">Manga</p>
-                <p className="text-2xl font-semibold ml-auto">{apiData1.manga}</p>
-              </div>
-              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaBook className="stat-icon mr-2 text-red-500" />
-                <p className="text-lg">Novels</p>
-                <p className="text-2xl font-semibold ml-auto">{apiData1.novels}</p>
-              </div>
-              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaRegClock className="stat-icon mr-2 text-purple-500" />
-                <p className="text-lg">Skip Times</p>
-                <p className="text-2xl font-semibold ml-auto">{apiData1.skipTimes}</p>
-              </div>
-              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
-                <FaKey className="stat-icon mr-2 text-orange-500" />
-                <p className="text-lg">API Keys</p>
-                <p className="text-2xl font-semibold ml-auto">{apiData1.apiKeys}</p>
-              </div>
-            </div>
-          )}*/}
-        {/*</motion.div>*/}
       </>
     </motion.div>
   );

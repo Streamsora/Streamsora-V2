@@ -24,6 +24,7 @@ import { checkAdBlock } from "adblock-checker";
 import { toast } from "sonner";
 import { unixTimestampToRelativeTime } from "@/utils/getTimes";
 import { UserRecommendation } from "@/components/home/recommendation";
+import { truncateImgUrl } from "@/utils/imageUtils";
 
 export async function getServerSideProps() {
   let cachedData;
@@ -380,7 +381,7 @@ export default function Home({ detail, populars, upComing }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
-                className="relative lg:h-auto lg:w-[100%] lg:scale-100"
+                className="relative lg:h-auto lg:w-[115%] lg:scale-100"  // Increase width by 15%
               >
                 <div className="absolute lg:h-auto lg:w-[100%]" />
                 <Image
@@ -389,7 +390,11 @@ export default function Home({ detail, populars, upComing }) {
                   width={2048}
                   height={1536}
                   priority
-                  className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[100%]"
+                  blurDataURL={
+                    truncateImgUrl(data?.bannerImage) ||
+                    "https://cdn.discordapp.com/attachments/986579286397964290/1058415946945003611/gray_pfp.png"
+                  }
+                  className="rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[4px] rounded-br-[4px] ring-1 ring-[#66ccff] object-cover bg-blend-overlay lg:h-[500px] lg:w-[115%]"  // Increase width by 15%
                 />
 
                 <motion.div
