@@ -40,7 +40,7 @@ export default function Details({
       <div className="pb-4 h-full flex">
         <div className="aspect-[9/13] h-[240px]">
           {info ? (
-            <img
+            <Image
               src={info.coverImage.extraLarge}
               alt="Anime Cover"
               width={1000}

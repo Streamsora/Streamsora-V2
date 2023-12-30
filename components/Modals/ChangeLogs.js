@@ -92,7 +92,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                     <p>- Fix: Auto Next Episode forcing to play sub even if dub is selected</p>
                     <p>- Fix: Episode metadata not showing after switching to dub</p>
                     <p>- Fix: Profile picture weirdly cropped</p>
-                    <p>- Fix: Weird padding on the navbar in profile page</p>
+                    <p>- Fix: Fetching the m3u8 from hanime api</p>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                   <div>
                     <p>- Added changelogs section</p>
                     <p>- Added hanime section</p>
-                    <p>- Added: New video player</p>
+                    <p>- Added: New video player for hanime</p>
                     <p>- Added notifications section (Coming Soon)</p>
                     <p>- And other minor bug fixes!</p>
                   </div>

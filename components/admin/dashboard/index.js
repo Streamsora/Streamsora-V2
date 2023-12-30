@@ -190,11 +190,6 @@ export default function AdminDashboard({
               </p>
             )}
           </div>
-          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-[20vh]">
-
-          </div>
-          <div className="flex flex-col justify-between bg-secondary rounded p-5 h-[20vh]">
-          </div>
         </div>
         <div className="flex flex-col gap-2">
           <p className="font-semibold">Recent Reports</p>

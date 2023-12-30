@@ -1,5 +1,4 @@
 import Image from "next/image";
-// import data from "../../assets/dummyData.json";
 import { BookOpenIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef } from "react";

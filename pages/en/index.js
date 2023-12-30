@@ -23,6 +23,7 @@ import { NewNavbar } from "@/components/shared/NavBar";
 import { checkAdBlock } from "adblock-checker";
 import { toast } from "sonner";
 import { unixTimestampToRelativeTime } from "@/utils/getTimes";
+import { UserRecommendation } from "@/components/home/recommendation";
 
 export async function getServerSideProps() {
   let cachedData;
@@ -91,6 +92,7 @@ export default function Home({ detail, populars, upComing }) {
   const [anime, setAnime] = useState([]);
 
   const [recentAdded, setRecentAdded] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
 
   const [isChangelogModalOpen, setIsChangelogModalOpen] = useState(false);
 
@@ -531,21 +533,6 @@ export default function Home({ detail, populars, upComing }) {
               </motion.section>
             )}
 
-            {/* {recommendations.length > 0 && (
-              <div className="space-y-5 mb-10">
-                <div className="px-5">
-                  <p className="text-sm lg:text-base">
-                    Based on Your List
-                    <br />
-                    <span className="font-karla text-[20px] lg:text-3xl font-bold">
-                      Recommendations
-                    </span>
-                  </p>
-                </div>
-                <UserRecommendation data={recommendations} />
-              </div>
-            )} */}
-
             {/* SECTION 2 */}
             {sessions && planned?.length > 0 && (
               <motion.section // Add motion.div to each child component
@@ -564,6 +551,21 @@ export default function Home({ detail, populars, upComing }) {
               </motion.section>
             )}
           </motion.div>
+
+{/*          {recommendations.length > 0 && (
+            <div className="space-y-4 lg:space-y-5 mb-5 lg:mb-10">
+              <div className="px-5">
+                <p className="text-sm lg:text-base">
+                  Based on Your List
+                  <br />
+                  <span className="font-karla text-[20px] lg:text-3xl font-bold">
+                      Recommendations
+                    </span>
+                </p>
+              </div>
+              <UserRecommendation/>
+            </div>
+          )}*/}
 
           <motion.div
             className="w-screen flex-none lg:w-[87%]"

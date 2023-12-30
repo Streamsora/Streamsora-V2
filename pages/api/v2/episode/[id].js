@@ -21,7 +21,7 @@ const isAscending = (data) => {
 };
 
 function filterData(data, type) {
-  // Filter the data based on the type (sub or dub) and providerId
+  // Filter the data sbased on the type (sub or dub) and providerId
   const filteredData = data.map((item) => {
     if (item?.map === true) {
       if (item.episodes[type].length === 0) {
