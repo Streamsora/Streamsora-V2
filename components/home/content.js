@@ -300,6 +300,7 @@ export default function Content({
                           anime.image ||
                           anime.coverImage?.extraLarge ||
                           anime.coverImage?.large ||
+                          truncateImgUrl(anime?.coverImage) ||
                           "https://cdn.discordapp.com/attachments/986579286397964290/1058415946945003611/gray_pfp.png"
                         }
                         className="z-20 h-[190px] w-[135px] lg:h-[265px] lg:w-[185px] object-cover rounded-md brightness-90"

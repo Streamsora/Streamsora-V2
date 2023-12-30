@@ -8,7 +8,7 @@ import { FaVideo, FaBook, FaRegClock, FaKey } from "react-icons/fa"; // Import i
 
 export default function Stats() {
   const [apiData, setApiData] = useState(null);
-/*  const [apiData1, setApiData1] = useState(null);*/
+  const [apiData2, setApiData2] = useState(null); // Add state for the second API data
 
   useEffect(() => {
     fetch("https://api.anify.tv/stats")
@@ -16,12 +16,14 @@ export default function Stats() {
       .then((data) => setApiData(data))
       .catch((error) => console.error("Error fetching API data:", error));
   }, []);
-/*  useEffect(() => {
-    fetch("https://scrape.streamsora.live/stats")
+
+  useEffect(() => {
+    fetch("https://zoro.anify.tv/key/4") // Fetch the second API data
       .then((response) => response.json())
-      .then((data1) => setApiData1(data1))
+      .then((data) => setApiData2(data))
       .catch((error) => console.error("Error fetching API data:", error));
-  }, []);*/
+  }, []);
+
 
   const pageVariants = {
     initial: {
@@ -85,6 +87,11 @@ export default function Stats() {
                 <FaKey className="stat-icon mr-2 text-orange-500" />
                 <p className="text-lg">API Keys</p>
                 <p className="text-2xl font-semibold ml-auto">{apiData.apiKeys}</p>
+              </div>
+              <div className="stat-box p-4 border border-gray-700 rounded-lg flex items-center">
+                <FaKey className="stat-icon mr-2 text-orange-500" />
+                <p className="text-lg">Zoro Key</p>
+                <p className="text-2x1 font-semibold ml-auto">{apiData2?.key}</p>
               </div>
             </div>
           )}
