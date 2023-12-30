@@ -5,18 +5,24 @@ import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/l
 import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import Image from "next/image";
-import { FlagIcon, ShareIcon } from "@heroicons/react/24/solid";
+import { FlagIcon, ShareIcon, Flaglink } from "@heroicons/react/24/solid";
 import _debounce from 'lodash.debounce';
 import { NewNavbar } from "@/components/shared/NavBar";
 import MobileNav from "@/components/shared/MobileNav"; // Import lodash debounce
 
 export default function WatchPage({ video }) {
   const [isClient, setIsClient] = useState(false);
+  const [isClient1, setIsClient1] = useState(false);
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showURL, setShowURL] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    setIsClient1(true);
   }, []);
 
   function handleOpen() {
@@ -28,6 +34,11 @@ export default function WatchPage({ video }) {
     setOpen(false);
     document.body.style.overflow = "auto";
   }
+
+  const handleShowURL = () => {
+    setShowURL(!showURL);
+  };
+
 
   const handleShareClick = async () => {
     try {
@@ -86,6 +97,16 @@ export default function WatchPage({ video }) {
                   <FlagIcon className="w-5 h-5" />
                   report
                 </button>
+                <button
+                  type="button"
+                  onClick={handleShowURL}
+                  className="flex items-center gap-2 px-3 py-1 ring-[1px] ring-white/20 rounded overflow-hidden"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path fillRule="evenodd" d="M19.902 4.098a3.75 3.75 0 0 0-5.304 0l-4.5 4.5a3.75 3.75 0 0 0 1.035 6.037.75.75 0 0 1-.646 1.353 5.25 5.25 0 0 1-1.449-8.45l4.5-4.5a5.25 5.25 0 1 1 7.424 7.424l-1.757 1.757a.75.75 0 1 1-1.06-1.06l1.757-1.757a3.75 3.75 0 0 0 0-5.304Zm-7.389 4.267a.75.75 0 0 1 1-.353 5.25 5.25 0 0 1 1.449 8.45l-4.5 4.5a5.25 5.25 0 1 1-7.424-7.424l1.757-1.757a.75.75 0 1 1 1.06 1.06l-1.757 1.757a3.75 3.75 0 1 0 5.304 5.304l4.5-4.5a3.75 3.75 0 0 0-1.035-6.037.75.75 0 0 1-.354-1Z" clipRule="evenodd" />
+                  </svg>
+                  Video Url
+                </button>
               </div>
             </div>
           </div>
@@ -108,6 +129,14 @@ export default function WatchPage({ video }) {
             {isClient && video.description && (
               <div className={`bg-secondary rounded-md mt-3`}>
                 <p dangerouslySetInnerHTML={{ __html: video.description }} className={`p-5 text-sm font-light font-roboto text-[#e4e4e4]`} />
+              </div>
+            )}
+            {isClient1 && showURL && video.streams[1].url && video.streams[1].size_mbs && (
+              <div className={`bg-secondary rounded-md mt-2.5`}>
+                <p className={`p-2 text-sm font-light font-roboto text-[#e4e4e4] w-[50vh] break-all`}>
+                  {video.streams[1].url}
+                </p>
+                <p className="p-2 text-sm font-light font-roboto text-[#e4e4e4]">Video Size: {video.streams[1].size_mbs}Mbs</p>
               </div>
             )}
           </div>
