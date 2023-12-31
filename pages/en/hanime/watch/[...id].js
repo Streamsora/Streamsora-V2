@@ -25,15 +25,7 @@ export default function WatchPage({ video }) {
     setIsClient1(true);
   }, []);
 
-  function handleOpen() {
-    setOpen(true);
-    document.body.style.overflow = "hidden";
-  }
 
-  function handleClose() {
-    setOpen(false);
-    document.body.style.overflow = "auto";
-  }
 
   const handleShowURL = () => {
     setShowURL(!showURL);
