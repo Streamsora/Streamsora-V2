@@ -8,6 +8,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import NotificationsModal from "../Modals/NotificationsModal";
+
+
 const getScrollPosition = (el = window) => ({
   x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
   y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop,
@@ -32,6 +35,8 @@ export function NewNavbar({
   const year = new Date().getFullYear();
   const season = getCurrentSeason();
 
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(getScrollPosition());
@@ -47,6 +52,8 @@ export function NewNavbar({
   }, []);
   return (
     <>
+      {/* Changelog Modal */}
+      <NotificationsModal isOpen={isNotificationModalOpen} setIsOpen={setIsNotificationModalOpen} />
       <nav
         className={`${home ? "" : "fixed"} z-[200] top-0 px-5 w-full ${
           scrollPosition?.y >= scrollP
@@ -183,6 +190,7 @@ export function NewNavbar({
             <button
               type="button"
               title="Notifications"
+              onClick={() => setIsNotificationModalOpen(true)}
               className="flex-center w-[26px] h-[26px]"
             >
               <svg
