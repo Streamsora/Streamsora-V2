@@ -13,6 +13,7 @@ export default function Status() {
     { url: 'https://m3u8.streamsora.live/proxy/m3u8', altName: 'M3U8' },
     { url: 'https://streamsora.live', altName: 'Website' },
     { url: 'https://scrape.streamsora.live', altName: 'Scraper' },
+    { url: 'https://hanime-api-five.vercel.app', altName: 'Hanime API' },
     // Add more servers as needed
   ];
   const [serverStatusList, setServerStatusList] = useState([]);
