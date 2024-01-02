@@ -77,6 +77,7 @@ export default function Home({ detail, populars, upComing }) {
   const [schedules, setSchedules] = useState(null);
   const [anime, setAnime] = useState([]);
   const [recentAdded, setRecentAdded] = useState([]);
+  const [prog, setProg] = useState(null);
   useEffect(() => {
     if (isMobile) {
       setIsAgeVerificationModalOpen(false);
@@ -141,107 +142,7 @@ export default function Home({ detail, populars, upComing }) {
     }
     getRelease();
   }, [release]);
-  const [listAnime, setListAnime] = useState(null);
-  const [listManga, setListManga] = useState(null);
-  const [planned, setPlanned] = useState(null);
-  const [user, setUser] = useState(null);
-  const [removed, setRemoved] = useState();
-  const [prog, setProg] = useState(null);
-  const popular = populars?.data;
-  const data = detail.data[0];
-  useEffect(() => {
-    async function userData() {
-      try {
-        if (sessions?.user?.name) {
-          await fetch(`/api/user/profile`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: sessions.user.name,
-            }),
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-      let data;
-      try {
-        if (sessions?.user?.name) {
-          const res = await fetch(
-            `/api/user/profile?name=${sessions.user.name}`
-          );
-          if (!res.ok) {
-            switch (res.status) {
-              case 404: {
-                console.log("user not found");
-                break;
-              }
-              case 500: {
-                console.log("server error");
-                break;
-              }
-              default: {
-                console.log("unknown error");
-                break;
-              }
-            }
-          } else {
-            data = await res.json();
-          }
-        }
-      } catch (error) {
-        console.error(error);
-      }
-      if (!data) {
-        const dat = JSON.parse(localStorage.getItem("artplayer_settings"));
-        if (dat) {
-          const arr = Object.keys(dat).map((key) => dat[key]);
-          const newFirst = arr?.sort((a, b) => {
-            return new Date(b?.createdAt) - new Date(a?.createdAt);
-          });
-          const uniqueTitles = new Set();
-          const filteredData = newFirst.filter((entry) => {
-            if (uniqueTitles.has(entry.aniTitle)) {
-              return false;
-            }
-            uniqueTitles.add(entry.aniTitle);
-            return true;
-          });
-          setUser(filteredData);
-        }
-      } else {
-        const uniqueTitles = new Set();
-        const filteredData = data?.WatchListEpisode.filter((entry) => {
-          if (uniqueTitles.has(entry.aniTitle)) {
-            return false;
-          }
-          uniqueTitles.add(entry.aniTitle);
-          return true;
-        });
-        setUser(filteredData);
-      }
-    }
-    userData();
-  }, [sessions?.user?.name, removed]);
-  useEffect(() => {
-    async function userData() {
-      if (!sessions?.user?.name) return;
-      const getMedia =
-        currentAnime.find((item) => item.status === "CURRENT") || null;
-      const listAnime = getMedia?.entries
-        .map(({ media }) => media)
-        .filter((media) => media);
-      if (listAnime) {
-        setListAnime(listAnime);
-      }
-      if (planned) {
-        setPlanned(planned);
-      }
-    }
-    userData();
-  }, [sessions?.user?.name, currentAnime, plan]);
+
   return (
     <Fragment>
       <Head>
