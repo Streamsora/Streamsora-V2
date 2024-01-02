@@ -9,7 +9,7 @@ import { FaCheck, FaTimes, FaExclamationTriangle } from "react-icons/fa";
 export default function Status() {
   const servers = [
     { url: 'https://api.streamsora.live', altName: 'API' },
-    { url: 'https://m3u8.streamsora.live', altName: 'M3U8' },
+    { url: 'https://m3u8.streamsora.live/proxy/m3u8', altName: 'M3U8' },
     { url: 'https://streamsora.live', altName: 'Website' },
     { url: 'https://scrape.streamsora.live', altName: 'Scraper' },
     // Add more servers as needed
