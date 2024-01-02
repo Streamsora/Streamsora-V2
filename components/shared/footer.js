@@ -79,6 +79,9 @@ function Footer() {
                 <li className="cursor-pointer hover:text-action">
                   <Link href={`/en/contact`}>Contact</Link>
                 </li>
+                <li className="cursor-pointer hover:text-action">
+                  <Link href={`/en/status`}>Status</Link>
+                </li>
               </ul>
             </div>
           </div>

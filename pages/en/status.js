@@ -4,22 +4,28 @@ import Footer from "@/components/shared/footer";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaCheck, FaTimes, FaExclamationTriangle } from "react-icons/fa";
 
 export default function Status() {
   const servers = [
     { url: 'https://api.streamsora.live', altName: 'API' },
     { url: 'https://m3u8.streamsora.live', altName: 'M3U8' },
     { url: 'https://streamsora.live', altName: 'Website' },
+    { url: 'https://scrape.streamsora.live', altName: 'Scraper' },
     // Add more servers as needed
   ];
   const [serverStatusList, setServerStatusList] = useState([]);
+  const [isChecking, setIsChecking] = useState(false);
 
   useEffect(() => {
     const checkServerStatus = async () => {
+      setIsChecking(true);
+
       const promises = servers.map(async ({ url, altName }) => {
         try {
           const response = await fetch(url);
           const status = response.ok ? 'Up' : 'Down';
+
           return { altName, status };
         } catch (error) {
           console.error(`Error checking server status for ${altName}:`, error);
@@ -33,11 +39,29 @@ export default function Status() {
         })
         .catch((error) => {
           console.error("Error checking server statuses:", error);
+        })
+        .finally(() => {
+          setIsChecking(false);
         });
     };
 
-    checkServerStatus();
-  }, [servers]);
+    const rateLimitTimeout = 5000; // Set the rate limit to 5 seconds (adjust as needed)
+
+    if (!isChecking) {
+      setTimeout(checkServerStatus, rateLimitTimeout);
+    }
+  }, [servers, isChecking]);
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'Up':
+        return <FaCheck className="text-green-500" />;
+      case 'Down':
+        return <FaTimes className="text-red-500" />;
+      default:
+        return <FaExclamationTriangle className="text-yellow-500" />;
+    }
+  };
 
   const pageVariants = {
     initial: {
@@ -82,7 +106,7 @@ export default function Status() {
               >
                 <p className="text-lg">{altName}</p>
                 <p className={`text-2xl font-semibold ml-auto ${status === 'Up' ? 'text-green-500' : (status === 'Error' ? 'text-yellow-500' : 'text-red-500')}`}>
-                  {status || 'Checking...'}
+                  {getStatusIcon(status)} {status || 'Checking...'}
                 </p>
               </div>
             ))}

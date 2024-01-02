@@ -93,6 +93,7 @@ export default function ChangelogModal({ isOpen, setIsOpen }) {
                     <p>- Fix: Episode metadata not showing after switching to dub</p>
                     <p>- Fix: Profile picture weirdly cropped</p>
                     <p>- Fix: Fetching the m3u8 from hanime api</p>
+                    <p>- Fix: Server Status</p>
                   </div>
                 </div>
 
