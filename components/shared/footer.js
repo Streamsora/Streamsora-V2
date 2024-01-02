@@ -55,9 +55,6 @@ function Footer() {
                   <Link href={`/en/search/manga`}>Popular Manga</Link>
                 </li>
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/en/stats`}>Stats</Link>
-                </li>
-                <li className="cursor-pointer hover:text-action">
                   <Link href={`/en/hanime/hentai`}>Hentai</Link>
                 </li>
               </ul>
@@ -79,8 +76,13 @@ function Footer() {
                 <li className="cursor-pointer hover:text-action">
                   <Link href={`/en/contact`}>Contact</Link>
                 </li>
+              </ul>
+              <ul className="flex flex-col gap-y-[0.7rem]">
                 <li className="cursor-pointer hover:text-action">
-                  <Link href={`/en/status`}>Status</Link>
+                  <Link href={`/en/status`}>Server Status</Link>
+                </li>
+                <li className="cursor-pointer hover:text-action">
+                  <Link href={`/en/stats`}>Statistics</Link>
                 </li>
               </ul>
             </div>

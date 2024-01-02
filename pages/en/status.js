@@ -13,6 +13,7 @@ export default function Status() {
     { url: 'https://streamsora.live', altName: 'Website' },
     { url: 'https://scrape.streamsora.live', altName: 'Scraper' },
     { url: 'https://hanime-api-five.vercel.app', altName: 'Hanime API' },
+    { url: 'https://anilist.co', altName: 'Anilist' },
     // Add more servers as needed
   ];
   const [serverStatusList, setServerStatusList] = useState([]);

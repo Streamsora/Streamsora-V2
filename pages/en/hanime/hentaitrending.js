@@ -9,26 +9,24 @@ import { authOptions } from "../../api/auth/[...nextauth]";
 import Head from "next/head";
 import MobileNav from "@/components/shared/MobileNav";
 
-export default function TrendingHentai({ sessions, trendingData }) {
+export default function TrendingHentai({ sessions, trendingData, tagsData }) {
   const [data, setData] = useState({ results: [] });
   const [page, setPage] = useState(1);
   const [nextPage, setNextPage] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [selectedTag, setSelectedTag] = useState(""); // New state to store the selected tag
 
   useEffect(() => {
-    function handleScroll() {
+    const handleScroll = () => {
       if (page > 5 || !nextPage) {
         window.removeEventListener("scroll", handleScroll);
         return;
       }
 
-      if (
-        window.innerHeight + window.pageYOffset >=
-        document.body.offsetHeight - 3
-      ) {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 3) {
         setPage((prevPage) => prevPage + 1);
       }
-    }
+    };
 
     window.addEventListener("scroll", handleScroll);
 
@@ -38,9 +36,7 @@ export default function TrendingHentai({ sessions, trendingData }) {
   useEffect(() => {
     const fetchTrendingData = async () => {
       setLoading(true);
-      const res = await fetch(
-        `https://hanime-api-five.vercel.app/trending/day/${page}`
-      );
+      const res = await fetch(`https://hanime-api-five.vercel.app/trending/day/${page}`);
       const newTrendingData = await res.json();
 
       if (newTrendingData?.results?.length === 0) {
@@ -57,6 +53,29 @@ export default function TrendingHentai({ sessions, trendingData }) {
 
     fetchTrendingData();
   }, [page]);
+
+  const handleTagChange = async (event) => {
+    const newSelectedTag = event.target.value;
+
+    // If the selected tag has changed, update the state and fetch new data
+    if (newSelectedTag !== selectedTag) {
+      setSelectedTag(newSelectedTag);
+      setPage(1); // Reset page to 1 when a new tag is selected
+
+      // Fetch trending data based on the selected tag
+      const res = await fetch(`https://hanime-api-five.vercel.app/tags/${encodeURIComponent(newSelectedTag)}/1`);
+      const newTrendingData = await res.json();
+
+      if (newTrendingData?.results?.length === 0) {
+        setNextPage(false);
+      } else {
+        setData({ results: newTrendingData.results });
+        setNextPage(newTrendingData.next_page !== null);
+      }
+
+      setLoading(false);
+    }
+  };
 
 
   return (
@@ -109,6 +128,26 @@ export default function TrendingHentai({ sessions, trendingData }) {
             </div>
           ))}
 
+{/*           Display dropdown for tags on the side
+          <div className="fixed top-20 right-10 flex flex-col items-center rounded border-0 bg-secondary p-1">
+            <select
+              id="tags"
+              value={selectedTag}
+              onChange={handleTagChange}
+              className="bg-secondary text-white p-2 rounded"
+            >
+              <option value="" disabled>
+                Choose a tag
+              </option>
+              {tagsData?.results.map((tag) => (
+                <option key={tag.id} value={tag.text}>
+                  {tag.text}
+                </option>
+              ))}
+            </select>
+          </div>*/}
+
+
           {loading && (
             <>
               {[1, 2, 4, 5, 6, 7, 8].map((item) => (
@@ -141,10 +180,13 @@ export default function TrendingHentai({ sessions, trendingData }) {
   );
 }
 
+
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-  // Fetch trending anime data from the API endpoint
+  const tagRes = await fetch("https://hanime-api-five.vercel.app/tags");
+  const tagsData = await tagRes.json();
+
   const res = await fetch("https://hanime-api-five.vercel.app/trending/day/1");
   const trendingData = await res.json();
 
@@ -152,6 +194,7 @@ export async function getServerSideProps(context) {
     props: {
       sessions: session,
       trendingData,
+      tagsData,
     },
   };
 }
