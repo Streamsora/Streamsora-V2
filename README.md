@@ -59,7 +59,7 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 Thank You for passing by!!
 
-If you have any questions or feedback, please reach out to us at [contact@streamsora.live](mailto:contact@streamsora.live?subject=[Streamsora]%20-%20Your%20Subject), or you can join our [discord sever](https://discord.gg/FQbfNWPSJM).
+If you have any questions or feedback, please reach out to us at [contact@streamsora.live](mailto:contact@streamsora.live?subject=[Streamsora]%20-%20Your%20Subject), or you can join our [discord server](https://discord.gg/FQbfNWPSJM).
 <br>
 or you can DM me on Discord `Araxyso`.
 
