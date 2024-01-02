@@ -69,7 +69,7 @@ export default function Home({ detail, populars, upComing }) {
   const [isAgeVerificationModalOpen, setIsAgeVerificationModalOpen] = useState(true);
   const { data: sessions } = useSession();
   const [ data1, setData] = useState(null);
-  const { anime: currentAnime, manga: currentManga } = GetMedia(sessions, {
+  const { anime: currentAnime } = GetMedia(sessions, {
     stats: "CURRENT",
   });
   const { anime: plan } = GetMedia(sessions, { stats: "PLANNING" });
@@ -233,17 +233,6 @@ export default function Home({ detail, populars, upComing }) {
       const listAnime = getMedia?.entries
         .map(({ media }) => media)
         .filter((media) => media);
-      const getManga =
-        currentManga?.find((item) => item.status === "CURRENT") || null;
-      const listManga = getManga?.entries
-        .map(({ media }) => media)
-        .filter((media) => media);
-      const planned = plan?.[0]?.entries
-        .map(({ media }) => media)
-        .filter((media) => media);
-      if (listManga) {
-        setListManga(listManga);
-      }
       if (listAnime) {
         setListAnime(listAnime);
       }

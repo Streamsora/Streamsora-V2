@@ -5,6 +5,7 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaCheck, FaTimes, FaExclamationTriangle } from "react-icons/fa";
+import { Toaster, toast } from 'sonner';
 
 export default function Status() {
   const servers = [
@@ -16,6 +17,7 @@ export default function Status() {
   ];
   const [serverStatusList, setServerStatusList] = useState([]);
   const [isChecking, setIsChecking] = useState(false);
+  const [lastChecked, setLastChecked] = useState(null);
 
   useEffect(() => {
     const checkServerStatus = async () => {
@@ -25,6 +27,12 @@ export default function Status() {
         try {
           const response = await fetch(url);
           const status = response.ok ? 'Up' : 'Down';
+
+          // Show notification for changes in status
+          const previousStatus = serverStatusList.find(server => server.altName === altName)?.status;
+          if (previousStatus && previousStatus !== status) {
+            showNotification(altName, status);
+          }
 
           return { altName, status };
         } catch (error) {
@@ -42,6 +50,7 @@ export default function Status() {
         })
         .finally(() => {
           setIsChecking(false);
+          setLastChecked(new Date());
         });
     };
 
@@ -50,7 +59,7 @@ export default function Status() {
     if (!isChecking) {
       setTimeout(checkServerStatus, rateLimitTimeout);
     }
-  }, [servers, isChecking]);
+  }, [servers, isChecking, serverStatusList]);
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -61,6 +70,14 @@ export default function Status() {
       default:
         return <FaExclamationTriangle className="text-yellow-500" />;
     }
+  };
+
+  const showNotification = (altName, status) => {
+    toast({
+      title: `${altName} Status Update`,
+      body: `Server is ${status}`,
+      type: status === 'Up' ? 'success' : (status === 'Error' ? 'warning' : 'error'),
+    });
   };
 
   const pageVariants = {
@@ -112,6 +129,7 @@ export default function Status() {
             ))}
           </div>
         </motion.div>
+        <Toaster />
       </>
     </motion.div>
   );

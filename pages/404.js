@@ -18,8 +18,8 @@ export default function Custom404() {
     }
     if (lang === "en" || lang === null) {
       setLang("en");
-    } else if (lang === "id") {
-      setLang("id");
+    } else if (lang === "jp") {
+      setLang("jp");
     }
   }, []);
   return (
