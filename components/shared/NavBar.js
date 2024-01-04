@@ -52,8 +52,8 @@ export function NewNavbar({
   }, []);
   return (
     <>
-       Changelog Modal
-      <NotificationsModal isOpen={isNotificationModalOpen} setIsOpen={setIsNotificationModalOpen} />
+{/*       Changelog Modal
+      <NotificationsModal isOpen={isNotificationModalOpen} setIsOpen={setIsNotificationModalOpen} />*/}
       <nav
         className={`${home ? "" : "fixed"} z-[200] top-0 px-5 w-full ${
           scrollPosition?.y >= scrollP
