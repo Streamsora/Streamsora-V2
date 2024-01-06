@@ -13,6 +13,7 @@ export default function Document() {
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossOrigin="anonymous"
         />
+        <script async src="https://arc.io/widget.min.js#jDobR2KJ"></script>
         <link rel="icon" href="/streamsora.png" />
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
         <meta
