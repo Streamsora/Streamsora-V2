@@ -359,9 +359,9 @@ export default function Home({ detail, populars, upComing }) {
         />
         <meta name="twitter:image" content="/streamsora.png" />
       </Head>
-      {isChangelogModalOpen && (
+{/*      {isChangelogModalOpen && (
         <ChangelogModal isOpen={isChangelogModalOpen} setIsOpen={setIsChangelogModalOpen} />
-      )}
+      )}*/}
       <MobileNav sessions={sessions} hideProfile={true} />
 
       <NewNavbar paddingY="pt-2 lg:pt-10" withNav={true} home={true} />

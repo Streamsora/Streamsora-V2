@@ -107,7 +107,6 @@ async function fetchAnify(id) {
        }
        return provider;
      });
-    return filtered;
   } catch (error) {
     console.error("Error fetching and processing data:", error.message);
     return [];

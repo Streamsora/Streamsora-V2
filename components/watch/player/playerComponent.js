@@ -9,8 +9,7 @@ import Loading from "@/components/shared/loading";
 export function calculateAspectRatio(width, height) {
   const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
   const divisor = gcd(width, height);
-  const aspectRatio = `${width / divisor}/${height / divisor}`;
-  return aspectRatio;
+  return `${width / divisor}/${height / divisor}`;
 }
 
 const fontSize = [
@@ -34,7 +33,6 @@ export default function PlayerComponent({
                                           id,
                                           info,
                                           watchId,
-                                          proxy,
                                           dub,
                                           timeWatched,
                                           skip,
@@ -93,7 +91,7 @@ export default function PlayerComponent({
         const referer = JSON.stringify(data?.headers);
         const source = data?.sources?.map((items) => {
           const isDefault =
-            provider !== "gogoanime"
+            provider !== "animepahe"
               ? items.quality === "default" || items.quality === "auto"
               : resolution === "auto"
                 ? items.quality === "default" || items.quality === "auto"
@@ -101,9 +99,7 @@ export default function PlayerComponent({
           return {
             ...(isDefault && { default: true }),
             html: items.quality === "default" ? "main" : items.quality,
-            url: `${proxy}/proxy/m3u8/${encodeURIComponent(
-              String(items.url)
-            )}/${encodeURIComponent(String(referer))}`,
+            url: items.url,
           };
         });
 
@@ -292,7 +288,7 @@ export default function PlayerComponent({
             provider: provider,
             nextId: track.next?.id,
             nextNumber: Number(track.next?.number),
-            dub: dub ? true : false,
+            dub: !!dub,
           }),
         });
         // console.log("updating db", { track });
@@ -327,7 +323,7 @@ export default function PlayerComponent({
           provider: provider,
           nextId: track?.next?.id,
           nextNumber: track?.next?.number,
-          dub: dub ? true : false,
+          dub: !!dub,
           createdAt: new Date().toISOString(),
         });
       }, 5000);

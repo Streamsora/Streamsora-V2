@@ -29,11 +29,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  let proxy;
-  proxy = process.env.PROXY_URI;
-  if (proxy && proxy.endsWith("/")) {
-    proxy = proxy.slice(0, -1);
-  }
+
   const disqus = process.env.DISQUS_SHORTNAME;
 
   const [aniId, provider] = query?.info;
@@ -119,7 +115,6 @@ export async function getServerSideProps(context) {
       dub: dub || null,
       userData: userData?.[0] || null,
       info: data?.data?.Media || null,
-      proxy,
       disqus,
     },
   };
@@ -129,7 +124,6 @@ export default function Watch({
                                 info,
                                 watchId,
                                 disqus,
-                                proxy,
                                 dub,
                                 userData,
                                 sessions,
@@ -441,7 +435,6 @@ export default function Watch({
               dub={dub}
               info={info}
               watchId={watchId}
-              proxy={proxy}
               track={episodeNavigation}
               data={episodeSource?.epiData}
               skip={episodeSource?.skip}
@@ -465,7 +458,6 @@ export default function Watch({
                   dub={dub}
                   info={info}
                   watchId={watchId}
-                  proxy={proxy}
                   track={episodeNavigation}
                   data={episodeSource?.epiData}
                   skip={episodeSource?.skip}

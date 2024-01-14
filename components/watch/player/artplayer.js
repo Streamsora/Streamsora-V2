@@ -87,7 +87,7 @@ export default function NewPlayer({
           html: "Autoplay Next",
           icon: '<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M4.05 16.975q-.5.35-1.025.05t-.525-.9v-8.25q0-.6.525-.888t1.025.038l6.2 4.15q.45.3.45.825t-.45.825l-6.2 4.15Zm10 0q-.5.35-1.025.05t-.525-.9v-8.25q0-.6.525-.888t1.025.038l6.2 4.15q.45.3.45.825t-.45.825l-6.2 4.15Z"></path></svg>',
           tooltip: "ON/OFF",
-          switch: localStorage.getItem("autoplay") === "true" ? true : false,
+          switch: localStorage.getItem("autoplay") === "true",
           onSwitch: function (item) {
             // setPlayNext(!item.switch);
             localStorage.setItem("autoplay", !item.switch);
