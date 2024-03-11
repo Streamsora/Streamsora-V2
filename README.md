@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">
-  <a href="https://streamsora.live">Streamsora</a>
+  <a href="https://streamsora.live">Moved to https://github.com/Streamsora/streamsora</a>
 </h1>
 
 <p align="center">
